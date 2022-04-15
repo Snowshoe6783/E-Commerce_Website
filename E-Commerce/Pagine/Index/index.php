@@ -62,7 +62,7 @@
 				echo "<li><a href=\"../Ordini_Effettuati/Lista_Ordini/lista_ordini.php\">Ordini</a></li>";
 				echo "<li><a href=\"../Carrello/carrello.php\">Carrello</a></li>";
 				echo "<li><a href=\"../Gestione_Database/Menu_Gestione/menu_gestione.php\">Gestione</a></li>";
-				echo " cochior gay<li><a href=\"../Logout/logout.php\">Logout</a></li>";
+				echo " marchio omofobo<li><a href=\"../Logout/logout.php\">Logout</a></li>";
 			}
 		  ?>
           
