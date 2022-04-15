@@ -40,7 +40,7 @@
 			foreach($row as $key => $value){
 				echo "<th>$key</th>";
 			}
-			echo "<a href = \"../Ordine_Specifico/ordine_specifico.php\">";
+			
 			echo "</tr>";
 			break;	
 		}
@@ -54,6 +54,7 @@
 			echo "<td>$ordine_ID</td>";
 			echo "<td>".$stato_ID."</td>";
 			echo "<td>".$importo_totale."</td>";
+			echo "<td><a href = \"../Ordine_Specifico/ordine_specifico.php\"></td>";
 			
 			echo "</tr>";
 			
