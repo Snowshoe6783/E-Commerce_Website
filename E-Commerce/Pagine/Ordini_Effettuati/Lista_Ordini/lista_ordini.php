@@ -28,7 +28,8 @@
     <?php
 		$query = "SELECT o.ordine_ID AS 'ID Ordine', s.stato_ID AS 'ID Stato', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
 				  FROM ordine AS o JOIN stato_ordine AS s ON o.stato_ID = s.stato_ID JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
-				  WHERE utente_ID = '".$_SESSION['utente_ID']."'
+				  WHERE utente_ID = '".$_SESSION['utente_ID']."
+				    AND s.data_annullamento IS NULL'
 				  GROUP BY o.ordine_ID";
 
 		echo $query;

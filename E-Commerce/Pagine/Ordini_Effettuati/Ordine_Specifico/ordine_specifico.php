@@ -39,6 +39,8 @@
 
 			$result = $conn -> query($query);
 			
+			$result_quadri_ordinati = $result;
+
 			$n_rows = $result -> num_rows;
 			echo $n_rows;
 			$flag = 0;
@@ -80,7 +82,10 @@
 			
 			
 			$prezzo_totale = 0;
+			echo $query;
 			$result = $conn -> query($query);
+
+			$result_dettagli_quadri_ordinati = $result;
 			
 			foreach($result as $row){
 						echo "<tr>";
@@ -120,7 +125,8 @@
 			echo "prezzo totale = ".$prezzo_totale;
 
 			$query = "SELECT ms.nome AS nome_metodo_spedizione, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione
-					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID";
+					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID
+					  WHERE o.ordine_ID = $ordine_ID";
 
 			
 
@@ -129,28 +135,46 @@
 			
 
 			foreach($result as $row){
-				
 				$nome_metodo_spedizione = $row['nome_metodo_spedizione'];
 				$nome_metodo_pagamento = $row['nome_metodo_pagamento'];		
 				$indirizzo_spedizione = $row['indirizzo_spedizione'];
-				
-				
-				
-				
-					
-				}
-			
+				}	
 			echo "<br>";
 			echo "Indirizzo di Spedizione: ".$indirizzo_spedizione."<br>";
 			echo "Metodo di Spedizione: ".$nome_metodo_spedizione."<br>";
 			echo "Metodo di Pagamento: ".$nome_metodo_pagamento."<br>";
+		?>
 
-			
+		<form method = "POST" name = "annulla_ordine">
+			<input type = "submit" name = "submit_annulla_ordine">
+		</form>
+		<?php
+			/*if(isset($_POST['submit_annulla_ordine'])){
 
+				
+			foreach($result_quadri_ordinati as $ro1)
+				foreach($result_dettagli_quadri_ordinati as $row2){
+					$quadro_ID = $row['Quadro ID'];
+					$quantita_ordinata = $row['Quantità'];
 
+					$query = "UPDATE quadro
+						      SET quantita_in_magazzino = quantita_in_magazzino + $quantita_ordinata
+						      WHERE quadro_ID = $quadro_ID;";
+					}
 
-		
-		
+					echo "Query aggiungi quadro: ".$query;
+				
+
+				$result = $conn -> query($query);
+
+				$query = "UPDATE stato_ordine
+						  SET data_annullamento = $date
+						  WHERE ordine_ID = $ordine_ID;";
+
+			echo "Query aggiungi data_annullamento: ".$query;
+
+				$result = $conn -> query($query);
+			}*/
 		?>
   </body>
   
