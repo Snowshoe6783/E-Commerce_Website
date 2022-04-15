@@ -26,24 +26,11 @@
       Carrello
     </h1>
     <?php
-		$query = "SELECT ordine_ID
-				FROM ordine AS o JOIN stato_ordine AS so
-				ON o.stato_ID = so.stato_ID
-				WHERE data_conferma IS NULL
-				AND utente_ID = '".$_SESSION['utente_ID']."';";
+		$ordine_ID = $_GET['ordine_ID'];
+		
 
 
-		$result = $conn -> query($query);
-		
-		$n_rows = $result -> num_rows;
-		
-				
-		if($n_rows != 0){
-			foreach($result as $row){ //togli il for each se possibile
-				$ordine_ID = $row['ordine_ID'];			
-			}
 			
-			$_SESSION['ordine_ID'] = $ordine_ID;
 
 			$query = "SELECT quadro_ID
 					FROM acquisto
@@ -53,9 +40,9 @@
 			$result = $conn -> query($query);
 			
 			$n_rows = $result -> num_rows;
-			
+			echo $n_rows;
 			$flag = 0;
-			
+			$query = "";
 			echo "<table border = \"1\">";
 			
 			$result -> fetch_all(MYSQLI_ASSOC);
@@ -67,8 +54,7 @@
 							 FROM quadro AS q JOIN acquisto AS a
 							 ON q.quadro_ID = a.quadro_ID
 							 WHERE q.quadro_ID = '$quadro_ID'
-							  AND a.ordine_ID = '$ordine_ID'
-							  AND q.quantita_in_magazzino >= a.quantita;";
+							   AND a.ordine_ID = '$ordine_ID';";
 							   
 							 
 					$flag = 1;
@@ -82,7 +68,6 @@
 							ON q.quadro_ID = a.quadro_ID
 							WHERE q.quadro_ID = '$quadro_ID'
 							  AND a.ordine_ID = '$ordine_ID'
-							  AND q.quantita_in_magazzino >= a.quantita
 							UNION
 							$query";
 						
@@ -134,14 +119,36 @@
 			
 			echo "prezzo totale = ".$prezzo_totale;
 
+			$query = "SELECT ms.nome AS nome_metodo_spedizione, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione
+					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID";
+
+			
+
+			$result = $conn -> query($query);
+			
+			
+
+			foreach($result as $row){
+				
+				$nome_metodo_spedizione = $row['nome_metodo_spedizione'];
+				$nome_metodo_pagamento = $row['nome_metodo_pagamento'];		
+				$indirizzo_spedizione = $row['indirizzo_spedizione'];
+				
+				
+				
+				
+					
+				}
+			
+			echo "<br>";
+			echo "Indirizzo di Spedizione: ".$indirizzo_spedizione."<br>";
+			echo "Metodo di Spedizione: ".$nome_metodo_spedizione."<br>";
+			echo "Metodo di Pagamento: ".$nome_metodo_pagamento."<br>";
+
 			
 
 
 
-		}else{
-			echo "Carrello vuoto.";
-			
-		}
 		
 		
 		?>
