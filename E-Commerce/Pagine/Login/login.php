@@ -84,7 +84,8 @@
 						$_SESSION['ruolo_ID'] = $ruolo_ID;
 						$_SESSION['utente_ID'] = $utente_ID;
 						echo "Login effettuato. Ti riporto alla pagina iniziale...";
-						header( "Refresh:3; url = ../Index/index.php", true, 303);
+						header( "Refresh:1; url = ../Index/index.php", true, 303);
+						echo "ciao_cochior";
 					}else{
 						echo "Login fallito, username e/o password sbagliata.";
 					}
