@@ -27,11 +27,16 @@
     </h1>
     <?php
 		$query = "SELECT o.ordine_ID AS 'ID Ordine', s.stato_ID AS 'ID Stato', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
-				  FROM (ordine AS o JOIN stato_ordine AS s) JOIN (quadro AS q JOIN acquisto AS a)
-				  WHERE utente_ID = '".$_SESSION['utente_ID']."'";
+				  FROM ordine AS o JOIN stato_ordine AS s ON o.stato_ID = s.stato_ID JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
+				  WHERE utente_ID = '".$_SESSION['utente_ID']."'
+				  GROUP BY o.ordine_ID";
 
 		echo $query;
 		$result = $conn -> query($query);
+
+		$n_rows = $result -> num_rows;
+
+		echo $n_rows;
 
 		echo "<table border = 1>";
 
@@ -40,12 +45,13 @@
 			foreach($row as $key => $value){
 				echo "<th>$key</th>";
 			}
-			
+			echo "<th>Dettagli Ordine</th>";
 			echo "</tr>";
 			break;	
 		}
 
 		foreach($result as $row){
+			
 			echo "<tr>";
 			$ordine_ID = $row['ID Ordine'];
 			$stato_ID = $row['ID Stato'];		
@@ -54,7 +60,7 @@
 			echo "<td>$ordine_ID</td>";
 			echo "<td>".$stato_ID."</td>";
 			echo "<td>".$importo_totale."</td>";
-			echo "<td><a href = \"../Ordine_Specifico/ordine_specifico.php\"></td>";
+			echo "<td><a href = \"../Ordine_Specifico/ordine_specifico.php?ordine_ID=$ordine_ID\">Visualizza Dettagli</a></td>";
 			
 			echo "</tr>";
 			
