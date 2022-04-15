@@ -81,6 +81,8 @@
 
 					echo "nooooooooo";
 
+					
+
 					if(password_verify($_POST['password'], $hashed_password)) {
 						$_SESSION['username'] = $_POST['username'];
 						$_SESSION['ruolo_ID'] = $ruolo_ID;
@@ -88,6 +90,7 @@
 						echo "Login effettuato. Ti riporto alla pagina iniziale...";
 						header( "Refresh:1; url = ../Index/index.php", true, 303);
 						echo "ciao cocchy";
+						echo "hahahahaha";
 					}else{
 						echo "Login fallito, username e/o password sbagliata.";
 					}
