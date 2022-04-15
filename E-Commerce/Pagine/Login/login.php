@@ -79,6 +79,8 @@
 						$hashed_password = $row['password'];
 					}
 
+					echo "nooooooooo";
+
 					if(password_verify($_POST['password'], $hashed_password)) {
 						$_SESSION['username'] = $_POST['username'];
 						$_SESSION['ruolo_ID'] = $ruolo_ID;
