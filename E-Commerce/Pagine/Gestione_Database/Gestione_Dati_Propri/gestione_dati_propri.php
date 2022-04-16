@@ -26,12 +26,11 @@
 				<div id="dati_anagrafici">
 							Dati anagrafici
 					<br>
-					<label for="nome_field">Nome <input class="input_registrazione" type = "text" name = "nome"><br>
-					<label for="nome_field">Cognome <input class="input_registrazione" type = "text" name = "cognome"><br>
-					<label for="nome_field">Data di nascita <input class="input_registrazione" type = "text" name = "data_nascita"><br>
-					<label for="nome_field">E-mail <input class="input_registrazione" type = "text" name = "email"><br>
-					<label for="nome_field">Indirizzo <input class="input_registrazione" type = "text" name = "indirizzo"><br>
-					<label for="nome_field">Numero di telefono <input class="input_registrazione" type = "text" name = "numero_telefono">
+					<label for="nome_field">Nome <input class="input_registrazione" type = "text" name = "nome" required><br>
+					<label for="nome_field">Cognome <input class="input_registrazione" type = "text" name = "cognome" required><br>
+					<label for="nome_field">E-mail <input class="input_registrazione" type = "text" name = "email" required><br>
+					<label for="nome_field">Indirizzo <input class="input_registrazione" type = "text" name = "indirizzo" required><br>
+					<label for="nome_field">Numero di telefono <input class="input_registrazione" type = "text" name = "numero_telefono" required>
 					
 
 					
@@ -76,19 +75,19 @@
 			
 			  
 
-				
+				$password = $_POST['password'];
+				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 				
 			
 
                 $query = "UPDATE dati_utente SET
                             nome = '".$_POST['nome']."',
                             cognome = '".$_POST['cognome']."',
-                            data_nascita = '".$_POST['data_nascita']."',
                             email = '".$_POST['email']."',
                             indirizzo = '".$_POST['indirizzo']."',
                             numero_telefono = '".$_POST['numero_telefono']."',
                             username = '".$_POST['username']."',
-                            password = '".$_POST['password']."'
+                            password = '$hashed_password'
                         WHERE utente_id = '".$_SESSION['utente_ID']."';";
 															
 				echo $query;
@@ -98,7 +97,7 @@
 				
 
 					  
-				echo 'Utente registrato';
+				echo 'Cambiato dati utente';
 				
 				
 				
