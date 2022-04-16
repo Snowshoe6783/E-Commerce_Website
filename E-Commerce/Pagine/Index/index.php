@@ -4,6 +4,8 @@
 	if(isset($_SESSION['utente_ID'])){
 		echo "Benvenuto ".$_SESSION['utente_ID'];
 	}
+
+	$link_cartella_immagini = "../../Immagini/Quadri/";
 ?> 
 -->
 <?php
@@ -101,7 +103,7 @@
 			echo 
 			"<div id=\"card\">  
 				<a href = \"../Quadro/quadro.php?quadro_ID=$quadro_ID\">
-					<img id=\"quadro_card\" src=".$link_quadro." alt = ".$nome_quadro.">
+					<img id=\"quadro_card\" src=".$link_cartella_immagini.$link_quadro." alt = ".$nome_quadro.">
 				</a>
 				<br>
 					<p class = \"Titolo_card\">$nome_quadro</p>

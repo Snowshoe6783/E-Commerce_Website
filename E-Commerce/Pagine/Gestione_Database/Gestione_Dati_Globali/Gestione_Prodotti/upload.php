@@ -52,7 +52,7 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
   }
 }
 $_SESSION['message'] = $message;
-header("Location: index.php");
+header("Location: aggiungi_prodotti.php");
 ?>
 
 
@@ -61,8 +61,7 @@ header("Location: index.php");
 >
 <?php
 
-$uploadFileDir = '../../Immagini/Quadri/';
-$dest_path = $uploadFileDir . $newFileName;
+
 
   $query = "INSERT INTO quadro VALUES ('0', 
                                        '".$_POST['nome_quadro']."',
@@ -73,7 +72,7 @@ $dest_path = $uploadFileDir . $newFileName;
                                        '".$_POST['descrizione_dettagliata']."',
                                        '".$_POST['prezzo']."',
                                        '".$_POST['quantita_in_magazzino']."',
-                                       '$dest_path');";
+                                       '$newFileName');";
   echo $query;
   $result = $conn -> query($query);	                                  
 ?>

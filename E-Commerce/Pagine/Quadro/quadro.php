@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$link_cartella_immagini = "../../Immagini/Quadri/";
 ?>
 <?php
 include("../../Connessione_Database/connessione_database.php");
@@ -78,7 +79,7 @@ include("../../Connessione_Database/connessione_database.php");
 			echo "<h1 class= \"Titolo_singolo_Quadro\">$nome_quadro</h1>";
 			echo 
 			"<div class=\"singolo_quadro\">  
-				<img src=".$link_quadro." alt = ".$nome_quadro." class=\"singolo_quadro\">
+				<img src=".$link_cartella_immagini.$link_quadro." alt = ".$nome_quadro." class=\"singolo_quadro\">
 			</div>";
 			echo
 			"<div class=\"des_quadro\">  
