@@ -30,7 +30,7 @@
 		
 
 
-			
+			/*
 
 			$query = "SELECT quadro_ID
 					FROM acquisto
@@ -49,15 +49,15 @@
 			
 			$result -> fetch_all(MYSQLI_ASSOC);
 			foreach($result as $row){
-				
-				$quadro_ID = $row['quadro_ID'];
+				*/
+				echo "<table border = \"1\">";
+				$query = "";
+				$flag = 0;
 				if($flag == 0){
-					$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							 FROM quadro AS q JOIN acquisto AS a
-							 ON q.quadro_ID = a.quadro_ID
-							 WHERE q.quadro_ID = '$quadro_ID'
-							   AND a.ordine_ID = '$ordine_ID';";
-							   
+					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordine AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
+							  WHERE a.ordine_ID = $ordine_ID
+							    AND so.data_annullamento IS NULL;";
 							 
 					$flag = 1;
 					//echo "<br><br>start".$query;
@@ -65,20 +65,19 @@
 				}
 				
 				else{	
-					$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							FROM quadro AS q JOIN acquisto AS a
-							ON q.quadro_ID = a.quadro_ID
-							WHERE q.quadro_ID = '$quadro_ID'
-							  AND a.ordine_ID = '$ordine_ID'
-							UNION
-							$query";
+					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordien AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
+							  WHERE a.ordine_ID = $ordine_ID
+							    AND so.data_annullamento IS NULL;
+							  UNION
+							  $query";
 						
 					//echo "<br><br>big".$query;
 							
 					//non so perchè funziona sta roba
 					
 				}
-			}
+			
 			
 			
 			$prezzo_totale = 0;
@@ -87,15 +86,23 @@
 
 			$result_dettagli_quadri_ordinati = $result;
 			
+			$counter = 0;
+
 			foreach($result as $row){
-						echo "<tr>";
-						foreach($row as $key => $value){
-							echo "<th>$key</th>";
-						}
-						echo "<th>Prezzo Totale</th>";
-						echo "</tr>";
-						break;	
+				echo "<tr>";
+				foreach($row as $key => $value){
+					if($counter == 0){
+						$counter = 1;
+					}else{
+						echo "<th>$key</th>";
 					}
+
+					
+				}
+				echo "<th>Prezzo Totale</th>";
+				echo "</tr>";
+				break;	
+			}
 			
 			foreach($result as $row){
 				echo "<tr>";
@@ -149,33 +156,61 @@
 			<input type = "submit" name = "submit_annulla_ordine">
 		</form>
 		<?php
-			/*if(isset($_POST['submit_annulla_ordine'])){
-
-				
-			foreach($result_quadri_ordinati as $ro1)
-				foreach($result_dettagli_quadri_ordinati as $row2){
+			if(isset($_POST['submit_annulla_ordine'])){
+				foreach($result_dettagli_quadri_ordinati as $row){
 					$quadro_ID = $row['Quadro ID'];
 					$quantita_ordinata = $row['Quantità'];
 
 					$query = "UPDATE quadro
-						      SET quantita_in_magazzino = quantita_in_magazzino + $quantita_ordinata
-						      WHERE quadro_ID = $quadro_ID;";
+							  SET quantita_in_magazzino = quantita_in_magazzino + $quantita_ordinata
+							  WHERE quadro_ID = $quadro_ID;";
+
+					echo "<br>Query aggiungi quadro: ".$query;
+					$result = $conn -> query($query);
+					
 					}
 
-					echo "Query aggiungi quadro: ".$query;
+					
 				
 
-				$result = $conn -> query($query);
+					
 
-				$query = "UPDATE stato_ordine
-						  SET data_annullamento = $date
-						  WHERE ordine_ID = $ordine_ID;";
+					$date = date('Y-m-d H:i:s');
+					
+					$query = "SELECT stato_ID
+							  FROM ordine
+							  WHERE ordine_ID = $ordine_ID;";
 
-			echo "Query aggiungi data_annullamento: ".$query;
+				    echo "<br>Query aggiungi data_annullamento: ".$query;
 
-				$result = $conn -> query($query);
-			}*/
+				    $result = $conn -> query($query);
+
+					foreach($result as $row){
+						$stato_ID = $row['stato_ID'];
+					}
+
+					$query = "UPDATE stato_ordine
+								SET data_annullamento = '$date'
+								WHERE stato_ID = $stato_ID;";
+
+					echo "<br>Query aggiungi data_annullamento: ".$query;
+
+					$result = $conn -> query($query);
+
+					
+
+					header( "Refresh:2; url = ../Lista_Ordini/lista_ordini.php?ordine_ID=$ordine_ID", true, 303);
+			}
+		
+		
+
 		?>
+
+		<script> //serve per cancellare il form dopo che e' stato inserito nel DB
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			}
+		</script>
   </body>
   
 </html>

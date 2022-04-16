@@ -218,7 +218,7 @@
 		<?php
 			if(isset($_POST['conferma_ordine'])){
 
-				$query = "SELECT q.quadro_ID AS quadroID
+				$query = "SELECT q.quadro_ID AS quadroID, quantita
 						FROM acquisto AS a LEFT JOIN quadro AS q
 						ON a.quadro_ID = q.quadro_ID
 						WHERE a.ordine_ID = '".$_SESSION['ordine_ID']."'
@@ -231,6 +231,7 @@
 				
 					foreach($result as $row){
 						$quadroID = $row['quadroID'];
+						$quantita = $row['quantita'];
 						$query = "UPDATE quadro
 								SET quantita_in_magazzino = quantita_in_magazzino - $quantita
 								WHERE quadro_ID = $quadroID";
