@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-	include("../../Connessione_Database/connessione_database.php")
+	include("../../Connessione_Database/connessione_database.php");
 ?>
 <html>
   <head>
