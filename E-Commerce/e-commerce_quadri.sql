@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 07:15 AM
+-- Generation Time: Apr 16, 2022 at 12:21 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -39,10 +39,23 @@ CREATE TABLE `acquisto` (
 --
 
 INSERT INTO `acquisto` (`prodotto_carrello_ID`, `ordine_ID`, `quadro_ID`, `quantita`) VALUES
-(32, 37, 1, 6),
-(33, 37, 2, 5),
-(34, 37, 4, 16),
-(35, 37, 3, 1);
+(65, 52, 5, 2),
+(66, 52, 6, 143),
+(67, 52, 4, 1),
+(68, 53, 3, 2),
+(69, 54, 5, 1),
+(70, 55, 3, 22),
+(71, 55, 1, 1),
+(72, 56, 2, 1),
+(73, 56, 4, 5),
+(74, 57, 4, 5),
+(75, 57, 3, 3),
+(76, 58, 4, 4),
+(77, 58, 3, 5),
+(78, 59, 6, 41),
+(79, 59, 3, 54),
+(80, 60, 4, 4),
+(81, 60, 3, 13);
 
 -- --------------------------------------------------------
 
@@ -55,7 +68,6 @@ CREATE TABLE `dati_utente` (
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
   `ruolo_ID` int(11) NOT NULL,
-  `data_nascita` date DEFAULT NULL,
   `codice_fiscale` varchar(30) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `indirizzo` varchar(100) NOT NULL,
@@ -68,17 +80,8 @@ CREATE TABLE `dati_utente` (
 -- Dumping data for table `dati_utente`
 --
 
-INSERT INTO `dati_utente` (`utente_ID`, `nome`, `cognome`, `ruolo_ID`, `data_nascita`, `codice_fiscale`, `email`, `indirizzo`, `numero_telefono`, `username`, `password`) VALUES
-(38, '1', '1', 1, '2011-11-11', '1', '1', '1', '1', '1', '1'),
-(39, '2', '2', 2, '2022-11-11', '2', '2', '2', '2', '2', '2'),
-(40, '1', '1', 1, '2011-11-11', '1', '1', '1', '1', '1', '1'),
-(42, '3', '3', 3, '0000-00-00', '', '3', '3', '3', '3', '3'),
-(43, '4', '4', 4, '0000-00-00', '', '4', '4', '4', '4', '4'),
-(44, '6', '6', 1, '0000-00-00', '', '6', '6', '6', '6', '6'),
-(45, '2', '3', 2, '0000-00-00', '', '2', '2', '2', '2', '2'),
-(46, '3', '3', 2, '0000-00-00', '', '2', '1', '1', '4', '\n														$2y$10$e1X/FJ8K3AUAjAm6rW.dueD208U6uyM1h/ByteeSUaNmlAfXBSQ0e'),
-(47, '8', '8', 1, '0000-00-00', '', '8', '8', '8', 'a', '\n														$2y$10$msWz0UmgNFpWwa2b/FYzaeJfAWpSw/Ztn5V.jPkCgz7rYMksXovMS'),
-(48, '3', '3', 1, '0000-00-00', '', '1', '1', '1', 'aa', 'bb');
+INSERT INTO `dati_utente` (`utente_ID`, `nome`, `cognome`, `ruolo_ID`, `codice_fiscale`, `email`, `indirizzo`, `numero_telefono`, `username`, `password`) VALUES
+(54, 'marchio', 'alexander', 1, 'dsa', 'alexa', 'fermi mn edu it', '1234', 'ciao', '$2y$10$U89A2KJmQbAhvn6Qy1LI7eN8Kj/7UlR89Loxv3xLLiIsPdHTKRDyW');
 
 -- --------------------------------------------------------
 
@@ -91,6 +94,15 @@ CREATE TABLE `metodo_pagamento` (
   `nome` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `metodo_pagamento`
+--
+
+INSERT INTO `metodo_pagamento` (`metodo_ID`, `nome`) VALUES
+(1, 'Carta di Credito'),
+(2, 'PayPal'),
+(3, 'Bonifico');
+
 -- --------------------------------------------------------
 
 --
@@ -100,8 +112,18 @@ CREATE TABLE `metodo_pagamento` (
 CREATE TABLE `metodo_spedizione` (
   `metodo_id` int(11) NOT NULL,
   `nome` varchar(30) NOT NULL,
-  `costo` decimal(10,0) NOT NULL
+  `costo` float(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `metodo_spedizione`
+--
+
+INSERT INTO `metodo_spedizione` (`metodo_id`, `nome`, `costo`) VALUES
+(1, 'Corriere', 2),
+(2, 'Corriere espresso', 5),
+(3, 'Poste', 1),
+(4, 'Punto di ritiro', 0);
 
 -- --------------------------------------------------------
 
@@ -114,15 +136,24 @@ CREATE TABLE `ordine` (
   `utente_ID` int(11) NOT NULL,
   `stato_ID` int(11) NOT NULL,
   `metodo_spedizione_ID` int(11) DEFAULT NULL,
-  `metodo_pagamento_ID` int(11) DEFAULT NULL
+  `metodo_pagamento_ID` int(11) DEFAULT NULL,
+  `indirizzo_spedizione` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ordine`
 --
 
-INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `stato_ID`, `metodo_spedizione_ID`, `metodo_pagamento_ID`) VALUES
-(37, 40, 23, NULL, NULL);
+INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `stato_ID`, `metodo_spedizione_ID`, `metodo_pagamento_ID`, `indirizzo_spedizione`) VALUES
+(52, 54, 45, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(53, 54, 46, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(54, 54, 47, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(55, 54, 48, 1, 1, 'Italy, MN, Guidizzolo, Guidizzolo, 46040, Borgo Breda 23'),
+(56, 54, 49, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(57, 54, 50, 1, 1, 'Italy, MN, Guidizzolo, Guidizzolo, 46040, Borgo Breda 21'),
+(58, 54, 51, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(59, 54, 52, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 21'),
+(60, 54, 53, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11');
 
 -- --------------------------------------------------------
 
@@ -132,13 +163,13 @@ INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `stato_ID`, `metodo_spedizione_I
 
 CREATE TABLE `quadro` (
   `quadro_ID` int(11) NOT NULL,
-  `prezzo` decimal(10,0) NOT NULL,
-  `nazione_di_origine` varchar(20) NOT NULL,
-  `descrizione_breve` varchar(100) NOT NULL,
-  `genere` varchar(20) NOT NULL,
-  `descrizione_dettagliata` varchar(500) NOT NULL,
   `nome_quadro` varchar(30) NOT NULL,
   `nome_autore` varchar(30) NOT NULL,
+  `nazione_di_origine` varchar(20) NOT NULL,
+  `genere` varchar(20) NOT NULL,
+  `descrizione_breve` varchar(100) NOT NULL,
+  `descrizione_dettagliata` varchar(500) NOT NULL,
+  `prezzo` float NOT NULL,
   `quantita_in_magazzino` int(11) NOT NULL,
   `link_quadro` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -147,14 +178,16 @@ CREATE TABLE `quadro` (
 -- Dumping data for table `quadro`
 --
 
-INSERT INTO `quadro` (`quadro_ID`, `prezzo`, `nazione_di_origine`, `descrizione_breve`, `genere`, `descrizione_dettagliata`, `nome_quadro`, `nome_autore`, `quantita_in_magazzino`, `link_quadro`) VALUES
-(1, '50', 'Norvegia', 'Lorem ipsum', 'Espressionismo', 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet', 'L\'urlo', 'Edvard Munch', 5, '../../Immagini/Quadri/L\'Urlo_Munch.jpg'),
-(2, '100', 'Spagna', 'interessante', 'Romanticismo', 'molto molto molto interessante', '3 Maggio', 'Francisco Goya', 2, '../../Immagini/Quadri/3-Maggio_Goya.jpg'),
-(3, '250', 'Paesi Bassi', 'wow', 'Rinascimento', 'wowowowowoowowowow', 'Ascesa all\'Empireo', 'Hieronymus Bosch', 1000, '../../Immagini/Quadri/Ascesa-all\'Empireo_Bosch.jpg'),
-(4, '5', 'Francia', 'lol', 'Impressionismo', 'omega lol', 'Camille Monet sul letto di mor', 'Claude Monet', 1, '../../Immagini/Quadri/Camille-Monet-sul-letto-di-morte_Monet.jpg'),
-(5, '75', 'Svizzera', 'centauro ', 'Simbolismo', 'centauro centauro', 'Centauro Maniscalco', 'Arnold Böcklin', 7, '../../Immagini/Quadri/Centauro-Maniscalco_Bocklin.jpg'),
-(6, '1000', 'Paesi Bassi', 'wooooooooow', 'Impressionismo', 'aaaaaaaaaaaaaaaaaaaaaaaaaawwwwwwwwwwwwwwwwwwwwwaaaaaaaa', 'Mangiatori di patate', 'Vincent van Gogh', 543, '../../Immagini/Quadri/Mangiatori-di-patate_Vincent-van-Gogh.jpg'),
-(17, '155', 'Paesi Bassi', 'aaa', 'Secolo d\'oro olandes', 'bbbbbbbbbbbbb', 'Cristo nella tempesta sul mare', 'Rembrandt van Rijn', 34, '../../Immagini/Quadri/Cristo-nella-tempesta-sul-mare-di-Galilea_van-Rijn.jpg');
+INSERT INTO `quadro` (`quadro_ID`, `nome_quadro`, `nome_autore`, `nazione_di_origine`, `genere`, `descrizione_breve`, `descrizione_dettagliata`, `prezzo`, `quantita_in_magazzino`, `link_quadro`) VALUES
+(1, 'L\'urlo', 'Edvard Munch', 'Norvegia', 'Espressionismo', 'Lorem ipsum', 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet', 50, 30, 'L\'Urlo_Munch.jpg'),
+(2, '3 Maggio', 'Francisco Goya', 'Spagna', 'Romanticismo', 'interessante', 'molto molto molto interessante', 100, 0, '3-Maggio_Goya.jpg'),
+(3, 'Ascesa all\'Empireo', 'Hieronymus Bosch', 'Paesi Bassi', 'Rinascimento', 'wow', 'wowowowowoowowowow', 250, 969, 'Ascesa-all\'Empireo_Bosch.jpg'),
+(4, 'Camille Monet sul letto di mor', 'Claude Monet', 'Francia', 'Impressionismo', 'lol', 'omega lol', 5, 5, 'Camille-Monet-sul-letto-di-morte_Monet.jpg'),
+(5, 'Centauro Maniscalco', 'Arnold Böcklin', 'Svizzera', 'Simbolismo', 'centauro ', 'centauro centauro', 75, 1, 'Centauro-Maniscalco_Bocklin.jpg'),
+(6, 'Mangiatori di patate', 'Vincent van Gogh', 'Paesi Bassi', 'Impressionismo', 'wooooooooow', 'aaaaaaaaaaaaaaaaaaaaaaaaaawwwwwwwwwwwwwwwwwwwwwaaaaaaaa', 1000, 541, 'Mangiatori-di-patate_Vincent-van-Gogh.jpg'),
+(17, 'Cristo nella tempesta sul mare', 'Rembrandt van Rijn', 'Paesi Bassi', 'Secolo d\'oro olandes', 'aaa', 'bbbbbbbbbbbbb', 155, 0, 'Cristo-nella-tempesta-sul-mare-di-Galilea_van-Rijn.jpg'),
+(18, 'Notte Stellata', 'Vincent Van Gogh', 'Francia', 'Impressionismo', 'bel quadro', 'quadro interessante di Van Gogh, ciao arrivederci.', 16.49, 121, '11cf956be65af795ee17c66e47db1859.jpg'),
+(20, 'Il Ciclista', 'Natalia Goncharova', 'Russia', 'Futurismo', 'Bici', 'Mega Ultra Bici', 50, 25, 'd799664e3af35b328fdc2eacfdf717b2.jpg');
 
 -- --------------------------------------------------------
 
@@ -197,7 +230,15 @@ CREATE TABLE `stato_ordine` (
 --
 
 INSERT INTO `stato_ordine` (`stato_ID`, `data_inserimento_ordine`, `data_conferma`, `data_pagamento`, `data_spedizione`, `data_annullamento`) VALUES
-(23, '2022-03-05 17:35:06', NULL, NULL, NULL, NULL);
+(45, '2022-04-15 10:16:49', '2022-04-15 10:17:34', '2022-04-15 10:17:34', '2022-04-17 10:17:34', '2022-04-16 09:16:02'),
+(46, '2022-04-15 10:21:19', '2022-04-15 10:21:35', '2022-04-15 10:21:35', '2022-04-17 10:21:35', '2022-04-16 09:31:40'),
+(47, '2022-04-15 11:42:50', '2022-04-15 11:43:01', '2022-04-15 11:43:01', '2022-04-17 11:43:01', NULL),
+(48, '2022-04-15 12:16:27', '2022-04-15 12:16:49', '2022-04-15 12:16:49', '2022-04-17 12:16:49', '2022-04-16 09:17:07'),
+(49, '2022-04-16 09:17:47', '2022-04-16 09:18:05', '2022-04-16 09:18:05', '2022-04-18 09:18:05', '2022-04-16 09:19:19'),
+(50, '2022-04-16 09:19:41', '2022-04-16 09:20:17', '2022-04-16 09:20:17', '2022-04-18 09:20:17', '2022-04-16 09:20:55'),
+(51, '2022-04-16 09:24:35', '2022-04-16 09:25:34', '2022-04-16 09:25:34', '2022-04-18 09:25:34', NULL),
+(52, '2022-04-16 09:25:58', '2022-04-16 09:26:34', '2022-04-16 09:26:34', '2022-04-18 09:26:34', '2022-04-16 09:31:10'),
+(53, '2022-04-16 09:28:24', '2022-04-16 09:28:57', '2022-04-16 09:28:57', '2022-04-18 09:28:57', '2022-04-16 09:29:45');
 
 --
 -- Indexes for dumped tables
@@ -216,6 +257,7 @@ ALTER TABLE `acquisto`
 --
 ALTER TABLE `dati_utente`
   ADD PRIMARY KEY (`utente_ID`),
+  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `ruolo_ID` (`ruolo_ID`);
 
 --
@@ -266,37 +308,37 @@ ALTER TABLE `stato_ordine`
 -- AUTO_INCREMENT for table `acquisto`
 --
 ALTER TABLE `acquisto`
-  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `dati_utente`
 --
 ALTER TABLE `dati_utente`
-  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `metodo_pagamento`
 --
 ALTER TABLE `metodo_pagamento`
-  MODIFY `metodo_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `metodo_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `metodo_spedizione`
 --
 ALTER TABLE `metodo_spedizione`
-  MODIFY `metodo_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `metodo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `ruolo`
@@ -308,7 +350,7 @@ ALTER TABLE `ruolo`
 -- AUTO_INCREMENT for table `stato_ordine`
 --
 ALTER TABLE `stato_ordine`
-  MODIFY `stato_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `stato_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables
