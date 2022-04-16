@@ -36,7 +36,8 @@
                          prezzo AS 'Prezzo', 
                          quantita_in_magazzino AS 'Quantità', 
                          link_quadro AS 'Link Quadro' 
-				FROM quadro";
+				FROM quadro
+                WHERE quadro_ID = '".$_GET['quadro_ID']."'";
 
             echo $query;
 
@@ -49,7 +50,7 @@
 						foreach($row as $key => $value){
 							echo "<th>$key</th>";
 						}
-						echo "<th>Cancella/Modifica</th>";
+						//echo "<th>Cancella/Modifica</th>";
 						echo "</tr>";
 						break;	
 					}
@@ -67,17 +68,19 @@
 				$quantita = $row['Quantità'];
                 $link_quadro = $row['Link Quadro'];
 				
+                //cambia tutta sta roba
 				echo "<td>$quadro_ID</td>";
-                echo "<td>$nome_quadro</td>";
-				echo "<td>$nome_autore</td>";
-                echo "<td>$nazione_di_origine</td>";
-				echo "<td>$genere</td>";
-				echo "<td>$descrizione_breve</td>";
-                echo "<td>$descrizione_dettagliata</td>";
-				echo "<td>$prezzo</td>";
-				echo "<td>$quantita</td>";
-				echo "<td>$link_quadro</td>";
-                echo "<td><a href = \"cancella_o_modifica_prodotto.php?quadro_ID=$quadro_ID\">Cancella/Modifica</td>";
+                echo "<td><input type = \"text\" name = \"nome_quadro\" value = \"$nome_quadro\"></td>";
+                echo "<td><input type = \"text\" name = \"nome_autore\" value = \"$nome_autore\"></td>";
+                echo "<td><input type = \"text\" name = \"nazione_di_origine\" value = \"$nazione_di_origine\"></td>";
+                echo "<td><input type = \"text\" name = \"genere\" value = \"$genere\"></td>";
+                echo "<td><input type = \"text\" name = \"descrizione_breve\" value = \"$descrizione_breve\"></td>";
+                echo "<td><input type = \"text\" name = \"descrizione_dettagliata\" value = \"$descrizione_dettagliata\"></td>";
+                echo "<td><input type = \"text\" name = \"prezzo\" value = \"$prezzo\"></td>";
+                echo "<td><input type = \"text\" name = \"quantita\" value = \"$quantita\"></td>";
+                echo "<td><input type = \"text\" name = \"link_quadro\" value = \"$link_quadro\"></td>";
+
+                //echo "<td><a href = \"cancella_o_modifica_prodotto.php?quadro_ID=$quadro_ID\">Cancella/Modifica</td>";
 				
 				echo "</tr>";
 				
