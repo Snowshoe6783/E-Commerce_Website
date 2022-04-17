@@ -1,3 +1,3 @@
 <?php
-    header("location: Pagine/Index/index.php")
+    header("location: public/html/index.php")
 ?>
