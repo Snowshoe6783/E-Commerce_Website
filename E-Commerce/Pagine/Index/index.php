@@ -87,7 +87,7 @@
 	 </div>
      <div id = "Quadri_Cercati">
 	 <?php
-		$query = "SELECT * FROM quadro";
+		$query = "SELECT * FROM quadro WHERE archiviato = 0";
 
 		$result = $conn -> query($query);
 

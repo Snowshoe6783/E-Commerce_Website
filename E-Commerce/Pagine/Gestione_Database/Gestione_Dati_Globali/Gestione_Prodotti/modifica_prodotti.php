@@ -36,7 +36,8 @@
                          prezzo AS 'Prezzo', 
                          quantita_in_magazzino AS 'Quantità', 
                          link_quadro AS 'Link Quadro' 
-				FROM quadro";
+				FROM quadro
+				WHERE archiviato = '0'";
 
             echo $query;
 
