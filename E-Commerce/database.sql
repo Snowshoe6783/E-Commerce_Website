@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2022 at 12:21 PM
+-- Generation Time: Apr 17, 2022 at 02:12 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -55,7 +55,10 @@ INSERT INTO `acquisto` (`prodotto_carrello_ID`, `ordine_ID`, `quadro_ID`, `quant
 (78, 59, 6, 41),
 (79, 59, 3, 54),
 (80, 60, 4, 4),
-(81, 60, 3, 13);
+(81, 60, 3, 13),
+(82, 61, 20, 25),
+(83, 61, 5, 1),
+(84, 61, 6, 82);
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,8 @@ CREATE TABLE `dati_utente` (
 --
 
 INSERT INTO `dati_utente` (`utente_ID`, `nome`, `cognome`, `ruolo_ID`, `codice_fiscale`, `email`, `indirizzo`, `numero_telefono`, `username`, `password`) VALUES
-(54, 'marchio', 'alexander', 1, 'dsa', 'alexa', 'fermi mn edu it', '1234', 'ciao', '$2y$10$U89A2KJmQbAhvn6Qy1LI7eN8Kj/7UlR89Loxv3xLLiIsPdHTKRDyW');
+(54, 'marchio', 'alexander', 1, 'dsa', 'alexa', 'fermi mn edu it', '1234', 'ciao', '$2y$10$U89A2KJmQbAhvn6Qy1LI7eN8Kj/7UlR89Loxv3xLLiIsPdHTKRDyW'),
+(55, 'nuovo', 'nuovo', 1, 'nuovo', 'nuovo@nuovo.com', 'nuovo', '1234', 'nuovo', '$2y$10$cQUg61f.pok6pG.h87BJs.aTY.4wEFFOEW6aNGx1VQdeDhLrCtqTK');
 
 -- --------------------------------------------------------
 
@@ -153,7 +157,8 @@ INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `stato_ID`, `metodo_spedizione_I
 (57, 54, 50, 1, 1, 'Italy, MN, Guidizzolo, Guidizzolo, 46040, Borgo Breda 21'),
 (58, 54, 51, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
 (59, 54, 52, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 21'),
-(60, 54, 53, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11');
+(60, 54, 53, 1, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11'),
+(61, 54, 54, 2, 1, 'Italy, MN, Guidizzolo, Rebecco, 46040, Borgo Baite 11');
 
 -- --------------------------------------------------------
 
@@ -171,23 +176,31 @@ CREATE TABLE `quadro` (
   `descrizione_dettagliata` varchar(500) NOT NULL,
   `prezzo` float NOT NULL,
   `quantita_in_magazzino` int(11) NOT NULL,
-  `link_quadro` varchar(100) NOT NULL
+  `link_quadro` varchar(100) NOT NULL,
+  `archiviato` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `quadro`
 --
 
-INSERT INTO `quadro` (`quadro_ID`, `nome_quadro`, `nome_autore`, `nazione_di_origine`, `genere`, `descrizione_breve`, `descrizione_dettagliata`, `prezzo`, `quantita_in_magazzino`, `link_quadro`) VALUES
-(1, 'L\'urlo', 'Edvard Munch', 'Norvegia', 'Espressionismo', 'Lorem ipsum', 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet', 50, 30, 'L\'Urlo_Munch.jpg'),
-(2, '3 Maggio', 'Francisco Goya', 'Spagna', 'Romanticismo', 'interessante', 'molto molto molto interessante', 100, 0, '3-Maggio_Goya.jpg'),
-(3, 'Ascesa all\'Empireo', 'Hieronymus Bosch', 'Paesi Bassi', 'Rinascimento', 'wow', 'wowowowowoowowowow', 250, 969, 'Ascesa-all\'Empireo_Bosch.jpg'),
-(4, 'Camille Monet sul letto di mor', 'Claude Monet', 'Francia', 'Impressionismo', 'lol', 'omega lol', 5, 5, 'Camille-Monet-sul-letto-di-morte_Monet.jpg'),
-(5, 'Centauro Maniscalco', 'Arnold Böcklin', 'Svizzera', 'Simbolismo', 'centauro ', 'centauro centauro', 75, 1, 'Centauro-Maniscalco_Bocklin.jpg'),
-(6, 'Mangiatori di patate', 'Vincent van Gogh', 'Paesi Bassi', 'Impressionismo', 'wooooooooow', 'aaaaaaaaaaaaaaaaaaaaaaaaaawwwwwwwwwwwwwwwwwwwwwaaaaaaaa', 1000, 541, 'Mangiatori-di-patate_Vincent-van-Gogh.jpg'),
-(17, 'Cristo nella tempesta sul mare', 'Rembrandt van Rijn', 'Paesi Bassi', 'Secolo d\'oro olandes', 'aaa', 'bbbbbbbbbbbbb', 155, 0, 'Cristo-nella-tempesta-sul-mare-di-Galilea_van-Rijn.jpg'),
-(18, 'Notte Stellata', 'Vincent Van Gogh', 'Francia', 'Impressionismo', 'bel quadro', 'quadro interessante di Van Gogh, ciao arrivederci.', 16.49, 121, '11cf956be65af795ee17c66e47db1859.jpg'),
-(20, 'Il Ciclista', 'Natalia Goncharova', 'Russia', 'Futurismo', 'Bici', 'Mega Ultra Bici', 50, 25, 'd799664e3af35b328fdc2eacfdf717b2.jpg');
+INSERT INTO `quadro` (`quadro_ID`, `nome_quadro`, `nome_autore`, `nazione_di_origine`, `genere`, `descrizione_breve`, `descrizione_dettagliata`, `prezzo`, `quantita_in_magazzino`, `link_quadro`, `archiviato`) VALUES
+(1, 'Lurloaaaaaaaaaaaaa', 'nooooooooooo', 'dsadsa', 'Espressionismo', 'Lorem', 'Lorem', 32, 30, '94f4d50d1ab1014a58c3e38e58d23455.jpg', 1),
+(2, '3 Maggio', 'Francisco Goya', 'Spagna', 'Romanticismo', 'interessante', 'molto molto molto interessante', 100, 0, '3-Maggio_Goya.jpg', 0),
+(3, 'Ascesa all\'Empireo', 'Hieronymus Bosch', 'Paesi Bassi', 'Rinascimento', 'wow', 'wowowowowoowowowow', 250, 969, 'Ascesa-all\'Empireo_Bosch.jpg', 0),
+(4, 'Camille Monet sul letto di mor', 'Claude Monet', 'Francia', 'Impressionismo', 'lol', 'omega lol', 5, 5, 'Camille-Monet-sul-letto-di-morte_Monet.jpg', 0),
+(5, 'Centauro Maniscalco', 'Arnold Böcklin', 'Svizzera', 'Simbolismo', 'centauro ', 'centauro centauro', 75, 1, 'Centauro-Maniscalco_Bocklin.jpg', 0),
+(6, 'Mangiatori di patate', 'Vincent van Gogh', 'Paesi Bassi', 'Impressionismo', 'wooooooooow', 'aaaaaaaaaaaaaaaaaaaaaaaaaawwwwwwwwwwwwwwwwwwwwwaaaaaaaa', 1000, 541, 'Mangiatori-di-patate_Vincent-van-Gogh.jpg', 0),
+(17, 'Cristo nella tempesta sul mare', 'Rembrandt van Rijn', 'Paesi Bassi', 'Secolo d\'oro olandes', 'aaa', 'bbbbbbbbbbbbb', 155, 0, 'Cristo-nella-tempesta-sul-mare-di-Galilea_van-Rijn.jpg', 0),
+(18, 'Notte Stellata', 'Vincent Van Gogh', 'Francia', 'Impressionismo', 'bel quadro', 'quadro interessante di Van Gogh, ciao arrivederci.', 16.49, 121, '11cf956be65af795ee17c66e47db1859.jpg', 0),
+(20, 'Il Ciclista', 'Natalia Goncharova', 'Russia', 'Futurismo', 'Bici', 'Mega Ultra Bici', 50, 25, 'd799664e3af35b328fdc2eacfdf717b2.jpg', 0),
+(29, 'saaaaaaaaaaaaaaaaaaaaa', 'fddfs', 'fdsfds', 'fds', 'fds', 'fds', 99, 99, '13e805f0f19b5f1f5e632fb2d614e62a.jpg', 0),
+(30, 'ciao', 'icadksa', 'dsaijd', 'dkaisdisajdisa', 'dsaijodsa', 'dsaijodsadsadsadsadsa', 12, 22, '', 0),
+(31, 'ciao', 'icadksa', 'dsaijd', 'dkaisdisajdisa', 'dsaijodsa', 'dsaijodsadsadsadsadsa', 12, 22, '', 0),
+(32, 'ciao', 'icadksa', 'dsaijd', 'dkaisdisajdisa', 'dsaijodsa', 'dsaijodsadsadsadsadsa', 12, 22, '', 0),
+(33, 'ciao', 'icadksa', 'dsaijd', 'dkaisdisajdisa', 'dsaijodsa', 'dsaijodsadsadsadsadsa', 12, 22, '058f677a6b12930c9c380766a267a3b0.jpg', 0),
+(34, 'dsa', 'dsa', 'sdsaa', 'dsad', 'dsadas', 'dsa', 10, 1000, 'a47eea6961e8227d95ad92e3d848ac5b.jpeg', 0),
+(35, 'normale', 'normale', 'normale', 'normale', 'normale', 'normalissimissimisismo', 1, 1234, '0105b990121238d3d62193dbf6e7bc28.jpeg', 0);
 
 -- --------------------------------------------------------
 
@@ -232,13 +245,14 @@ CREATE TABLE `stato_ordine` (
 INSERT INTO `stato_ordine` (`stato_ID`, `data_inserimento_ordine`, `data_conferma`, `data_pagamento`, `data_spedizione`, `data_annullamento`) VALUES
 (45, '2022-04-15 10:16:49', '2022-04-15 10:17:34', '2022-04-15 10:17:34', '2022-04-17 10:17:34', '2022-04-16 09:16:02'),
 (46, '2022-04-15 10:21:19', '2022-04-15 10:21:35', '2022-04-15 10:21:35', '2022-04-17 10:21:35', '2022-04-16 09:31:40'),
-(47, '2022-04-15 11:42:50', '2022-04-15 11:43:01', '2022-04-15 11:43:01', '2022-04-17 11:43:01', NULL),
+(47, '2022-04-15 11:42:50', '2022-04-15 11:43:01', '2022-04-15 11:43:01', '2022-04-17 12:18:22', NULL),
 (48, '2022-04-15 12:16:27', '2022-04-15 12:16:49', '2022-04-15 12:16:49', '2022-04-17 12:16:49', '2022-04-16 09:17:07'),
 (49, '2022-04-16 09:17:47', '2022-04-16 09:18:05', '2022-04-16 09:18:05', '2022-04-18 09:18:05', '2022-04-16 09:19:19'),
-(50, '2022-04-16 09:19:41', '2022-04-16 09:20:17', '2022-04-16 09:20:17', '2022-04-18 09:20:17', '2022-04-16 09:20:55'),
-(51, '2022-04-16 09:24:35', '2022-04-16 09:25:34', '2022-04-16 09:25:34', '2022-04-18 09:25:34', NULL),
+(50, '2022-04-16 09:19:41', '2022-04-16 09:20:17', '2022-04-16 09:20:17', '2022-04-18 09:20:17', NULL),
+(51, '2022-04-16 09:24:35', '2022-04-16 09:25:34', '2022-04-16 09:25:34', '2022-04-17 12:17:38', NULL),
 (52, '2022-04-16 09:25:58', '2022-04-16 09:26:34', '2022-04-16 09:26:34', '2022-04-18 09:26:34', '2022-04-16 09:31:10'),
-(53, '2022-04-16 09:28:24', '2022-04-16 09:28:57', '2022-04-16 09:28:57', '2022-04-18 09:28:57', '2022-04-16 09:29:45');
+(53, '2022-04-16 09:28:24', '2022-04-16 09:28:57', '2022-04-16 09:28:57', '2022-04-18 09:28:57', '2022-04-16 09:29:45'),
+(54, '2022-04-17 13:40:16', '2022-04-17 13:53:24', '2022-04-17 13:53:24', '2022-04-19 13:53:24', '2022-04-17 13:54:33');
 
 --
 -- Indexes for dumped tables
@@ -308,13 +322,13 @@ ALTER TABLE `stato_ordine`
 -- AUTO_INCREMENT for table `acquisto`
 --
 ALTER TABLE `acquisto`
-  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `dati_utente`
 --
 ALTER TABLE `dati_utente`
-  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `metodo_pagamento`
@@ -332,13 +346,13 @@ ALTER TABLE `metodo_spedizione`
 -- AUTO_INCREMENT for table `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `ruolo`
@@ -350,7 +364,7 @@ ALTER TABLE `ruolo`
 -- AUTO_INCREMENT for table `stato_ordine`
 --
 ALTER TABLE `stato_ordine`
-  MODIFY `stato_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `stato_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Constraints for dumped tables
@@ -360,8 +374,8 @@ ALTER TABLE `stato_ordine`
 -- Constraints for table `acquisto`
 --
 ALTER TABLE `acquisto`
-  ADD CONSTRAINT `acquisto_ibfk_1` FOREIGN KEY (`quadro_ID`) REFERENCES `quadro` (`quadro_ID`),
-  ADD CONSTRAINT `acquisto_ibfk_2` FOREIGN KEY (`ordine_ID`) REFERENCES `ordine` (`ordine_ID`);
+  ADD CONSTRAINT `acquisto_ibfk_2` FOREIGN KEY (`ordine_ID`) REFERENCES `ordine` (`ordine_ID`),
+  ADD CONSTRAINT `acquisto_ibfk_3` FOREIGN KEY (`quadro_ID`) REFERENCES `quadro` (`quadro_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `dati_utente`
