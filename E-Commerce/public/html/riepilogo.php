@@ -24,8 +24,7 @@
     </h1>
     <?php
 		$query = "SELECT ordine_ID
-				FROM ordine AS o JOIN stato_ordine AS so
-				ON o.stato_ID = so.stato_ID
+				FROM ordine AS o
 				WHERE data_conferma IS NULL
 				AND utente_ID = '".$_SESSION['utente_ID']."';";
 
@@ -268,22 +267,13 @@
 					echo $date;
 					
 
-					$query = "UPDATE stato_ordine
+					$query = "UPDATE ordine
 							SET data_conferma = '$date', data_pagamento = '$date'
-							WHERE stato_ID = '$stato_ID';";
+							WHERE ordine_ID = '".$_SESSION['ordine_ID']."';";
 								
 					echo "<br><br>".$query;
 					$result = $conn -> query($query);
 
-					$date = date('Y-m-d H:i:s', strtotime("+2 day"));
-					
-
-					$query = "UPDATE stato_ordine
-							SET data_spedizione = '$date'
-							WHERE stato_ID = '$stato_ID';";
-								
-					echo "<br><br>".$query;
-					$result = $conn -> query($query);
 
 					header("location:riepilogo.php");
 

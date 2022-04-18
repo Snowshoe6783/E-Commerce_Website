@@ -42,8 +42,7 @@
 
 			if(isset($_SESSION['utente_ID'])){
 				$query = "SELECT ordine_ID 
-					FROM ordine AS o JOIN stato_ordine AS so
-					ON o.stato_ID = so.stato_ID
+					FROM ordine AS o
 					WHERE utente_ID = '".$_SESSION['utente_ID']."' 
 					AND data_conferma IS NULL;";
 														
@@ -135,46 +134,40 @@
 
 				}			
 				else if(isset($_SESSION['utente_ID'])){
-					$query = "SELECT ordine_ID 
-						FROM ordine AS o JOIN stato_ordine AS so
-						ON o.stato_ID = so.stato_ID
+					$query = "SELECT ordine_ID
+						FROM ordine AS o
 						WHERE utente_ID = '".$_SESSION['utente_ID']."' 
 						AND data_conferma IS NULL;";
 															
 																				
 					$result = $conn -> query($query);	
+					echo $query;
 
 					foreach($result as $row){ //togli il for each se possibile
 						$ordine_ID = $row['ordine_ID'];			
 					}		
 					
-					$date = date('Y-m-d H:i:s');
-					echo $date;
+					
 					$n_rows = $result -> num_rows;
 					
 					if ($n_rows == 0) { 
 						echo "Nessun ordine trovato oppure l'ordine e' gia' stato confermato, quindi creo nuovo ordine";
 
-						$query = "SHOW TABLE STATUS LIKE 'stato_ordine'"; //trovo l'ID del prossimo stato
-						$result = $conn -> query($query);	
-						foreach($result as $row){ //togli il for each se possibile
-							$auto_increment_value_stato_ID = $row['Auto_increment'];			
-						}
-						
-						$query = "INSERT INTO stato_ordine VALUES('0', '$date', NULL, NULL, NULL, NULL);";
-						echo $query;
-						$result = $conn -> query($query);
-						
 						$query = "SHOW TABLE STATUS LIKE 'ordine'"; //trovo l'ID del prossimo ordine
 						$result = $conn -> query($query);	
 						foreach($result as $row){ //togli il for each se possibile
 							$auto_increment_value_ordine_ID = $row['Auto_increment'];			
 						}
 						
-						
-						$query = "INSERT INTO ordine VALUES('0', '".$_SESSION['utente_ID']."', '$auto_increment_value_stato_ID', NULL, NULL, NULL);";
+						$date = date('Y-m-d H:i:s');
+						echo $date;
+
+						$query = "INSERT INTO ordine VALUES('0', '".$_SESSION['utente_ID']."', NULL, NULL, NULL, '$date', NULL, NULL, NULL, NULL);";
 						echo $query;
 						$result = $conn -> query($query);
+
+
+
 						
 						$query = "INSERT INTO acquisto VALUES('0', '$auto_increment_value_ordine_ID', '".$_GET['quadro_ID']."', ".$_POST['quantita_inserita'].");";
 						echo $query;
@@ -214,7 +207,7 @@
 				
 				
 				$conn->close();
-				header("location: quadro_specifico.php?quadro_ID=".$_GET['quadro_ID']."");
+				//header("location: quadro_specifico.php?quadro_ID=".$_GET['quadro_ID']."");
 			}
 		?>
 	

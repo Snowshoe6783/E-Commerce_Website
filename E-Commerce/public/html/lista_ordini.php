@@ -23,13 +23,14 @@
   <a href = "indirizzo.php">Indirizzo</a><br>
   <body>
     <h1>
-      Carrello
+      Lista ordini
     </h1>
     <?php
-		$query = "SELECT o.ordine_ID AS 'ID Ordine', s.stato_ID AS 'ID Stato', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
-				  FROM ordine AS o JOIN stato_ordine AS s ON o.stato_ID = s.stato_ID JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
+		$query = "SELECT o.ordine_ID AS 'ID Ordine', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
+				  FROM ordine AS o JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
 				  WHERE utente_ID = '".$_SESSION['utente_ID']."'
-				    AND s.data_annullamento IS NULL
+				    AND o.data_annullamento IS NULL
+					AND o.data_conferma IS NOT NULL
 				  GROUP BY o.ordine_ID";
 
 		echo $query;
@@ -54,12 +55,10 @@
 		foreach($result as $row){
 			
 			echo "<tr>";
-			$ordine_ID = $row['ID Ordine'];
-			$stato_ID = $row['ID Stato'];		
+			$ordine_ID = $row['ID Ordine'];	
 			$importo_totale = $row['Importo Totale'];
 			
 			echo "<td>$ordine_ID</td>";
-			echo "<td>".$stato_ID."</td>";
 			echo "<td>".$importo_totale."</td>";
 			echo "<td><a href = \"ordine_specifico.php?ordine_ID=$ordine_ID\">Visualizza Dettagli</a></td>";
 			

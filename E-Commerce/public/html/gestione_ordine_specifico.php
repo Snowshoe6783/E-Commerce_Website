@@ -54,9 +54,9 @@
 				$flag = 0;
 				if($flag == 0){
 					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordine AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
+							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							  WHERE a.ordine_ID = $ordine_ID
-							    AND so.data_annullamento IS NULL;";
+							    AND o.data_annullamento IS NULL;";
 							 
 					$flag = 1;
 					//echo "<br><br>start".$query;
@@ -65,9 +65,9 @@
 				
 				else{	
 					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordien AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
-							  WHERE a.ordine_ID = $ordine_ID
-							    AND so.data_annullamento IS NULL;
+							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
+							WHERE a.ordine_ID = $ordine_ID
+							AND o.data_annullamento IS NULL;
 							  UNION
 							  $query";
 						
@@ -160,21 +160,11 @@
 
 					$date = date('Y-m-d H:i:s');
 					
-					$query = "SELECT stato_ID
-							  FROM ordine
-							  WHERE ordine_ID = $ordine_ID;";
+				    
 
-				    //echo "<br>Query aggiungi data_spedizione: ".$query;
-
-				    $result = $conn -> query($query);
-
-					foreach($result as $row){
-						$stato_ID = $row['stato_ID'];
-					}
-
-					$query = "UPDATE stato_ordine
+					$query = "UPDATE ordine
 								SET data_spedizione = '$date'
-								WHERE stato_ID = $stato_ID;";
+								WHERE ordine_ID = $ordine_ID;";
 
 					echo "<br>Query aggiungi data_spedizione: ".$query;
 

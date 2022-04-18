@@ -22,7 +22,7 @@
   <a href = "index.php">Home</a><br>
   <body>
     <h1>
-      Carrello
+      Ordine Numero: <?=$_GET['ordine_ID']?>
     </h1>
     <?php
 		$ordine_ID = $_GET['ordine_ID'];
@@ -54,9 +54,10 @@
 				$flag = 0;
 				if($flag == 0){
 					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordine AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
-							  WHERE a.ordine_ID = $ordine_ID
-							    AND so.data_annullamento IS NULL;";
+							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
+							WHERE a.ordine_ID = $ordine_ID
+							AND o.data_annullamento IS NULL
+							;";
 							 
 					$flag = 1;
 					//echo "<br><br>start".$query;
@@ -65,9 +66,9 @@
 				
 				else{	
 					$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
-							  FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN (ordien AS o JOIN stato_ordine AS so ON o.stato_ID = so.stato_ID) ON a.ordine_ID = o.ordine_ID
-							  WHERE a.ordine_ID = $ordine_ID
-							    AND so.data_annullamento IS NULL;
+							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
+							WHERE a.ordine_ID = $ordine_ID
+							AND o.data_annullamento IS NULL;
 							  UNION
 							  $query";
 						
@@ -155,8 +156,10 @@
 			<input type = "submit" name = "submit_annulla_ordine">
 		</form>
 		<?php
+			$counter = 0;
 			if(isset($_POST['submit_annulla_ordine'])){
 				foreach($result_dettagli_quadri_ordinati as $row){
+					$counter++;
 					$quadro_ID = $row['Quadro ID'];
 					$quantita_ordinata = $row['Quantità'];
 
@@ -164,41 +167,29 @@
 							  SET quantita_in_magazzino = quantita_in_magazzino + $quantita_ordinata
 							  WHERE quadro_ID = $quadro_ID;";
 
-					echo "<br>Query aggiungi quadro: ".$query;
+					echo "<br>Query aggiungi quadro: ".$query." aggiungo".$quantita_ordinata." quadri";
 					$result = $conn -> query($query);
 					
+
+					
 					}
-
-					
-				
-
-					
 
 					$date = date('Y-m-d H:i:s');
 					
-					$query = "SELECT stato_ID
-							  FROM ordine
-							  WHERE ordine_ID = $ordine_ID;";
 
-				    echo "<br>Query aggiungi data_annullamento: ".$query;
 
-				    $result = $conn -> query($query);
 
-					foreach($result as $row){
-						$stato_ID = $row['stato_ID'];
-					}
-
-					$query = "UPDATE stato_ordine
+					$query = "UPDATE ordine
 								SET data_annullamento = '$date'
-								WHERE stato_ID = $stato_ID;";
+								WHERE ordine_ID = $ordine_ID;";
 
-					echo "<br>Query aggiungi data_annullamento: ".$query;
+					echo "<br>Query aggiungi data_annullamento: ".$query."contatore = ". $counter;;
 
 					$result = $conn -> query($query);
 
 					
 
-					header( "Refresh:2; url = lista_ordini.php?ordine_ID=$ordine_ID", true, 303);
+					//header( "Refresh:2; url = lista_ordini.php?ordine_ID=$ordine_ID", true, 303);
 			}
 		
 		

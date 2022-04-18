@@ -25,9 +25,9 @@
       Carrello
     </h1>
     <?php
-		$query = "SELECT o.ordine_ID AS 'ID Ordine', s.stato_ID AS 'ID Stato', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
-				  FROM ordine AS o JOIN stato_ordine AS s ON o.stato_ID = s.stato_ID JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
-				  WHERE s.data_annullamento IS NULL
+		$query = "SELECT o.ordine_ID AS 'ID Ordine', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
+				  FROM ordine AS o JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
+				  WHERE o.data_annullamento IS NULL
 				  GROUP BY o.ordine_ID";
 
 		echo $query;
@@ -53,11 +53,11 @@
 			
 			echo "<tr>";
 			$ordine_ID = $row['ID Ordine'];
-			$stato_ID = $row['ID Stato'];		
+				
 			$importo_totale = $row['Importo Totale'];
 			
 			echo "<td>$ordine_ID</td>";
-			echo "<td>".$stato_ID."</td>";
+			
 			echo "<td>".$importo_totale."</td>";
 			echo "<td><a href = \"gestione_ordine_specifico.php?ordine_ID=$ordine_ID\">Visualizza Dettagli</a></td>";
 			

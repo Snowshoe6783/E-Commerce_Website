@@ -27,12 +27,11 @@
     </h1>
     <?php
 		$query = "SELECT ordine_ID
-				FROM ordine AS o JOIN stato_ordine AS so
-				ON o.stato_ID = so.stato_ID
+				FROM ordine
 				WHERE data_conferma IS NULL
 				AND utente_ID = '".$_SESSION['utente_ID']."';";
 
-
+		echo $query;
 		$result = $conn -> query($query);
 		
 		$n_rows = $result -> num_rows;
