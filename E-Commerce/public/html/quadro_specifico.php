@@ -88,7 +88,7 @@
 					<p class = \"Autore_singolo_Quadro\">$nome_autore</p>
 					<p class = \"Descrizione_singolo_Quadro\">$descrizione</p>
 					<form method = \"post\" name = \"myform\" class=\"form_quadro\">
-						<p class = \"Prezzo_singolo_Quadro\">il prezzo è: $prezzo €</p> c
+						<p class = \"Prezzo_singolo_Quadro\">il prezzo è: $prezzo €</p>
 						<p>Quantita in magazzino: $quantita_in_magazzino </p>
 						<p>Quantita nel carrello: $quantita_nel_carrello </p>
 
@@ -108,12 +108,12 @@
 				if(quantitaAcquistabile > 0){
 					form_da_creare.innerHTML = 
 						`
-						<form method = "post" name = "myform">
+						<form method = "post" name = "myform" class="aggiungiOtogli">
 						<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
 						<input type="number" id="number" name = "quantita_inserita" value="1" min = "1" max= '` + quantitaAcquistabile + `'/>
 						<div class="value-button" id="increase" onclick="increaseValue(` + quantitaAcquistabile + `)" value="Increase Value">+</div>
 						
-						<input type = "submit" name = "aggiungi_al_carrello" value = "Aggiungi al carrello">
+						<input type = "submit" name = "aggiungi_al_carrello" class="aggiungi_quadro" value = "Aggiungi al carrello">
 						</form>
 						`;
 						

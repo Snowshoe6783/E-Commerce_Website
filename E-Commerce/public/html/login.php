@@ -2,10 +2,6 @@
 	include("../../src/connessione_database.php");
   
 	session_start();
-	if(isset($_SESSION['utente_ID'])){
-		echo "Benvenuto ".$_SESSION['utente_ID'];
-	}
-
 	$link_cartella_immagini = "../assets/img/quadri/";
 ?> 
 <!DOCTYPE html>
