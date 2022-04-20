@@ -259,8 +259,8 @@ input[type="checkbox"]{
  .value-button {
   display: inline-block;
   border: 1px solid #ddd;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   text-align: center;
   background: red;
   -webkit-touch-callout: none;
