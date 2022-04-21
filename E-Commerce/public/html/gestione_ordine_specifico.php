@@ -26,29 +26,7 @@
     </h1>
     <?php
 		$ordine_ID = $_GET['ordine_ID'];
-		
 
-
-			/*
-
-			$query = "SELECT quadro_ID
-					FROM acquisto
-					WHERE ordine_ID = $ordine_ID;";
-					
-
-			$result = $conn -> query($query);
-			
-			$result_quadri_ordinati = $result;
-
-			$n_rows = $result -> num_rows;
-			echo $n_rows;
-			$flag = 0;
-			$query = "";
-			echo "<table border = \"1\">";
-			
-			$result -> fetch_all(MYSQLI_ASSOC);
-			foreach($result as $row){
-				*/
 				echo "<table border = \"1\">";
 				$query = "";
 				$flag = 0;

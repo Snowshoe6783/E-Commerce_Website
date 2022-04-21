@@ -1,13 +1,14 @@
 <?php
-	include("../../src/connessione_database.php");
-  
-	session_start();
-	if(isset($_SESSION['utente_ID'])){
-		echo "Benvenuto ".$_SESSION['utente_ID'];
-	}
+$link_cartella_immagini = "../assets/img/quadri/";
+include("../../src/connessione_database.php");
 
-	$link_cartella_immagini = "../assets/img/quadri/";
-?> 
+session_start();
+if (isset($_SESSION['utente_ID'])) {
+?>
+  Benvenuto <?= $_SESSION['utente_ID'] ?>
+<?php
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
   <h1>
     Carrello
   </h1>
-  <a href = "index.php">Home</a><br>
+  <a href="index.php">Home</a><br>
   <?php
   $query = "SELECT quadro_ID AS 'Quadro ID', 
                          nome_quadro AS 'Nome Quadro', 
@@ -43,16 +44,15 @@
 				    FROM quadro
             WHERE quadro_ID = '" . $_GET['quadro_ID'] . "'";
 
-  //echo $query;
 
   $result = $conn->query($query);
 
-  
 
- 
+
+
 
   foreach ($result as $row) {
-    
+
     $quadro_ID = $row['Quadro ID'];
     $nome_quadro = $row['Nome Quadro'];
     $nome_autore = $row['Nome Autore'];
@@ -65,25 +65,25 @@
     $link_quadro = $row['Link Quadro'];
 
     //cambia tutta sta roba
-    
+
 
     //echo "<a href = "cancella_o_modifica_prodotto.php?quadro_ID=$quadro_ID">Cancella/Modifica";
 
-    
+
   }
-?>
-  <form method="POST" action="../../src/upload.php?quadro_ID=<?=$quadro_ID?>" enctype="multipart/form-data">
-    
-    <br>ID quadro: <?=$quadro_ID?>
-    <br>Nome Quadro: <input type = "text" name = "dati_prodotto_da_modificare[nome_quadro]" value = <?=$nome_quadro?>>
-    <br>Nome Autore: <input type = "text" name = "dati_prodotto_da_modificare[nome_autore]" value = <?=$nome_autore?>>
-    <br>Nazione di origine: <input type = "text" name = "dati_prodotto_da_modificare[nazione_di_origine]" value = <?=$nazione_di_origine?>>
-    <br>Genere: <input type = "text" name = "dati_prodotto_da_modificare[genere]" value = <?=$genere?>>
-    <br>Descrizione Breve<input type = "text" name = "dati_prodotto_da_modificare[descrizione_breve]" value = <?=$descrizione_breve?>>
-    <br>Descrizione Dettagliata<input type = "text" name = "dati_prodotto_da_modificare[descrizione_dettagliata]" value = <?=$descrizione_dettagliata?>>
-    <br>Prezzo<input type = "text" name = "dati_prodotto_da_modificare[prezzo]" value = <?=$prezzo?>>
-    <br>Quantità<input type = "text" name = "dati_prodotto_da_modificare[quantita]" value = <?=$quantita?>>
-    <br>Link Quadro<input type = "text" name = "dati_prodotto_da_modificare[link_quadro]" value = <?=$link_quadro?>>
+  ?>
+  <form method="POST" action="../../src/upload.php?quadro_ID=<?= $quadro_ID ?>" enctype="multipart/form-data">
+
+    <br>ID quadro: <?= $quadro_ID ?>
+    <br>Nome Quadro: <input type="text" name="dati_prodotto_da_modificare[nome_quadro]" value=<?= $nome_quadro ?>>
+    <br>Nome Autore: <input type="text" name="dati_prodotto_da_modificare[nome_autore]" value=<?= $nome_autore ?>>
+    <br>Nazione di origine: <input type="text" name="dati_prodotto_da_modificare[nazione_di_origine]" value=<?= $nazione_di_origine ?>>
+    <br>Genere: <input type="text" name="dati_prodotto_da_modificare[genere]" value=<?= $genere ?>>
+    <br>Descrizione Breve<input type="text" name="dati_prodotto_da_modificare[descrizione_breve]" value=<?= $descrizione_breve ?>>
+    <br>Descrizione Dettagliata<input type="text" name="dati_prodotto_da_modificare[descrizione_dettagliata]" value=<?= $descrizione_dettagliata ?>>
+    <br>Prezzo<input type="text" name="dati_prodotto_da_modificare[prezzo]" value=<?= $prezzo ?>>
+    <br>Quantità<input type="text" name="dati_prodotto_da_modificare[quantita]" value=<?= $quantita ?>>
+    <br>Link Quadro<input type="text" name="dati_prodotto_da_modificare[link_quadro]" value=<?= $link_quadro ?>>
     <div>
       <span>Upload a File:</span>
       <input type="file" name="uploadedFile" />
@@ -91,11 +91,11 @@
 
     <input type="submit" name="submit_cambiamento" value="Upload" />
 
-    
+
 
   </form>
 
-  <form method = "POST" action = "cancella_prodotto.php?quadro_ID=<?=$quadro_ID?>">
+  <form method="POST" action="cancella_prodotto.php?quadro_ID=<?= $quadro_ID ?>">
     <input type="submit" name="cancella_prodotto" value="Cancella prodotto" />
   </form>
 
