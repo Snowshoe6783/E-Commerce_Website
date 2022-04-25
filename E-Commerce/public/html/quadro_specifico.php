@@ -201,7 +201,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 		$conn->close();
-		//header("location: quadro_specifico.php?quadro_ID=".$_GET['quadro_ID']."");
+		header("location: quadro_specifico.php?quadro_ID=".$_GET['quadro_ID']."");
 	}
 	?>
 

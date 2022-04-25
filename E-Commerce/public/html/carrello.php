@@ -8,6 +8,8 @@ if (isset($_SESSION['utente_ID'])) {
 	Benvenuto <?= $_SESSION['utente_ID'] ?>
 <?php
 }
+
+$_SESSION['prezzo_prodotti_totale'] = 0;
 ?>
 
 <!DOCTYPE html>

@@ -129,8 +129,15 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		echo "</table>";
 
 
-		echo "prezzo totale = " . $prezzo_totale;
-		$_SESSION['prezzo_prodotti_totale'] = $prezzo_totale;
+		
+		echo "prezzo prodotti = " . $prezzo_totale;
+		
+		echo "<br>prezzo spedizione = " . $_SESSION['prezzo_prodotti_totale'];
+
+		echo "<br>prezzo totale = " . $prezzo_totale + $_SESSION['prezzo_prodotti_totale'];
+
+
+		
 	} else {
 		echo "Carrello vuoto.";
 	}

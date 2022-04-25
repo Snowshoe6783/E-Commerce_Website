@@ -36,7 +36,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
-							AND o.data_annullamento IS NULL
 							;";
 
 		$flag = 1;
@@ -46,20 +45,16 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
-							AND o.data_annullamento IS NULL;
 							  UNION
 							  $query";
 
-		//echo "<br><br>big".$query;
-
-		//non so perchè funziona sta roba
 
 	}
 
 
 
 	$prezzo_totale = 0;
-	echo $query;
+	
 	$result = $conn->query($query);
 
 	$result_dettagli_quadri_ordinati = $result;
@@ -104,9 +99,9 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	echo "</table>";
 
 
-	echo "prezzo totale = " . $prezzo_totale;
+	
 
-	$query = "SELECT ms.nome AS nome_metodo_spedizione, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione
+	$query = "SELECT ms.nome AS nome_metodo_spedizione, ms.metodo_ID AS ms_metodo_ID, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione, data_inserimento_ordine, data_conferma, data_pagamento, data_spedizione, data_annullamento
 					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID
 					  WHERE o.ordine_ID = $ordine_ID";
 
@@ -120,16 +115,55 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$nome_metodo_spedizione = $row['nome_metodo_spedizione'];
 		$nome_metodo_pagamento = $row['nome_metodo_pagamento'];
 		$indirizzo_spedizione = $row['indirizzo_spedizione'];
+		$data_inserimento_ordine = $row['data_inserimento_ordine'];
+		$data_conferma = $row['data_conferma'];
+		$data_pagamento = $row['data_pagamento'];
+		$data_spedizione = $row['data_spedizione'];
+		$data_annullamento = $row['data_annullamento'];
+		$ms_metodo_ID = $row['ms_metodo_ID'];
 	}
 	echo "<br>";
+	$query = "SELECT costo
+			  FROM metodo_spedizione
+			  WHERE metodo_ID = $ms_metodo_ID";
+	$result = $conn->query($query);
+
+	foreach ($result as $row) {
+		$costo_spedizione = $row['costo'];
+	}
+
+	echo "prezzo prodotti = " . $prezzo_totale . "<br>";
+		
+	echo "prezzo spedizione = " . $costo_spedizione . "<br>";
+
+	echo "prezzo totale = " . $prezzo_totale + $costo_spedizione . "<br>";
+
+
 	echo "Indirizzo di Spedizione: " . $indirizzo_spedizione . "<br>";
 	echo "Metodo di Spedizione: " . $nome_metodo_spedizione . "<br>";
 	echo "Metodo di Pagamento: " . $nome_metodo_pagamento . "<br>";
+
+	echo "Data inserimento ordine: " . $data_inserimento_ordine . "<br>";
+	echo "Data conferma ordine: " . $data_conferma . "<br>";
+	echo "Data pagamento ordine: " . $data_pagamento . "<br>";
+
+	echo "Data spedizione ordine: " . $data_spedizione . "<br>";
+	echo "Data annullamento ordine: " . $data_annullamento . "<br>";
+
 	?>
 
-	<form method="POST" name="annulla_ordine">
-		<input type="submit" name="submit_annulla_ordine">
-	</form>
+
+
+	<?php
+		if(!$data_spedizione && !$data_annullamento){
+			echo "<form method='POST' name='annulla_ordine'>
+			<input type='submit' name='submit_annulla_ordine' value = 'Annulla'>
+		</form>	";
+		}
+
+	?>
+
+
 	<?php
 	$counter = 0;
 	if (isset($_POST['submit_annulla_ordine'])) {
@@ -152,8 +186,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 		$query = "UPDATE ordine
-								SET data_annullamento = '$date'
-								WHERE ordine_ID = $ordine_ID;";
+				  SET data_annullamento = '$date'
+				  WHERE ordine_ID = $ordine_ID;";
 
 		echo "<br>Query aggiungi data_annullamento: " . $query . "contatore = " . $counter;;
 
