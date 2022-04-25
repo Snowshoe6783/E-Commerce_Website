@@ -21,25 +21,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 </head>
 
 <body class="bodyIndex">
-	<script>
-		var countDownDate = new Date("Jun 22, 2022 00:00:00").getTime();
-		var x = setInterval(function() {
-			var now = new Date().getTime();
-			var distance = countDownDate - now;
-			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-			// Output the result in an element with id="demo"
-			document.getElementById("demo").innerHTML = "Inizio asta tra:" + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-			// If the count down is over, write some text 
-			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById("demo").innerHTML = "L'asta è aperta";
-			}
-		}, 1000);
-	</script>
 
 	<nav class="navIndex">
 		<div class="logo">art auction</div>
@@ -50,7 +32,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		<ul>
 			<li><a class="active" href="#">Home</a></li>
 
-			<li><a href="galleria.php">Galleria</a></li>
+			<li><a href="#">Galleria</a></li>
 			<?php
 			if (!isset($_SESSION['username'])) {
 				echo "<li><a href=\"registrazione.php\">Registrazione</a></li>";
@@ -77,38 +59,49 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		</ul>
 	</nav>
 
-
-
-	<div id="quadro_centro">
-		<p id="demo"></p>
-		<img id="quadro_centrato" src="../assets/img/quadri/Nighthawks_Hopper.jpg"></img>
+	<div id="search">
+		<form method="post" id="form_search">
+			Search: <input type="text" name="search">
+		</form>
 	</div>
+        
 	<div id="Quadri_Cercati">
 		<?php
-		$query = "SELECT * FROM quadro WHERE archiviato = 0";
+        if(isset($_POST['search'])){
 
-		$result = $conn->query($query);
+            
+            $query = "SELECT * 
+                      FROM quadro 
+                      WHERE archiviato = '0';";
 
-		$result->fetch_all(MYSQLI_ASSOC);
-		foreach ($result as $row) {
-			$quadro_ID = $row['quadro_ID'];
-			$link_quadro = $row['link_quadro'];
-			$nome_quadro = $row['nome_quadro'];
-			$prezzo = $row['prezzo'];
-			$nome_autore = $row['nome_autore'];
+            $result = $conn->query($query);
+
+            $result->fetch_all(MYSQLI_ASSOC);
+            foreach ($result as $row) {
+                $nome_quadro = $row['nome_quadro'];
+                $lev = levenshtein($_POST['search'], $nome_quadro, 25, 99, 1);
+                echo "SONO QUA:" . $lev;
+                if($lev < 5){
+                    $quadro_ID = $row['quadro_ID'];
+                    $link_quadro = $row['link_quadro'];
+                    
+                    $prezzo = $row['prezzo'];
+                    $nome_autore = $row['nome_autore'];
 
 
-			echo
-			"<div id=\"card\">  
-				<a href = \"quadro_specifico.php?quadro_ID=$quadro_ID\">
-					<img id=\"quadro_card\" src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . ">
-				</a>
-				<br>
-					<p class = \"Titolo_card\">$nome_quadro</p>
-					<p class = \"Autore_card\">$nome_autore</p>
-					<p class = \"Prezzo_card\">$prezzo €</p>
-			</div>";
-		}
+                    echo
+                    "<div id=\"card\">  
+                        <a href = \"quadro_specifico.php?quadro_ID=$quadro_ID\">
+                            <img id=\"quadro_card\" src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . ">
+                        </a>
+                        <br>
+                            <p class = \"Titolo_card\">$nome_quadro</p>
+                            <p class = \"Autore_card\">$nome_autore</p>
+                            <p class = \"Prezzo_card\">$prezzo €</p>
+                    </div>";
+                }
+        }
+        }
 
 		?>
 		<script src="script.js"></script>
