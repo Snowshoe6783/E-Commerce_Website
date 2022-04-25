@@ -155,24 +155,20 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	</form>
 	<?php
 	if (isset($_POST['submit_data_spedizione'])) {
-		foreach ($result_dettagli_quadri_ordinati as $row) {
 
-			$date = date('Y-m-d H:i:s');
+		$date = date('Y-m-d H:i:s');
 
+		$query = "UPDATE ordine
+				  SET data_spedizione = '$date'
+				  WHERE ordine_ID = $ordine_ID;";
 
+		echo "<br>Query aggiungi data_spedizione: " . $query;
 
-			$query = "UPDATE ordine
-								SET data_spedizione = '$date'
-								WHERE ordine_ID = $ordine_ID;";
-
-			echo "<br>Query aggiungi data_spedizione: " . $query;
-
-			$result = $conn->query($query);
+		$result = $conn->query($query);
 
 
 
-			header("Refresh:2; url = gestione_ordini.php", true, 303);
-		}
+		header("Refresh:2; url = gestione_ordini.php", true, 303);
 	}
 
 

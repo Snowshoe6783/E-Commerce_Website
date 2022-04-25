@@ -3,7 +3,10 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
+	$utente_ID = $_SESSION['utente_ID'];
 	echo "Benvenuto " . $_SESSION['utente_ID'];
+}else{
+	$utente_ID = NULL;
 }
 
 $link_cartella_immagini = "../assets/img/quadri/";
@@ -18,7 +21,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<title>quadro</title>
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
-	<link rel="stylesheet" href="../assets/css/style_pagina_quadro.css" type="text/css">
 	<script type="text/javascript" src="../assets/js/quadro.js"></script>
 </head>
 
@@ -32,7 +34,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	$result = $conn->query($query);
 
-	$result->fetch_all(MYSQLI_ASSOC);
 	foreach ($result as $row) {
 		$quadro_ID = $row['quadro_ID'];
 		$link_quadro = $row['link_quadro'];
@@ -104,25 +105,35 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	<script>
 		var quantitaAcquistabile = <?php echo (json_encode($quantita_in_magazzino - $quantita_nel_carrello)); ?>;
+		
 		const form_da_creare = document.getElementById('form_aggiungi_quadro_al_carrello');
-		if (quantitaAcquistabile > 0) {
-			form_da_creare.innerHTML =
-				`
-						<form method = "post" name = "myform" class="aggiungiOtogli">
-						<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-						<input type="number" id="number" name = "quantita_inserita" value="1" min = "1" max= '` + quantitaAcquistabile + `'/>
-						<div class="value-button" id="increase" onclick="increaseValue(` + quantitaAcquistabile + `)" value="Increase Value">+</div>
-						
-						<input type = "submit" name = "aggiungi_al_carrello" class="aggiungi_quadro" value = "Aggiungi al carrello">
-						</form>
-						`;
+		if(<?php echo (json_encode($utente_ID)); ?>){
+			if (quantitaAcquistabile > 0) {
+				form_da_creare.innerHTML =
+					`
+							<form method = "post" name = "myform" class="aggiungiOtogli">
+							<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+							<input type="number" id="number" name = "quantita_inserita" value="1" min = "1" max= '` + quantitaAcquistabile + `'/>
+							<div class="value-button" id="increase" onclick="increaseValue(` + quantitaAcquistabile + `)" value="Increase Value">+</div>
+							
+							<input type = "submit" name = "aggiungi_al_carrello" class="aggiungi_quadro" value = "Aggiungi al carrello">
+							</form>
+							`;
 
-		} else {
+			} else {
+				form_da_creare.innerHTML =
+											`
+											Il prodotto non è più disponibile, o hai inserito troppi quadri nel carrello.
+											`;
+			}
+		}else{
+			
 			form_da_creare.innerHTML =
-				`
-						Il prodotto non è più disponibile, o hai inserito troppi quadri nel carrello.
-						`;
+										`
+										Non sei loggato.
+										`;
 		}
+		console.log("loooooooool");
 	</script>
 
 

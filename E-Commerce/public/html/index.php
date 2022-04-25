@@ -76,6 +76,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		</ul>
 	</nav>
+
+
 	<div id="quadro_centro">
 		<p id="demo"></p>
 		<img id="quadro_centrato" src="../assets/img/quadri/Nighthawks_Hopper.jpg"></img>
