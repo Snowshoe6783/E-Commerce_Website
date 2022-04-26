@@ -57,8 +57,9 @@ $link_cartella_immagini = "../assets/img/quadri/";
 <a href="indirizzo.php">Indirizzo</a><br>
 
 <body>
+
 	<h1>
-		Lista ordini in corso
+		Lista ordini spediti
 	</h1>
 	<?php
 	$query = "SELECT o.ordine_ID AS 'ID Ordine', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
@@ -66,6 +67,24 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				  WHERE utente_ID = '" . $_SESSION['utente_ID'] . "'
 				    AND o.data_annullamento IS NULL
 					AND o.data_conferma IS NOT NULL
+					AND o.data_spedizione IS NOT NULL
+				  GROUP BY o.ordine_ID";
+
+	stampa_ordini($query);
+	
+
+	?>
+
+	<h1>
+		Lista ordini non spediti
+	</h1>
+	<?php
+	$query = "SELECT o.ordine_ID AS 'ID Ordine', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
+				  FROM ordine AS o JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
+				  WHERE utente_ID = '" . $_SESSION['utente_ID'] . "'
+				    AND o.data_annullamento IS NULL
+					AND o.data_conferma IS NOT NULL
+					AND o.data_spedizione IS NULL
 				  GROUP BY o.ordine_ID";
 
 	stampa_ordini($query);
@@ -83,6 +102,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				  WHERE utente_ID = '" . $_SESSION['utente_ID'] . "'
 				    AND o.data_annullamento IS NOT NULL
 					AND o.data_conferma IS NOT NULL
+					AND o.data_spedizione IS NULL
 				  GROUP BY o.ordine_ID";
 
 	stampa_ordini($query);
@@ -90,7 +110,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	?>
 
-	
 </body>
 
 </html>

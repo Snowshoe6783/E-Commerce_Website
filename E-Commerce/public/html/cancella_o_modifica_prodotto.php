@@ -18,7 +18,6 @@ if (isset($_SESSION['utente_ID'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>carrello</title>
-  <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 
 </head>
 <a href="index.php">Home</a><br>
@@ -75,15 +74,14 @@ if (isset($_SESSION['utente_ID'])) {
   <form method="POST" action="../../src/upload.php?quadro_ID=<?= $quadro_ID ?>" enctype="multipart/form-data">
 
     <br>ID quadro: <?= $quadro_ID ?>
-    <br>Nome Quadro: <input type="text" name="dati_prodotto_da_modificare[nome_quadro]" value=<?= $nome_quadro ?>>
-    <br>Nome Autore: <input type="text" name="dati_prodotto_da_modificare[nome_autore]" value=<?= $nome_autore ?>>
-    <br>Nazione di origine: <input type="text" name="dati_prodotto_da_modificare[nazione_di_origine]" value=<?= $nazione_di_origine ?>>
-    <br>Genere: <input type="text" name="dati_prodotto_da_modificare[genere]" value=<?= $genere ?>>
-    <br>Descrizione Breve<input type="text" name="dati_prodotto_da_modificare[descrizione_breve]" value=<?= $descrizione_breve ?>>
-    <br>Descrizione Dettagliata<input type="text" name="dati_prodotto_da_modificare[descrizione_dettagliata]" value=<?= $descrizione_dettagliata ?>>
-    <br>Prezzo<input type="text" name="dati_prodotto_da_modificare[prezzo]" value=<?= $prezzo ?>>
-    <br>Quantità<input type="text" name="dati_prodotto_da_modificare[quantita]" value=<?= $quantita ?>>
-    <br>Link Quadro<input type="text" name="dati_prodotto_da_modificare[link_quadro]" value=<?= $link_quadro ?>>
+    <br>Nome Quadro: <input type="text" name="dati_prodotto_da_modificare[nome_quadro]" value="<?= $nome_quadro ?>">
+    <br>Nome Autore: <input type="text" name="dati_prodotto_da_modificare[nome_autore]" value="<?= $nome_autore ?>">
+    <br>Nazione di origine: <input type="text" name="dati_prodotto_da_modificare[nazione_di_origine]" value="<?= $nazione_di_origine ?>">
+    <br>Genere: <input type="text" name="dati_prodotto_da_modificare[genere]" value="<?= $genere ?>">
+    <br>Descrizione Breve<input type="text" name="dati_prodotto_da_modificare[descrizione_breve]" value="<?= $descrizione_breve ?>">
+    <br>Descrizione Dettagliata<input type="text" name="dati_prodotto_da_modificare[descrizione_dettagliata]" value="<?= $descrizione_dettagliata ?>">
+    <br>Prezzo<input type="text" name="dati_prodotto_da_modificare[prezzo]" value="<?= $prezzo ?>">
+    <br>Quantità<input type="text" name="dati_prodotto_da_modificare[quantita]" value="<?= $quantita ?>">
     <div>
       <span>Upload a File:</span>
       <input type="file" name="uploadedFile" />

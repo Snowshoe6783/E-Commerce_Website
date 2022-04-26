@@ -46,9 +46,23 @@ if (isset($_SESSION['utente_ID'])) {
 				dati utente
 				<br>
 				Username <input class="input_registrazione" type="text" name="username"><br>
-				Password <input class="input_registrazione" type="password" name="password"><br><br>
+				Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
+
 			</div>
 		</div>
+
+
+			<input type="submit" class="button_registrazione" name="submit" value="Registrati">
+		</div>
+
+		<div id="message">
+			<h3>Password must contain the following:</h3>
+			<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+			<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+			<p id="number" class="invalid">A <b>number</b></p>
+			<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+		</div>
+
 		<br>
 		<input type="submit" name="submit" value="Registrati">
 
