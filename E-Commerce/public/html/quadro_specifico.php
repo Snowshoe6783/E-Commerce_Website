@@ -133,7 +133,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 										Non sei loggato.
 										`;
 		}
-		console.log("loooooooool");
 	</script>
 
 
