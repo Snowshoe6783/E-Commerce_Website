@@ -113,7 +113,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 					`
 							<form method = "post" name = "myform" class="aggiungiOtogli">
 							<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-							<input type="number" id="number" name = "quantita_inserita" value="1" min = "1" max= '` + quantitaAcquistabile + `'/>
+							<input type="number" id="number" class = "quantita_inserita" name = "quantita_inserita" value="1" min = "1" max= '` + quantitaAcquistabile + `'/>
 							<div class="value-button" id="increase" onclick="increaseValue(` + quantitaAcquistabile + `)" value="Increase Value">+</div>
 							
 							<input type = "submit" name = "aggiungi_al_carrello" class="aggiungi_quadro" value = "Aggiungi al carrello">
