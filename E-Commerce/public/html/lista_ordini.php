@@ -1,19 +1,22 @@
 <?php
+$link_cartella_immagini = "../assets/img/quadri/";
 include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
 	echo "Benvenuto " . $_SESSION['utente_ID'];
-}
-
-$link_cartella_immagini = "../assets/img/quadri/";
+  }else{
+	  http_response_code(403);
+	  die('Non hai accesso a questa pagina.');
+  }
 ?>
 
 <?php
-	function stampa_ordini($query){
-		include("../../src/connessione_database.php");
-		$result = $conn->query($query);
-		
+function stampa_ordini($query)
+{
+	include("../../src/connessione_database.php");
+	$result = $conn->query($query);
+
 	echo "<table border = 1>";
 
 	foreach ($result as $row) {
@@ -39,7 +42,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		echo "</tr>";
 	}
 	echo "</table>";
-	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +74,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				  GROUP BY o.ordine_ID";
 
 	stampa_ordini($query);
-	
+
 
 	?>
 
@@ -88,7 +91,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				  GROUP BY o.ordine_ID";
 
 	stampa_ordini($query);
-	
+
 
 
 	?>
@@ -107,7 +110,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	stampa_ordini($query);
 	
-
 	?>
 
 </body>

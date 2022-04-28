@@ -149,10 +149,15 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	echo "Data annullamento ordine: " . $data_annullamento . "<br>";
 
 	?>
+	<?php 
+	if($data_spedizione == NULL){
+		echo "<form method=\"POST\" name=\"annulla_ordine\">
+				<input type=\"submit\" name=\"submit_data_spedizione\" value=\"Spedisci\">
+			</form>";
+	}
+	?>
 
-	<form method="POST" name="annulla_ordine">
-		<input type="submit" name="submit_data_spedizione" value="Spedisci">
-	</form>
+	
 	<?php
 	if (isset($_POST['submit_data_spedizione'])) {
 

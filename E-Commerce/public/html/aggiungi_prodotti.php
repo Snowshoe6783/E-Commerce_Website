@@ -3,11 +3,12 @@ $link_cartella_immagini = "../assets/img/quadri/";
 include("../../src/connessione_database.php");
 
 session_start();
-if (isset($_SESSION['utente_ID'])) {
+if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION['ruolo_ID'] == '2')) {
   echo "Benvenuto " . $_SESSION['utente_ID'];
+}else{
+    http_response_code(403);
+    die('Non hai accesso a questa pagina.');
 }
-
-
 ?>
 
 <!DOCTYPE html>

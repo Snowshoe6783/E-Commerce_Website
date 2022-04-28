@@ -4,11 +4,13 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
-?>
-	Benvenuto <?= $_SESSION['utente_ID'] ?>
-<?php
+	echo "Benvenuto " . $_SESSION['utente_ID'];
+} else {
+	http_response_code(403);
+	die('Non hai accesso a questa pagina.');
 }
-
+?>
+<?php
 $_SESSION['prezzo_prodotti_totale'] = 0;
 ?>
 

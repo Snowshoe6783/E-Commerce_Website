@@ -58,8 +58,12 @@ $link_cartella_immagini = "../assets/img/quadri/";
 			} else {
 				echo "<li><a href=\"lista_ordini.php\">Ordini</a></li>";
 				echo "<li><a href=\"carrello.php\">Carrello</a></li>";
+
 				echo "<li><a href=\"menu_gestione.php\">Gestione</a></li>";
+
 				echo "<li><a href=\"logout.php\">Logout</a></li>";
+
+				
 			}
 			?>
 
