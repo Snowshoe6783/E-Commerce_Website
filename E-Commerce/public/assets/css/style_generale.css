@@ -166,7 +166,18 @@ input[type="checkbox"]{
     color: cyan;
   }
 }
-/*                                            logout                                           */
+/*                                         menu gestione                                       */
+.body_menu_gestione{
+  background-color: #051124;
+  text-align: center;
+  display: block;
+  padding-top: 8vh;
+  font-size: large;
+}
+.menu_gestione{
+  color: white;
+  padding: 3vh;
+}
 /*                                            quadro                                           */
 .body_quadro{
   background-color: #051124;
@@ -179,7 +190,7 @@ input[type="checkbox"]{
 }
 .singolo_quadro{
   height: 60vh;
-  width: auto;
+  width:auto;
   margin-left:10vh;
 }
 .Descrizione_singolo_Quadro{
@@ -201,7 +212,7 @@ input[type="checkbox"]{
   color: white;
   font-style: italic;
   }
-  .Prezzo_singolo_Quadro{
+  .Testo_singolo_Quadro{
     color:white;
     width:42vh;
     margin-left: 10px;
@@ -301,6 +312,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 /*                                            ordina                                           */
 /*                                            carrello                                         */
+/*                                            galleria                                         */
 /*                                            login                                            */
 .bodyLogin{
   background-color: #051124;

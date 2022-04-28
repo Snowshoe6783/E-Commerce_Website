@@ -89,9 +89,9 @@ $link_cartella_immagini = "../assets/img/quadri/";
 					<p class = \"Autore_singolo_Quadro\">$nome_autore</p>
 					<p class = \"Descrizione_singolo_Quadro\">$descrizione</p>
 					<form method = \"post\" name = \"myform\" class=\"form_quadro\">
-						<p class = \"Prezzo_singolo_Quadro\">il prezzo è: $prezzo €</p>
-						<p>Quantita in magazzino: $quantita_in_magazzino </p>
-						<p>Quantita nel carrello: $quantita_nel_carrello </p>
+						<p class = \"Testo_singolo_Quadro\">il prezzo è: $prezzo €</p>
+						<p class = \"Testo_singolo_Quadro\">Quantita in magazzino: $quantita_in_magazzino </p>
+						<p class = \"Testo_singolo_Quadro\">Quantita nel carrello: $quantita_nel_carrello </p>
 
 
 					</form>
