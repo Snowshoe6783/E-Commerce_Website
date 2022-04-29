@@ -115,6 +115,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 				}
 			}
 			echo "<th>Prezzo Totale</th>";
+			echo "<th>Cancella Prodotto</th>";
 			echo "</tr>";
 			break;
 		}
@@ -142,10 +143,12 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 			for ($i = 1; $i < $quantita_in_magazzino; $i++) {
 				if ($i == $quantita) {
 					echo "<option value = " . $quantita . " selected>" . $quantita . "</option>";
+				} else {
+					echo "<option value = " . $i . ">" . $i . "</option>";
 				}
-				echo "<option value = " . $i . ">" . $i . "</option>";
 			}
 			echo "<td>" . $prezzo * $quantita . "</td>";
+			echo "<td><a href = \"../../src/cancella_prodotto_dal_carrello.php?quadro_ID=$quadro_ID&ordine_ID=$ordine_ID\">Cancella Prodotto</a>";
 
 			echo "</tr>";
 
@@ -161,25 +164,24 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 
 	?>
-		<input type = "submit" name = "submit_inizio_ordine">
+	<input type="submit" name="submit_inizio_ordine" value="Procedi con l'ordine">
 	</form>
 
 	<?php
-		if(isset($_POST['submit_inizio_ordine'])){
-			foreach($result_quadri_in_carrello as $row){
-				$quadro_ID = $row['quadro_ID'];
-				$query = "UPDATE acquisto
+	if (isset($_POST['submit_inizio_ordine'])) {
+		foreach ($result_quadri_in_carrello as $row) {
+			$quadro_ID = $row['quadro_ID'];
+			$query = "UPDATE acquisto
 					      SET quantita = '" . $_POST[$quadro_ID] . "'
 						  WHERE quadro_ID = '$quadro_ID'
 						  AND ordine_ID = '" . $_SESSION['ordine_ID'] . "'";;
 
-				$result = $conn->query($query);
-				//echo $query . "<br>";
-			}
-			//header("location:carrello.php");
-			echo("<script>location.href = 'indirizzo.php';</script>");
-
+			$result = $conn->query($query);
+			//echo $query . "<br>";
 		}
+		//header("location:carrello.php");
+		echo ("<script>location.href = 'indirizzo.php';</script>");
+	}
 	?>
 </body>
 

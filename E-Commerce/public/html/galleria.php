@@ -30,7 +30,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 			<i class="fas fa-bars"></i>
 		</label>
 		<ul>
-			<li><a class="active" href="#">Home</a></li>
+			<li><a class="active" href="index.php">Home</a></li>
 
 			<li><a href="#">Galleria</a></li>
 			<?php
@@ -61,36 +61,104 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	<div id="search">
 		<form method="post" id="form_search">
-			Search: <input type="text" name="search">
+			Search Quadro: <input type="text" name="search_quadro">
+			Search Autore: <input type="text" name="search_autore">
+			Genere:
+			<select name="select_genere">
+				<?php
+				$query = "SELECT DISTINCT genere
+				 	  	 FROM quadro
+						  WHERE archiviato = '0'";
+
+				$result = $conn->query($query);
+				echo "<option></option>";
+				foreach ($result as $row) {
+					echo "<option value = \"" . $row['genere'] . "\">" . $row['genere'] . "</option>";
+				}
+
+				?>
+			</select>
+			<br>
+			Nazione di Origine:
+			<select name="select_nazione_di_origine">
+				<?php
+				$query = "SELECT DISTINCT nazione_di_origine
+				 	  	 FROM quadro
+						  WHERE archiviato = '0'";
+
+				$result = $conn->query($query);
+				echo "<option></option>";
+				foreach ($result as $row) {
+					echo "<option value = \"" . $row['nazione_di_origine'] . "\">" . $row['nazione_di_origine'] . "</option>";
+				}
+
+				?>
+			</select>
+			<br>
+
+			Ordina per
+			<br>
+			Prezzo Discendente<input type="radio" name="radio_filtro" value="Prezzo Discendente">
+			Prezzo Ascendente<input type="radio" name="radio_filtro" value="Prezzo Ascendente">
+			Ordine Alfabetico<input type="radio" name="radio_filtro" value="Ordine Alfabetico">
+			Ordine Alfabetico al contrario<input type="radio" name="radio_filtro" value="Ordine Alfabetico al contrario">
+			<input type="submit" name="submit_search">
+
 		</form>
 	</div>
-        
+
 	<div id="Quadri_Cercati">
 		<?php
-        if(isset($_POST['search'])){
 
-            
-            $query = "SELECT * 
+
+
+		$query = "SELECT * 
                       FROM quadro 
-                      WHERE archiviato = '0';";
+                      WHERE archiviato = '0'";
 
-            $result = $conn->query($query);
+		if (isset($_POST['search_quadro'])) {
+			$query .= " AND nome_quadro LIKE '%" . $_POST['search_quadro'] . "%'";
+		}
+		if (isset($_POST['search_autore'])) {
+			$query .= " AND nome_autore LIKE '%" . $_POST['search_autore'] . "%'";
+		}
+		if (isset($_POST['select_genere'])) {
+			$query .= " AND genere LIKE '%" . $_POST['select_genere'] . "%'";
+		}
+		if (isset($_POST['select_nazione_di_origine'])) {
+			$query .= " AND nazione_di_origine LIKE '%" . $_POST['select_nazione_di_origine'] . "%'";
+		}
+		if (isset($_POST['radio_filtro'])) {
+			if ($_POST['radio_filtro'] == 'Prezzo Discendente') {
+				$query .= " ORDER BY prezzo DESC";
+			}
+			if ($_POST['radio_filtro'] == 'Prezzo Ascendente') {
+				$query .= " ORDER BY prezzo ASC";
+			}
+			if ($_POST['radio_filtro'] == 'Ordine Alfabetico') {
+				$query .= " ORDER BY nome_quadro ASC";
+			}
+			if ($_POST['radio_filtro'] == 'Ordine Alfabetico al contrario') {
+				$query .= " ORDER BY nome_quadro DESC";
+			}
+		}
 
-            $result->fetch_all(MYSQLI_ASSOC);
-            foreach ($result as $row) {
-                $nome_quadro = $row['nome_quadro'];
-                $lev = levenshtein($_POST['search'], $nome_quadro, 25, 99, 1);
-                echo "SONO QUA:" . $lev;
-                if($lev < 5){
-                    $quadro_ID = $row['quadro_ID'];
-                    $link_quadro = $row['link_quadro'];
-                    
-                    $prezzo = $row['prezzo'];
-                    $nome_autore = $row['nome_autore'];
+		$query .= ";";
+		$result = $conn->query($query);
+		echo $query;
+
+		foreach ($result as $row) {
+			$nome_quadro = $row['nome_quadro'];
+
+			$quadro_ID = $row['quadro_ID'];
+			$link_quadro = $row['link_quadro'];
+
+			$prezzo = $row['prezzo'];
+			$nome_autore = $row['nome_autore'];
 
 
-                    echo
-                    "<div id=\"card\">  
+			echo
+			"<div id=\"card\">  
                         <a href = \"quadro_specifico.php?quadro_ID=$quadro_ID\">
                             <img id=\"quadro_card\" src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . ">
                         </a>
@@ -99,9 +167,9 @@ $link_cartella_immagini = "../assets/img/quadri/";
                             <p class = \"Autore_card\">$nome_autore</p>
                             <p class = \"Prezzo_card\">$prezzo €</p>
                     </div>";
-                }
-        }
-        }
+		}
+
+
 
 		?>
 		<script src="script.js"></script>

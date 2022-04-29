@@ -1,0 +1,169 @@
+/*                                            index                                           */
+h1{
+    text-align: center;
+    }
+    #demo{
+      text-align:center;
+      font-size:3vw;
+      color:#edededd3;
+    }
+    .Titolo_card{
+      font-size:1.5rem;
+      white-space:nowrap;	
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-align:auto;
+    font-family: 'Poppins', sans-serif;
+    }
+    
+    div{
+    
+      float: left;
+      text-align:center;
+      font-family: 'Poppins', sans-serif;
+      display: inline;
+    }
+    
+    #quadro_card{
+        padding:10px 2px 5px 2px;
+        border-radius:10%;
+        height:210px;
+    }
+    
+    #card{
+        background-color:#001a46;
+        color:#ffffff;
+        transition: 0.3s;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        margin:10px;
+    
+    
+    }
+    
+    #quadro_centro{
+        background-color:#061328;
+        width:100%;
+        height: 90vh;
+    }
+    
+    #quadro_centrato{
+        height:65vh;
+    
+    }
+    
+    #Quadri_Cercati{
+        width:100%;
+        display:grid;
+        grid-template-columns: repeat(auto-fill, 300px);
+        background-color:#051124;
+        padding:10px;
+    }
+    #quadro_card:hover{
+          transform: scale(1.03);
+    }
+    #card:hover {
+        box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.5);
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    } 
+    .navIndex{
+      display: flex;
+      height: 90px;
+      width: 100%;
+      background:#051124;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    nav .logo{
+      color: #fff;
+      font-size: 35px;
+      font-weight: 600;
+      padding:0 0 0 10px;
+    }
+    nav ul{
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    nav ul li{
+      margin: 0 5px;
+    }
+    nav ul li a{
+      color: #f2f2f2;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 5px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    nav ul li a.active,
+    nav ul li a:hover{
+      color: #111;
+      background: #fff;
+    }
+    nav .menu-btn i{
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+    }
+    input[type="checkbox"]{
+      display: none;
+    }
+    @media (max-width: 1000px){
+      nav{
+        padding: 0 40px 0 50px;
+      }
+    }
+    @media (max-width: 920px) {
+      nav .menu-btn i{
+        display: block;
+      }
+      #click:checked ~ .menu-btn i:before{
+        content: "\f00d";
+      }
+      nav ul{
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        background: #111;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: all 0.3s ease;
+      }
+      #click:checked ~ ul{
+        left: 0;
+      }
+      nav ul li{
+        width: 100%;
+        margin: 40px 0;
+      }
+      nav ul li a{
+        width: 100%;
+        margin-left: -100%;
+        display: block;
+        font-size: 20px;
+        transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+      #click:checked ~ ul li a{
+        margin-left: 0px;
+      }
+      nav ul li a.active,
+      nav ul li a:hover{
+        background: none;
+        color: cyan;
+      }
+    }
+    

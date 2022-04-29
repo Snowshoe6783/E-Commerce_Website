@@ -1,0 +1,106 @@
+/*                                            registrazione                                    */
+
+
+
+.bodyRegistrazione { 
+    background-color: #051124; 
+  }
+  
+  
+  .input_registrazione{
+    color: white;
+    background-color:transparent;
+    padding:2vh;
+    margin:1vh;
+    font-size: small;
+  }
+  .div_registrazione{
+    font-size: small;
+    margin:2vh 10%;
+    padding: 12vh;
+    width: 36%;
+    height: auto;
+    border-radius: 3px;
+    background-color: #1a2248;
+    color: white;
+  }
+  .titolo_registrazione{
+    font-size:x-large;
+    color: white;
+  }
+  
+  .titolo_reg{
+    color: white;
+  }
+  
+  hr{
+    color:white;
+  }
+  
+  .button_registrazione{
+    appearance: none;
+    background-color: transparent;
+    border: 0.09em solid #5f3afc;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    background-color: #5f3afc;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin:1vh;
+    min-height: 3.3em;
+    min-width: 0;
+    outline: none;
+  
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+   }
+   
+   .button_registrazione:disabled {
+    pointer-events: none;
+   }
+   
+   .button_registrazione:hover {
+    color: #fff;
+    background-color: #061328;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+   }
+   
+   .button_registrazione:active {
+    box-shadow: none;
+    transform: translateY(0);
+   }
+  
+  #dati_anagrafici {
+    background-color: gray; 
+    min-width:50vh;
+    min-height:45vh;
+    border:1px solid black;
+  }
+  #dati_utente_registrazione { 
+    background-color: lightgray;
+  }
+  
+  @media screen and (max-width: 400px) {
+     #dati_anagrafici { 
+      width:auto; 
+      border:20px;
+      margin:20px;
+      letter-spacing: 0.1em;
+    }
+       #dati_utente_registrazione { 
+      width:auto; 
+      border:20px;
+      margin:20px;
+      letter-spacing: 0.1em;
+    }
+  }

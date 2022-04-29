@@ -1,0 +1,12 @@
+/*                                         menu gestione                                       */
+.body_menu_gestione{
+    background-color: #051124;
+    text-align: center;
+    display: block;
+    padding-top: 8vh;
+    font-size: large;
+  }
+  .menu_gestione{
+    color: white;
+    padding: 3vh;
+  }
