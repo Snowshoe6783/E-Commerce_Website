@@ -14,33 +14,14 @@ $link_cartella_immagini = "../assets/img/quadri/";
 <head>
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/index.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/footer.css" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" /> <!-- se restringi la pagina salta fuori le tre linee per il menu -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>home</title>
 </head>
 
 <body class="bodyIndex">
-	<script>
-		var countDownDate = new Date("Jun 22, 2022 00:00:00").getTime();
-		var x = setInterval(function() {
-			var now = new Date().getTime();
-			var distance = countDownDate - now;
-			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-			// Output the result in an element with id="demo"
-			document.getElementById("demo").innerHTML = "Inizio asta tra:" + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-			// If the count down is over, write some text 
-			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById("demo").innerHTML = "L'asta è aperta";
-			}
-		}, 1000);
-	</script>
-
 	<nav class="navIndex">
 		<div class="logo">art auction</div>
 		<input type="checkbox" id="click">
@@ -116,6 +97,23 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		?>
 		<script src="script.js"></script>
+	</div>
+		<br>
+		<footer>
+			<div class = "div_footer">
+				<p class = "footer_title">La nostra azienda:</p>
+				<p><a href = "about_us.php">About Us</a></p>		
+				<p><a href = "privacy_policy.php">Privacy Policy</a></p>		
+				
+			</div>
+			<br>
+			<div class = "div_footer">
+				<p class = "footer_title">Contatti:</p>
+				<p>Email: mail@mail.com</p>
+				<p>Numero di Telefono: +39 359 493 3245</p>
+				
+			</div>
+		</footer> 
 </body>
 
 </html>
