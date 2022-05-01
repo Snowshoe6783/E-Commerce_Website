@@ -97,55 +97,63 @@ if (isset($_SESSION['utente_ID'])) {
 
 		$prezzo_totale = 0;
 		$result = $conn->query($query);
+		?>
 
-		foreach ($result as $row) {
-			echo "<tr>";
-			foreach ($row as $key => $value) {
-				echo "<th>$key</th>";
+		<div class="shopping-cart">
+
+			<div class="column-labels">
+				<label class="product-image">Image</label>
+				<label class="product-details">Product</label>
+				<label class="product-price">Price</label>
+				<label class="product-quantity">Quantity</label>
+				<label class="product-removal">Remove</label>
+				<label class="product-line-price">Total</label>
+			</div>
+
+			<form method="post" name="inizia_ordine">
+			<?php
+
+
+
+
+
+			foreach ($result as $row) {
+
+				$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
+				$nome_quadro = $row['Nome Quadro'];
+				$nome_autore = $row['Autore'];
+				$genere = $row['Genere'];
+				$descrizione_breve = $row['Descrizione'];
+				$prezzo = $row['Prezzo'];
+				$quantita = $row['Quantità'];
+			?>
+
+				<div class="product">
+
+					<div class="product-image">
+						<img src="<?= $link_quadro ?>">
+					</div>
+					<div class="product-details">
+						<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
+						<p class="product-description"><?= $descrizione_breve ?></p>
+					</div>
+					<div class="product-price"><?= $prezzo ?></div>
+
+					<div class="product-quantity">
+						<?=$quantita?>
+					</div>
+
+					<div class="product-line-price">
+						<?= $prezzo * $quantita ?>
+					</div>
+				</div>
+		<?php
+				$prezzo_totale += $prezzo * $quantita;
 			}
-			echo "<th>Prezzo Totale</th>";
-			echo "</tr>";
-			break;
+		} else {
+			echo "Carrello vuoto.";
 		}
 
-		foreach ($result as $row) {
-			echo "<tr>";
-			$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
-			$nome_quadro = $row['Nome Quadro'];
-			$nome_autore = $row['Autore'];
-			$genere = $row['Genere'];
-			$descrizione_breve = $row['Descrizione'];
-			$prezzo = $row['Prezzo'];
-			$quantita = $row['Quantità'];
-
-			echo "<td><img src = \"$link_quadro\">";
-			echo "<td>$nome_quadro</td>";
-			echo "<td>$nome_autore</td>";
-			echo "<td>$genere</td>";
-			echo "<td>$descrizione_breve</td>";
-			echo "<td>$prezzo</td>";
-			echo "<td>$quantita</td>";
-			echo "<td>" . $prezzo * $quantita . "</td>";
-
-			echo "</tr>";
-
-			$prezzo_totale += $prezzo * $quantita;
-		}
-		echo "</table>";
-
-
-		
-		echo "prezzo prodotti = " . $prezzo_totale;
-		
-		echo "<br>prezzo spedizione = " . $_SESSION['prezzo_prodotti_totale'];
-
-		echo "<br>prezzo totale = " . $prezzo_totale + $_SESSION['prezzo_prodotti_totale'];
-
-
-		
-	} else {
-		echo "Carrello vuoto.";
-	}
 
 
 	?>
@@ -270,7 +278,7 @@ if (isset($_SESSION['utente_ID'])) {
 			$result = $conn->query($query);
 
 
-			//header("location:index.php");
+			header("location:index.php");
 		} else {
 			echo "carrello vuoto";
 		}

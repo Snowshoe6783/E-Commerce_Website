@@ -18,6 +18,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
+
 
 </head>
 <a href="index.php">Home</a><br>
@@ -33,7 +35,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	$query = "";
 	$flag = 0;
 	if ($flag == 0) {
-		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+		$query = "SELECT q.link_quadro AS 'Immagine Prodotto', q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
 							;";
@@ -42,7 +44,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		//echo "<br><br>start".$query;
 
 	} else {
-		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+		$query = "SELECT q.link_quadro AS 'Immagine Prodotto', q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
 							  UNION
@@ -58,47 +60,57 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	$result_dettagli_quadri_ordinati = $result;
 
 	$counter = 0;
+	?>
+
+	<div class="shopping-cart">
+
+	<div class="column-labels">
+		<label class="product-image">Image</label>
+		<label class="product-details">Product</label>
+		<label class="product-price">Price</label>
+		<label class="product-quantity">Quantity</label>
+		<label class="product-removal">Remove</label>
+		<label class="product-line-price">Total</label>
+	</div>
+
+
+
+
+	<?php
 
 	foreach ($result as $row) {
-		echo "<tr>";
-		foreach ($row as $key => $value) {
-			if ($counter == 0) {
-				$counter = 1;
-			} else {
-				echo "<th>$key</th>";
-			}
-		}
-		echo "<th>Prezzo Totale</th>";
-		echo "</tr>";
-		break;
-	}
-
-	foreach ($result as $row) {
-		echo "<tr>";
+		$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
 		$nome_quadro = $row['Nome Quadro'];
 		$nome_autore = $row['Autore'];
 		$genere = $row['Genere'];
 		$descrizione_breve = $row['Descrizione'];
 		$prezzo = $row['Prezzo'];
 		$quantita = $row['Quantità'];
+		?>
 
-		echo "<td>$nome_quadro</td>";
-		echo "<td>$nome_autore</td>";
-		echo "<td>$genere</td>";
-		echo "<td>$descrizione_breve</td>";
-		echo "<td>$prezzo</td>";
-		echo "<td>$quantita</td>";
-		echo "<td>" . $prezzo * $quantita . "</td>";
+<div class="product">
 
-		echo "</tr>";
+					<div class="product-image">
+						<img src="<?= $link_quadro ?>">
+					</div>
+					<div class="product-details">
+						<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
+						<p class="product-description"><?= $descrizione_breve ?></p>
+					</div>
+					<div class="product-price"><?= $prezzo ?></div>
 
-		$prezzo_totale += $prezzo * $quantita;
+					<div class="product-quantity">
+						<?=$quantita?>
+					</div>
+
+					<div class="product-line-price">
+						<?= $prezzo * $quantita ?>
+					</div>
+				</div>
+
+
+<?php
 	}
-	echo "</table>";
-
-
-
-
 	$query = "SELECT ms.nome AS nome_metodo_spedizione, ms.metodo_ID AS ms_metodo_ID, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione, data_inserimento_ordine, data_conferma, data_pagamento, data_spedizione, data_annullamento
 					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID
 					  WHERE o.ordine_ID = $ordine_ID";

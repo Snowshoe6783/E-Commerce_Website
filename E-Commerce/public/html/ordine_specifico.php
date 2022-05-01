@@ -32,7 +32,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<?php
 	$ordine_ID = $_GET['ordine_ID'];
 
-	echo "<table border = \"1\">";
+	
 	$query = "";
 	$flag = 0;
 	if ($flag == 0) {
@@ -61,20 +61,21 @@ if (isset($_SESSION['utente_ID'])) {
 	$result_dettagli_quadri_ordinati = $result;
 
 	$counter = 0;
+	?>
+	<div class="shopping-cart">
 
-	foreach ($result as $row) {
-		echo "<tr>";
-		foreach ($row as $key => $value) {
-			if ($counter == 0) {
-				$counter = 1;
-			} else {
-				echo "<th>$key</th>";
-			}
-		}
-		echo "<th>Prezzo Totale</th>";
-		echo "</tr>";
-		break;
-	}
+	<div class="column-labels">
+		<label class="product-image">Image</label>
+		<label class="product-details">Product</label>
+		<label class="product-price">Price</label>
+		<label class="product-quantity">Quantity</label>
+		<label class="product-removal">Remove</label>
+		<label class="product-line-price">Total</label>
+	</div>
+
+
+
+	<?php
 
 	foreach ($result as $row) {
 		echo "<tr>";
@@ -85,8 +86,29 @@ if (isset($_SESSION['utente_ID'])) {
 		$descrizione_breve = $row['Descrizione'];
 		$prezzo = $row['Prezzo'];
 		$quantita = $row['Quantità'];
+		?>
 
-		echo "<td><img src = \"$link_quadro\">";
+<div class="product">
+
+					<div class="product-image">
+						<img src="<?= $link_quadro ?>">
+					</div>
+					<div class="product-details">
+						<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
+						<p class="product-description"><?= $descrizione_breve ?></p>
+					</div>
+					<div class="product-price"><?= $prezzo ?></div>
+
+					<div class="product-quantity">
+						<?=$quantita?>
+					</div>
+
+					<div class="product-line-price">
+						<?= $prezzo * $quantita ?>
+					</div>
+				</div>
+	<?php
+		/*echo "<td><img src = \"$link_quadro\">";
 		echo "<td>$nome_quadro</td>";
 		echo "<td>$nome_autore</td>";
 		echo "<td>$genere</td>";
@@ -95,11 +117,11 @@ if (isset($_SESSION['utente_ID'])) {
 		echo "<td>$quantita</td>";
 		echo "<td>" . $prezzo * $quantita . "</td>";
 
-		echo "</tr>";
+		echo "</tr>";*/
 
 		$prezzo_totale += $prezzo * $quantita;
 	}
-	echo "</table>";
+
 
 
 

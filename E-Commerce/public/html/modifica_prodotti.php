@@ -26,21 +26,16 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 
 <body>
 	<h1>
-		Carrello
+		Modifica Prodotti
 	</h1>
 	<?php
 	$query = "SELECT quadro_ID AS 'Quadro ID', 
                          nome_quadro AS 'Nome Quadro', 
                          nome_autore AS 'Nome Autore', 
-                         nazione_di_origine AS 'Nazione di Origine', 
-                         genere AS 'Genere', 
-                         descrizione_breve AS 'Descrizione Breve', 
-                         descrizione_dettagliata AS 'Descrizione Dettagliata', 
                          prezzo AS 'Prezzo', 
                          quantita_in_magazzino AS 'Quantità', 
-                         link_quadro AS 'Link Quadro' 
-				FROM quadro
-				WHERE archiviato = '0'";
+						 archiviato AS 'Archiviato'
+				FROM quadro";
 
 
 	$result = $conn->query($query);
@@ -62,24 +57,16 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 		$quadro_ID = $row['Quadro ID'];
 		$nome_quadro = $row['Nome Quadro'];
 		$nome_autore = $row['Nome Autore'];
-		$nazione_di_origine = $row['Nazione di Origine'];
-		$genere = $row['Genere'];
-		$descrizione_breve = $row['Descrizione Breve'];
-		$descrizione_dettagliata = $row['Descrizione Dettagliata'];
 		$prezzo = $row['Prezzo'];
 		$quantita = $row['Quantità'];
-		$link_quadro = $row['Link Quadro'];
+		$archiviato = $row['Archiviato'];
 
 		echo "<td>$quadro_ID</td>";
 		echo "<td>$nome_quadro</td>";
 		echo "<td>$nome_autore</td>";
-		echo "<td>$nazione_di_origine</td>";
-		echo "<td>$genere</td>";
-		echo "<td>$descrizione_breve</td>";
-		echo "<td>$descrizione_dettagliata</td>";
 		echo "<td>$prezzo</td>";
 		echo "<td>$quantita</td>";
-		echo "<td>$link_quadro</td>";
+		echo "<td>$archiviato</td>";
 		echo "<td><a href = \"cancella_o_modifica_prodotto.php?quadro_ID=$quadro_ID\">Cancella/Modifica</td>";
 
 		echo "</tr>";

@@ -204,10 +204,10 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 				$result = $conn->query($query);
 				echo $query . "<br>";
-				echo "CAISDSADSAODISAOIDSA";
+				
 			}
 			//header("location:carrello.php");
-			//echo ("<script>location.href = 'indirizzo.php';</script>");
+			echo ("<script>location.href = 'indirizzo.php';</script>");
 		}
 		?>
 </body>
