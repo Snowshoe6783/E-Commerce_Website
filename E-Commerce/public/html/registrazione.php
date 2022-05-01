@@ -38,7 +38,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 			Username <input class="input_registrazione" type="text" name="username" required><br>
 			
 
-			Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
+			Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required><br>
 
 			<input type="submit" class="button_registrazione" name="submit" value="Registrati">
 		</div>
