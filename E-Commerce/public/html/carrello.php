@@ -22,7 +22,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
-	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<!--<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">-->
 	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 
 </head>
@@ -62,13 +62,13 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 		$flag = 0;
 
-		echo "<table border = \"1\">";
+
 
 	?>
 
 
 
-	<?php
+		<?php
 
 		foreach ($result as $row) {
 
@@ -106,86 +106,110 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 		$prezzo_totale = 0;
 		$result = $conn->query($query);
 		$result_quadri_in_carrello = $result;
+		?>
 
-		foreach ($result as $row) {
-			echo "<tr>";
-			foreach ($row as $key => $value) {
-				if (($key != "quantita_in_magazzino") && ($key != "quadro_ID")) {
-					echo "<th>$key</th>";
-				}
+
+		<div class="shopping-cart">
+
+			<div class="column-labels">
+				<label class="product-image">Image</label>
+				<label class="product-details">Product</label>
+				<label class="product-price">Price</label>
+				<label class="product-quantity">Quantity</label>
+				<label class="product-removal">Remove</label>
+				<label class="product-line-price">Total</label>
+			</div>
+
+			<form method="post" name="inizia_ordine">
+			<?php
+
+
+
+
+
+			foreach ($result as $row) {
+
+				$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
+				$quadro_ID = $row['quadro_ID'];
+				$nome_quadro = $row['Nome Quadro'];
+				$nome_autore = $row['Autore'];
+				$genere = $row['Genere'];
+				$descrizione_breve = $row['Descrizione'];
+				$prezzo = $row['Prezzo'];
+				$quantita = $row['Quantità'];
+				$quantita_in_magazzino = $row['quantita_in_magazzino'];
+			?>
+
+				<div class="product">
+
+					<div class="product-image">
+						<img src="<?= $link_quadro ?>">
+					</div>
+					<div class="product-details">
+						<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
+						<p class="product-description"><?= $descrizione_breve ?></p>
+					</div>
+					<div class="product-price"><?= $prezzo ?></div>
+
+					<div class="product-quantity"><select name="<?= $quadro_ID ?>" id="quantita">
+							<?php
+
+							for ($i = 1; $i < $quantita_in_magazzino; $i++) {
+								if ($i == $quantita) {
+									echo "<option value = " . $quantita . " selected>" . $quantita . "</option>";
+								} else {
+									echo "<option value = " . $i . ">" . $i . "</option>";
+								}
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="product-removal">
+						<a href="../../src/cancella_prodotto_dal_carrello.php?quadro_ID=<?= $quadro_ID ?>&ordine_ID=<?= $ordine_ID ?>">
+							Cancella
+						</a>
+					</div>
+					<div class="product-line-price">
+						<?= $prezzo * $quantita ?>
+					</div>
+				</div>
+		<?php
+				$prezzo_totale += $prezzo * $quantita;
 			}
-			echo "<th>Prezzo Totale</th>";
-			echo "<th>Cancella Prodotto</th>";
-			echo "</tr>";
-			break;
+		} else {
+			echo "Carrello vuoto.";
 		}
-		echo "<form method=\"post\" name=\"inizia_ordine\">";
-		foreach ($result as $row) {
-			echo "<tr>";
-			$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
-			$quadro_ID = $row['quadro_ID'];
-			$nome_quadro = $row['Nome Quadro'];
-			$nome_autore = $row['Autore'];
-			$genere = $row['Genere'];
-			$descrizione_breve = $row['Descrizione'];
-			$prezzo = $row['Prezzo'];
-			$quantita = $row['Quantità'];
-			$quantita_in_magazzino = $row['quantita_in_magazzino'];
-
-			echo "<td><img src = \"$link_quadro\">";
-			echo "<td>$nome_quadro</td>";
-			echo "<td>$nome_autore</td>";
-			echo "<td>$genere</td>";
-			echo "<td>$descrizione_breve</td>";
-			echo "<td>$prezzo</td>";
-			echo "<td>
-				<select name = \"$quadro_ID\" id = \"quantita\">";
 
 
-			for ($i = 1; $i < $quantita_in_magazzino; $i++) {
-				if ($i == $quantita) {
-					echo "<option value = " . $quantita . " selected>" . $quantita . "</option>";
-				} else {
-					echo "<option value = " . $i . ">" . $i . "</option>";
-				}
-			}
-			echo "<td>" . $prezzo * $quantita . "</td>";
-			echo "<td><a href = \"../../src/cancella_prodotto_dal_carrello.php?quadro_ID=$quadro_ID&ordine_ID=$ordine_ID\">Cancella Prodotto</a>";
+		?>
 
-			echo "</tr>";
+		<div class="totals">
+			<div class="totals-item totals-item-total">
+				<label>Prezzo Totale</label>
+				<div class="totals-value" id="cart-total"><?=$prezzo_totale?></div>
+			</div>
+		</div>
 
-			$prezzo_totale += $prezzo * $quantita;
-		}
-		echo "</table>";
-
-
-		echo "prezzo totale = " . $prezzo_totale;
-		echo "<br><input type=\"submit\" name=\"submit_inizio_ordine\" value=\"Procedi con l'ordine\">
-		</form>";
-	} else {
-		echo "Carrello vuoto.";
-	}
-
-
-	?>
-	
-
-	<?php
-	if (isset($_POST['submit_inizio_ordine'])) {
-		foreach ($result_quadri_in_carrello as $row) {
-			$quadro_ID = $row['quadro_ID'];
-			$query = "UPDATE acquisto
+		<br><input class = "checkout" type="submit" name="submit_inizio_ordine" value="Procedi con l'ordine">
+		</form>
+		<?php
+		if (isset($_POST['submit_inizio_ordine'])) {
+			foreach ($result_quadri_in_carrello as $row) {
+				$quadro_ID = $row['quadro_ID'];
+				$query = "UPDATE acquisto
 					      SET quantita = '" . $_POST[$quadro_ID] . "'
 						  WHERE quadro_ID = '$quadro_ID'
 						  AND ordine_ID = '" . $_SESSION['ordine_ID'] . "'";;
 
-			$result = $conn->query($query);
-			//echo $query . "<br>";
+				$result = $conn->query($query);
+				echo $query . "<br>";
+				
+			}
+			//header("location:carrello.php");
+			//echo ("<script>location.href = 'indirizzo.php';</script>");
 		}
-		//header("location:carrello.php");
-		echo ("<script>location.href = 'indirizzo.php';</script>");
-	}
-	?>
+		?>
 </body>
 
 </html>

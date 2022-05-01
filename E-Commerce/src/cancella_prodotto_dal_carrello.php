@@ -19,6 +19,7 @@ $link_cartella_immagini = "../public/assets/img/quadri/";
                 AND quadro_ID = '" . $_GET['quadro_ID'] . "';";
     $result = $conn->query($query);
     //$result = $conn->query($query);
+
   header("location: ../public/html/carrello.php");
 
 
