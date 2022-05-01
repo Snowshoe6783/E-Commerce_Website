@@ -18,7 +18,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="../assets/css/indirizzo.css" type="text/css">
-
+	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 <a href="indirizzo.php">indirizzo</a><br>
@@ -30,7 +30,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 	<div>
 		<script src="../assets/js/indirizzo.js"></script>
-		<form id="address-form" action="" method="post" autocomplete="off">
+		<form class="form_indirizzo" action="" method="post" autocomplete="off">
 			<p class="title">Seleziona indirizzo</p>
 			<p class="note"><em>* = required field</em></p>
 			<label class="full-field">

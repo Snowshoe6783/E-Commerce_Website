@@ -1,9 +1,13 @@
-
-  .form_quadro{
-    display: flex;
-    align-items: center;
-    max-width: 400px;
-    padding: 20px 20px 20px 50px;
+  .des_quadro{
+    background-color:#1a203c;
+    border-radius: 0.5vh;
+    padding:1vh;
+    margin-left: 2vh;
+    width: 75vh;
+  }
+  .container{
+    display: inline-flex;
+    align-items: flex-start;
   }
   .singolo_quadro{
     height: 60vh;
@@ -17,22 +21,21 @@
   .Autore_singolo_Quadro{
    color: white;
   }
-  .des_quadro{
-    background-color:#1a203c;
-    border-radius: 0.5vh;
-    padding:1vh;
-    margin-left: 2vh;
-    margin-right: 10vh;
-    width: 75vh;
-  }
+
   .Titolo_singolo_Quadro{
     color: white;
     font-style: italic;
     }
     .Testo_singolo_Quadro{
       color:white;
-      width:42vh;
-      margin-left: 10px;
+      width:auto;
+      margin-left: 15px;
+    }
+    .form_quadro{
+      display: flex;
+      align-items: center;
+      max-width: 400px;
+      padding: 20px 20px 20px 50px;
     }
   .aggiungi_quadro {
     appearance: none;
@@ -44,7 +47,6 @@
     color: white;
     cursor: pointer;
     display: inline-block;
-    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
@@ -79,9 +81,9 @@
   
     .aggiungiOtogli{
       background-color: #1a203c ;
-      width: 300px;
+      width: max-content;
       margin: 2vh;
-      padding: 20px;
+      padding: 10px 20px;
   }
   
    .value-button {

@@ -82,27 +82,30 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		echo "<h1 class= \"Titolo_singolo_Quadro\">$nome_quadro</h1>";
 		echo
-		"<div class=\"singolo_quadro\">  
-				<img src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . " class=\"singolo_quadro\">
-			</div>";
+		"
+		<div class=\"container\">
+			<div class=\"singolo_quadro\">  
+					<img src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . " class=\"singolo_quadro\">
+				</div>";
 		echo
 		"<div class=\"des_quadro\">  
 					<p class = \"Autore_singolo_Quadro\">$nome_autore</p>
 					<p class = \"Descrizione_singolo_Quadro\">$descrizione</p>
 					<form method = \"post\" name = \"myform\" class=\"form_quadro\">
-						<p class = \"Testo_singolo_Quadro\">il prezzo è: $prezzo €</p>
-						<p class = \"Testo_singolo_Quadro\">Quantita in magazzino: $quantita_in_magazzino </p>
-						<p class = \"Testo_singolo_Quadro\">Quantita nel carrello: $quantita_nel_carrello </p>
+						<p class = \"Testo_singolo_Quadro\">prezzo: $prezzo €</p>
+						<p class = \"Testo_singolo_Quadro\">in magazzino: $quantita_in_magazzino </p>
+						<p class = \"Testo_singolo_Quadro\">nel carrello: $quantita_nel_carrello </p>
 
 
 					</form>
-			</div>"; // input da controllare virgolette per vedere se linka al db
+					<div id=\"form_aggiungi_quadro_al_carrello\">
+
+					</div>
+			</div>
+		</div>"; 
 	}
 	?>
 
-	<div id="form_aggiungi_quadro_al_carrello">
-
-	</div>
 
 	<script>
 		var quantitaAcquistabile = <?php echo (json_encode($quantita_in_magazzino - $quantita_nel_carrello)); ?>;
