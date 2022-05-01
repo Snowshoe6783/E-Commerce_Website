@@ -15,6 +15,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../assets/css/index.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" /> <!-- se restringi la pagina salta fuori le tre linee per il menu -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>home</title>
