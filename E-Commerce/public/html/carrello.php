@@ -27,7 +27,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 </head>
 <a href="index.php">Home</a><br>
-<a href="indirizzo.php">Indirizzo</a><br>
+
 
 <body>
 	<h1>
@@ -39,7 +39,6 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 				WHERE data_conferma IS NULL
 				AND utente_ID = '" . $_SESSION['utente_ID'] . "';";
 
-	echo $query;
 	$result = $conn->query($query);
 
 	$n_rows = $result->num_rows;
@@ -161,14 +160,15 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 
 		echo "prezzo totale = " . $prezzo_totale;
+		echo "<br><input type=\"submit\" name=\"submit_inizio_ordine\" value=\"Procedi con l'ordine\">
+		</form>";
 	} else {
 		echo "Carrello vuoto.";
 	}
 
 
 	?>
-	<input type="submit" name="submit_inizio_ordine" value="Procedi con l'ordine">
-	</form>
+	
 
 	<?php
 	if (isset($_POST['submit_inizio_ordine'])) {

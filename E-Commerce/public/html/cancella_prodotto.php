@@ -26,8 +26,9 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
               SET archiviato = '1'
               WHERE quadro_ID = '" . $_GET['quadro_ID'] . "';";
 
-    echo $query;
+
     $result = $conn->query($query);
+    header("location: modifica_prodotti.php");
   }
   ?>
 

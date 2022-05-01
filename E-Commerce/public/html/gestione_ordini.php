@@ -35,7 +35,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 				  WHERE o.data_annullamento IS NULL
 				  GROUP BY o.ordine_ID";
 
-	echo $query;
+	
 	$result = $conn->query($query);
 
 	$n_rows = $result->num_rows;

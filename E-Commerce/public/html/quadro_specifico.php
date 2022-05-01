@@ -150,7 +150,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 			$result = $conn->query($query);
-			echo $query;
+			
 
 			foreach ($result as $row) { //togli il for each se possibile
 				$ordine_ID = $row['ordine_ID'];
@@ -172,14 +172,14 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				echo $date;
 
 				$query = "INSERT INTO ordine VALUES('0', '" . $_SESSION['utente_ID'] . "', NULL, NULL, NULL, '$date', NULL, NULL, NULL, NULL);";
-				echo $query;
+				
 				$result = $conn->query($query);
 
 
 
 
 				$query = "INSERT INTO acquisto VALUES('0', '$auto_increment_value_ordine_ID', '" . $_GET['quadro_ID'] . "', " . $_POST['quantita_inserita'] . ");";
-				echo $query;
+				
 				$result = $conn->query($query);
 			} else {
 				echo "Ordine Trovato, aggiungo un altro quadro.";
@@ -197,12 +197,12 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				if ($n_rows == 0) {
 					echo "Ordine trovato, ma il quadro non è nel carrello quindi lo aggiungo";
 					$query = "INSERT INTO acquisto VALUES('0', $ordine_ID, '" . $_GET['quadro_ID'] . "', " . $_POST['quantita_inserita'] . ");";
-					echo $query;
+					
 					$result = $conn->query($query);
 				} else {
 					echo "Ordine con lo stesso quadro trovato, aumento quantita di 1";
 					$query = "UPDATE acquisto SET quantita = quantita + " . $_POST['quantita_inserita'] . " WHERE ordine_ID = $ordine_ID AND quadro_ID = '" . $_GET['quadro_ID'] . "';";
-					echo $query;
+					
 					$result = $conn->query($query);
 				}
 			}

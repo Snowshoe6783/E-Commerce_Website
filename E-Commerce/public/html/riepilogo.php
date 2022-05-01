@@ -19,6 +19,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta name="viewport" content="width=device-width">
 	<title>replit</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 
@@ -65,7 +66,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 			$quadro_ID = $row['quadro_ID'];
 			if ($flag == 0) {
-				$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+				$query = "SELECT link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							 FROM quadro AS q JOIN acquisto AS a
 							 ON q.quadro_ID = a.quadro_ID
 							 WHERE q.quadro_ID = '$quadro_ID'
@@ -76,7 +77,7 @@ if (isset($_SESSION['utente_ID'])) {
 				//echo "<br><br>start".$query;
 
 			} else {
-				$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+				$query = "SELECT link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM quadro AS q JOIN acquisto AS a
 							ON q.quadro_ID = a.quadro_ID
 							WHERE q.quadro_ID = '$quadro_ID'
@@ -109,6 +110,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 		foreach ($result as $row) {
 			echo "<tr>";
+			$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
 			$nome_quadro = $row['Nome Quadro'];
 			$nome_autore = $row['Autore'];
 			$genere = $row['Genere'];
@@ -116,6 +118,7 @@ if (isset($_SESSION['utente_ID'])) {
 			$prezzo = $row['Prezzo'];
 			$quantita = $row['Quantità'];
 
+			echo "<td><img src = \"$link_quadro\">";
 			echo "<td>$nome_quadro</td>";
 			echo "<td>$nome_autore</td>";
 			echo "<td>$genere</td>";
@@ -240,7 +243,7 @@ if (isset($_SESSION['utente_ID'])) {
 								SET quantita_in_magazzino = quantita_in_magazzino - $quantita
 								WHERE quadro_ID = $quadroID";
 				$result = $conn->query($query);
-				echo $query;
+				
 			}
 
 
@@ -250,8 +253,9 @@ if (isset($_SESSION['utente_ID'])) {
 							indirizzo_spedizione = '" . $_SESSION['indirizzo_inserito'] . "'
 							WHERE ordine_ID = '" . $_SESSION['ordine_ID'] . "';";
 
-			echo $query;
+			
 			$result = $conn->query($query);
+			echo $query;
 
 
 			$date = date('Y-m-d H:i:s');
@@ -266,11 +270,12 @@ if (isset($_SESSION['utente_ID'])) {
 			$result = $conn->query($query);
 
 
-			header("location:riepilogo.php");
+			//header("location:index.php");
 		} else {
 			echo "carrello vuoto";
 		}
 	}
+	
 	?>
 
 </body>

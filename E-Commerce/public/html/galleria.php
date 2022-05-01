@@ -145,7 +145,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		$query .= ";";
 		$result = $conn->query($query);
-		echo $query;
+		
 
 		foreach ($result as $row) {
 			$nome_quadro = $row['nome_quadro'];

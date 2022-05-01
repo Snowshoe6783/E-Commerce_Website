@@ -113,7 +113,7 @@ if (isset($_SESSION['utente_ID'])) {
                             password = '$hashed_password'
                         WHERE utente_id = '" . $_SESSION['utente_ID'] . "';";
 
-		echo $query;
+		
 
 		$result = $conn->query($query);
 		$conn->close();

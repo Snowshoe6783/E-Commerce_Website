@@ -29,7 +29,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
   <form method="POST" action="../../src/upload.php" enctype="multipart/form-data">
     <div>
       <span>Upload a File:</span>
-      <input type="file" name="uploadedFile" />
+      <input type="file" name="uploadedFile" required/>
     </div>
 
     Nome quadro: <input type="text" name="dati_prodotto_da_aggiungere[nome_quadro]" required><br>
