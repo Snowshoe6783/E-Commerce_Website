@@ -5,10 +5,10 @@ include("../../src/connessione_database.php");
 session_start();
 if (isset($_SESSION['utente_ID'])) {
 	echo "Benvenuto " . $_SESSION['utente_ID'];
-  }else{
-	  http_response_code(403);
-	  die('Non hai accesso a questa pagina.');
-  }
+} else {
+	http_response_code(403);
+	die('Non hai accesso a questa pagina.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,14 +49,12 @@ if (isset($_SESSION['utente_ID'])) {
 							WHERE a.ordine_ID = $ordine_ID
 							  UNION
 							  $query";
-
-
 	}
 
 
 
 	$prezzo_totale = 0;
-	
+
 	$result = $conn->query($query);
 
 	$result_dettagli_quadri_ordinati = $result;
@@ -101,7 +99,7 @@ if (isset($_SESSION['utente_ID'])) {
 	echo "</table>";
 
 
-	
+
 
 	$query = "SELECT ms.nome AS nome_metodo_spedizione, ms.metodo_ID AS ms_metodo_ID, mp.nome AS nome_metodo_pagamento, o.indirizzo_spedizione AS indirizzo_spedizione, data_inserimento_ordine, data_conferma, data_pagamento, data_spedizione, data_annullamento
 					  FROM ordine AS o JOIN metodo_pagamento AS mp ON o.metodo_pagamento_ID = mp.metodo_ID JOIN metodo_spedizione AS ms ON o.metodo_spedizione_ID = ms.metodo_ID
@@ -135,7 +133,7 @@ if (isset($_SESSION['utente_ID'])) {
 	}
 
 	echo "prezzo prodotti = " . $prezzo_totale . "<br>";
-		
+
 	echo "prezzo spedizione = " . $costo_spedizione . "<br>";
 
 	echo "prezzo totale = " . $prezzo_totale + $costo_spedizione . "<br>";
@@ -157,11 +155,11 @@ if (isset($_SESSION['utente_ID'])) {
 
 
 	<?php
-		if(!$data_spedizione && !$data_annullamento){
-			echo "<form method='POST' name='annulla_ordine'>
+	if (!$data_spedizione && !$data_annullamento) {
+		echo "<form method='POST' name='annulla_ordine'>
 			<input type='submit' name='submit_annulla_ordine' value = 'Annulla'>
 		</form>	";
-		}
+	}
 
 	?>
 
