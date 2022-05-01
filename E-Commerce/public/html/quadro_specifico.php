@@ -20,6 +20,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<meta name="viewport" content="width=device-width">
 	<title>quadro</title>
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
+	<link rel="stylesheet" href="../assets/css/quadro.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<script type="text/javascript" src="../assets/js/quadro.js"></script>
 </head>

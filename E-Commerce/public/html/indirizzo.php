@@ -17,7 +17,8 @@ if (isset($_SESSION['utente_ID'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/indirizzo.css" type="text/css">
+
 </head>
 <a href="index.php">Home</a><br>
 <a href="indirizzo.php">indirizzo</a><br>

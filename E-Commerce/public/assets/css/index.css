@@ -1,7 +1,6 @@
 /*                                            index                                           */
-h1{
-    text-align: center;
-    }
+
+
     #demo{
       text-align:center;
       font-size:3vw;
@@ -31,7 +30,7 @@ h1{
     }
     
     #card{
-        background-color:#001a46;
+        background-color: darkblue;
         color:#ffffff;
         transition: 0.3s;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -56,7 +55,8 @@ h1{
         width:100%;
         display:grid;
         grid-template-columns: repeat(auto-fill, 300px);
-        background-color:#051124;
+        color:black;
+          background-color: grey;
         padding:10px;
     }
     #quadro_card:hover{

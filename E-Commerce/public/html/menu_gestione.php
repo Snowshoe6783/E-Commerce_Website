@@ -11,7 +11,10 @@ if (isset($_SESSION['utente_ID'])) {
 <html>
 
 <head>
+    <link rel="stylesheet" href="../assets/css/menu_gestione.css" type="text/css">
+
     <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+
 </head>
 
 <body class="body_menu_gestione">
