@@ -23,6 +23,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 
 </head>
 <a href="index.php">Home</a><br>
@@ -74,7 +75,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 
 			$quadro_ID = $row['quadro_ID'];
 			if ($flag == 0) {
-				$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità, q.quantita_in_magazzino AS quantita_in_magazzino, a.quadro_ID AS quadro_ID
+				$query = "SELECT link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità, q.quantita_in_magazzino AS quantita_in_magazzino, a.quadro_ID AS quadro_ID
 							 FROM quadro AS q JOIN acquisto AS a
 							 ON q.quadro_ID = a.quadro_ID
 							 WHERE q.quadro_ID = '$quadro_ID'
@@ -86,7 +87,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 				//echo "<br><br>start".$query;
 
 			} else {
-				$query = "SELECT nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità, q.quantita_in_magazzino AS quantita_in_magazzino, a.quadro_ID AS quadro_ID
+				$query = "SELECT link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità, q.quantita_in_magazzino AS quantita_in_magazzino, a.quadro_ID AS quadro_ID
 						  FROM quadro AS q JOIN acquisto AS a
 						  ON q.quadro_ID = a.quadro_ID
 						  WHERE q.quadro_ID = '$quadro_ID'
@@ -122,6 +123,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 		echo "<form method=\"post\" name=\"inizia_ordine\">";
 		foreach ($result as $row) {
 			echo "<tr>";
+			$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
 			$quadro_ID = $row['quadro_ID'];
 			$nome_quadro = $row['Nome Quadro'];
 			$nome_autore = $row['Autore'];
@@ -131,6 +133,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 			$quantita = $row['Quantità'];
 			$quantita_in_magazzino = $row['quantita_in_magazzino'];
 
+			echo "<td><img src = \"$link_quadro\">";
 			echo "<td>$nome_quadro</td>";
 			echo "<td>$nome_autore</td>";
 			echo "<td>$genere</td>";

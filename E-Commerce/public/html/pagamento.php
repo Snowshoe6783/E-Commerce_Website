@@ -31,7 +31,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 <body>
 	<h1>
-		Indirizzo
+		Metodo di Pagamento
 	</h1>
 
 	<form id="form_dati_pagamento" action="" method="post">
@@ -72,7 +72,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 						form_da_creare.innerHTML =
 							`
-					Manda un bonifico a IT3921DSAKDSA321943980
+					Manda un bonifico a IT 99 C 12345 67890 123456789012<br>
 					<input type = \"submit\" name = \"submit_dati_pagamento\" value = \"Salva Dati Pagamento\">
 					
 					</form>
@@ -144,7 +144,6 @@ if (isset($_SESSION['utente_ID'])) {
 		header("location:riepilogo.php");
 	}
 
-	echo $_SESSION['ID_metodo_spedizione'];
 
 	?>
 
