@@ -5,6 +5,7 @@
       /* Optional: Makes the sample page fill the window. */
       div{
         margin:auto 30%;
+        border-radius: 4vh;
       }
       .form_indirizzo{
         display: flex;
@@ -12,7 +13,7 @@
         align-items: center;
         max-width: 400px;
         padding: 20px;
-        background-color: rgba(255,255,255,.05);;
+        background-color: rgba(255,255,255,.05);
       }
       
       input {
@@ -21,12 +22,9 @@
         margin-top: 0;
         padding: 0.5em;
         border: 0;
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-      }
-      
-      input:focus {
-        border-bottom: 4px solid black;
+        font-size: medium;
+        background-color: #363e4a;
+        color: white;
       }
       
       input[type="reset"] {
@@ -39,6 +37,12 @@
         padding: 6px 24px;
         text-decoration: none;
         align-items:baseline;
+      }
+      input[type="reset"]:hover{
+        background-color: rgb(0, 0, 0);
+        border:1px white;
+        color:white; 
+        transition:120ms;
       }
       
       .title {
@@ -87,10 +91,10 @@
         background-color: white;
         border:1px #000;
         color:black;
+        transition:120ms;
       }
       
       .my-button:active {
         position: relative;
         top: 1px;
-
       }
