@@ -1,7 +1,4 @@
-/*                                            quadro                                           */
-.body_quadro{
-    background-color: #051124;
-  }
+
   .form_quadro{
     display: flex;
     align-items: center;
@@ -14,7 +11,7 @@
     margin-left:10vh;
   }
   .Descrizione_singolo_Quadro{
-    font-size: small;
+    font-size:large;
     color: white;
   }
   .Autore_singolo_Quadro{

@@ -13,8 +13,11 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<meta name="viewport" content="width=device-width">
 	<title>Login</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/login.css" type="text/css">
 
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+
+
 </head>
 
 <body class="bodyLogin">

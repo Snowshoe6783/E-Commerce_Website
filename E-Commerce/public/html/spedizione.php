@@ -23,16 +23,16 @@ if (isset($_SESSION['utente_ID'])) {
 
 <body>
 	<h1>
-		Indirizzo
+		Metodo di Spedizione
 	</h1>
 	<form id="form-spedizione" action="" method="post">
 
 
-		Metodo di Spedizione
+		Metodo di Spedizione:
 		<select name="metodo_spedizione">
 			<?php
 
-			$query = "SELECT metodo_ID, nome
+			$query = "SELECT metodo_ID, nome, costo
 					FROM metodo_spedizione;";
 
 
@@ -45,8 +45,9 @@ if (isset($_SESSION['utente_ID'])) {
 				foreach ($result as $row) { //togli il for each se possibile
 					$ID_metodo_spedizione = $row['metodo_ID'];
 					$nome_metodo_spedizione = $row['nome'];
+					$costo = $row['costo'];
 
-					echo "<option value = $ID_metodo_spedizione>$nome_metodo_spedizione</option>";
+					echo "<option value = $ID_metodo_spedizione>$nome_metodo_spedizione ($costo €)</option>";
 				}
 			}
 

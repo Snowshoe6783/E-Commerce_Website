@@ -16,6 +16,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<meta name="viewport" content="width=device-width">
 	<title>registrazione</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/registrazione.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 
