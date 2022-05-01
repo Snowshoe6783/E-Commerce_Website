@@ -12,8 +12,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Login</title>
-	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/login.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
 
@@ -49,7 +49,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		<form method="post">
 			Username <input class="input_login" type="text" name="username">
 			Password <input class="input_login" type="password" name="password">
-			<input class="button_login" type="submit" value="Login">
+			<input class="button_login" type="submit" value="Login"><br>
 			<a class="link_login" href="index.php">Home</a><br>
 			Non hai un account?<a class="link_login_registrazione" href="registrazione.php">Registrazione</a><br>
 		</form>
