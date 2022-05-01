@@ -42,7 +42,6 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 				FROM quadro
 				WHERE archiviato = '0'";
 
-	echo $query;
 
 	$result = $conn->query($query);
 

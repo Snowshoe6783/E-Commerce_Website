@@ -20,6 +20,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 
 </head>
 <a href="index.php">Home</a><br>
@@ -35,7 +36,7 @@ if (isset($_SESSION['utente_ID'])) {
 	$query = "";
 	$flag = 0;
 	if ($flag == 0) {
-		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+		$query = "SELECT  q.quadro_ID AS 'Quadro ID', q.link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
 							;";
@@ -44,7 +45,7 @@ if (isset($_SESSION['utente_ID'])) {
 		//echo "<br><br>start".$query;
 
 	} else {
-		$query = "SELECT q.quadro_ID AS 'Quadro ID', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
+		$query = "SELECT  q.quadro_ID AS 'Quadro ID', q.link_quadro AS 'Immagine Prodotto', nome_quadro AS 'Nome Quadro', nome_autore AS Autore, genere AS Genere, descrizione_breve AS Descrizione, prezzo as Prezzo, quantita AS Quantità
 							FROM (quadro AS q JOIN acquisto AS a  ON q.quadro_ID = a.quadro_ID) JOIN ordine AS o ON a.ordine_ID = o.ordine_ID
 							WHERE a.ordine_ID = $ordine_ID
 							  UNION
@@ -77,6 +78,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 	foreach ($result as $row) {
 		echo "<tr>";
+		$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
 		$nome_quadro = $row['Nome Quadro'];
 		$nome_autore = $row['Autore'];
 		$genere = $row['Genere'];
@@ -84,6 +86,7 @@ if (isset($_SESSION['utente_ID'])) {
 		$prezzo = $row['Prezzo'];
 		$quantita = $row['Quantità'];
 
+		echo "<td><img src = \"$link_quadro\">";
 		echo "<td>$nome_quadro</td>";
 		echo "<td>$nome_autore</td>";
 		echo "<td>$genere</td>";
@@ -157,7 +160,9 @@ if (isset($_SESSION['utente_ID'])) {
 	<?php
 	if (!$data_spedizione && !$data_annullamento) {
 		echo "<form method='POST' name='annulla_ordine'>
-			<input type='submit' name='submit_annulla_ordine' value = 'Annulla'>
+
+			<input type='submit' onclick=\"return confirm('Are you sure?')\" name='submit_annulla_ordine' value = 'Annulla'/>
+
 		</form>	";
 	}
 
@@ -189,13 +194,12 @@ if (isset($_SESSION['utente_ID'])) {
 				  SET data_annullamento = '$date'
 				  WHERE ordine_ID = $ordine_ID;";
 
-		echo "<br>Query aggiungi data_annullamento: " . $query . "contatore = " . $counter;;
 
 		$result = $conn->query($query);
 
 
 
-		//header( "Refresh:2; url = lista_ordini.php?ordine_ID=$ordine_ID", true, 303);
+		header( "location:ordine_specifico.php?ordine_ID=$ordine_ID", true, 303);
 	}
 
 

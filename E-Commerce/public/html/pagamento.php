@@ -140,7 +140,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 	if (isset($_POST['submit_dati_pagamento'])) {
 		$_SESSION['ID_metodo_pagamento'] = $_POST['metodo_pagamento'];
-
+		echo $_SESSION['ID_metodo_pagamento'];
 		header("location:riepilogo.php");
 	}
 

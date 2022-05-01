@@ -27,7 +27,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 <body>
 
   <h1>
-    Carrello
+    Modifica Prodotto
   </h1>
   <a href="index.php">Home</a><br>
   <?php
@@ -88,14 +88,20 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
       <input type="file" name="uploadedFile" />
     </div>
 
-    <input type="submit" name="submit_cambiamento" value="Upload" />
+    <input type='submit' onclick="return confirm('Are you sure?')" name="submit_cambiamento" value="Upload"/>
+    
 
 
 
   </form>
 
+  <?php
+ 
+  ?>
+
   <form method="POST" action="cancella_prodotto.php?quadro_ID=<?= $quadro_ID ?>">
-    <input type="submit" name="cancella_prodotto" value="Cancella prodotto" />
+    <input type='submit' onclick="return confirm('Are you sure?')" name="cancella_prodotto" value="Cancella prodotto"/>
+
   </form>
 
 

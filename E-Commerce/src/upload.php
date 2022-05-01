@@ -80,7 +80,7 @@ function inserimento_nuovo_prodotto($newFileName)
                                       '" . $_POST['dati_prodotto_da_aggiungere']['quantita_in_magazzino'] . "',
                                       '$newFileName',
                                       '0');";
-  echo $query;
+  
   $result = $conn->query($query);
 
   header("location: ../public/html/aggiungi_prodotti.php");
@@ -119,7 +119,7 @@ function modifica_prodotto($newFileName)
 
 
 
-  echo $query;
+  
   $result = $conn->query($query);
 
   header("location: ../public/html/cancella_o_modifica_prodotto.php?quadro_ID=" . $_GET['quadro_ID'] . "");
