@@ -1,0 +1,13 @@
+.search{
+  display: contents;
+  text-align:center;
+}
+.form_search{
+  padding:0.5vh;
+}
+@media screen and (max-width:1000px){
+  label{
+    display: block;
+    float: left;
+  }
+}

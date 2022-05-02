@@ -15,6 +15,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../assets/css/index.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/galleria.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" /> <!-- se restringi la pagina salta fuori le tre linee per il menu -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,11 +61,11 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		</ul>
 	</nav>
 
-	<div id="search">
+	<div class="search">
 		<form method="post" id="form_search">
-			Search Quadro: <input type="text" name="search_quadro">
-			Search Autore: <input type="text" name="search_autore">
-			Genere:
+			<label>Titolo: <input type="text" name="search_quadro"></label>
+			<label>Autore: <input type="text" name="search_autore"></label>
+			<label>Genere:
 			<select name="select_genere">
 				<?php
 				$query = "SELECT DISTINCT genere
@@ -78,9 +79,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				}
 
 				?>
-			</select>
-			<br>
-			Nazione di Origine:
+			</select></label>
+			<label>Nazione di Origine:
 			<select name="select_nazione_di_origine">
 				<?php
 				$query = "SELECT DISTINCT nazione_di_origine
@@ -94,16 +94,20 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				}
 
 				?>
-			</select>
+			</select></label>
 			<br>
-
+			<label>
 			Ordina per
 			<br>
-			Prezzo Discendente<input type="radio" name="radio_filtro" value="Prezzo Discendente">
-			Prezzo Ascendente<input type="radio" name="radio_filtro" value="Prezzo Ascendente">
-			Ordine Alfabetico<input type="radio" name="radio_filtro" value="Ordine Alfabetico">
-			Ordine Alfabetico al contrario<input type="radio" name="radio_filtro" value="Ordine Alfabetico al contrario">
+			Prezzo Discendente <input type="radio" name="radio_filtro" value="Prezzo Discendente"><br>
+			Prezzo Ascendente <input type="radio" name="radio_filtro" value="Prezzo Ascendente"><br>
+			Ordine Alfabetico(a-z) <input type="radio" name="radio_filtro" value="Ordine Alfabetico"><br>
+			Ordine Alfabetico(z-a) <input type="radio" name="radio_filtro" value="Ordine Alfabetico al contrario">
+			</label>
+			<br>
+			<label>
 			<input type="submit" name="submit_search">
+			</label>
 
 		</form>
 	</div>
