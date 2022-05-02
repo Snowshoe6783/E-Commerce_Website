@@ -18,6 +18,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/spedizione.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 
@@ -54,7 +55,6 @@ if (isset($_SESSION['utente_ID'])) {
 			?>
 
 		</select>
-		<br>
 		<input type="submit" class="my-button" value="Salva Indirizzo" name="submit"></input>
 		<br>
 		<?php
