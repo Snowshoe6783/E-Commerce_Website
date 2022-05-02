@@ -66,7 +66,22 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 	<div id="quadro_centro">
 		<p id="demo"></p>
-		<img id="quadro_centrato" src="../assets/img/quadri/Nighthawks_Hopper.jpg"></img>
+		<?php
+			$query = "SELECT link_quadro
+					  FROM quadro
+					  WHERE archiviato = '0'
+					  ORDER BY RAND()
+					  LIMIT 1;";
+		
+		$result = $conn->query($query);
+
+		foreach ($result as $row) {
+			$link_quadro = $link_cartella_immagini . $row['link_quadro'];			
+		}
+		
+		?>
+		<img id="quadro_centrato" src="<?=$link_quadro?>"></img>
+
 	</div>
 	<div id="Quadri_Cercati">
 		<?php
@@ -74,7 +89,6 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		$result = $conn->query($query);
 
-		$result->fetch_all(MYSQLI_ASSOC);
 		foreach ($result as $row) {
 			$quadro_ID = $row['quadro_ID'];
 			$link_quadro = $row['link_quadro'];
