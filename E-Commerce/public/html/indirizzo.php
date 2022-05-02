@@ -4,7 +4,7 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
-	echo "Benvenuto " . $_SESSION['utente_ID'];
+	echo "Utente " . $_SESSION['utente_ID'];
   }else{
 	  http_response_code(403);
 	  die('Non hai accesso a questa pagina.');
@@ -21,7 +21,6 @@ if (isset($_SESSION['utente_ID'])) {
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
-<a href="indirizzo.php">indirizzo</a><br>
 
 <body>
 	<h1>

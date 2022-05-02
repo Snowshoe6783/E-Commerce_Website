@@ -4,7 +4,7 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
-	echo "Benvenuto " . $_SESSION['utente_ID'];
+	echo "Utente " . $_SESSION['utente_ID'];
 } else {
 	http_response_code(403);
 	die('Non hai accesso a questa pagina.');
@@ -22,7 +22,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
-	<!--<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">-->
+	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 
 </head>
