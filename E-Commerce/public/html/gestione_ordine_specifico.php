@@ -16,9 +16,10 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>carrello</title>
+	<title>Gestione Ordine Specifico</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/ordine_specifico.css" type="text/css">
 
 
 </head>
@@ -26,8 +27,9 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 <body>
 	<h1>
-		Carrello
+		Gestione Ordine Specifico
 	</h1>
+	<br>
 	<?php
 	$ordine_ID = $_GET['ordine_ID'];
 
@@ -86,6 +88,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$descrizione_breve = $row['Descrizione'];
 		$prezzo = $row['Prezzo'];
 		$quantita = $row['Quantità'];
+
+		$prezzo_totale+=$prezzo*$quantita;
 		?>
 
 <div class="product">
@@ -116,7 +120,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 					  WHERE o.ordine_ID = $ordine_ID";
 
 
-
+	
 	$result = $conn->query($query);
 
 
@@ -142,25 +146,50 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$costo_spedizione = $row['costo'];
 	}
 
-	echo "prezzo prodotti = " . $prezzo_totale . "<br>";
-
-	echo "prezzo spedizione = " . $costo_spedizione . "<br>";
-
-	echo "prezzo totale = " . $prezzo_totale + $costo_spedizione . "<br>";
-
-
-	echo "Indirizzo di Spedizione: " . $indirizzo_spedizione . "<br>";
-	echo "Metodo di Spedizione: " . $nome_metodo_spedizione . "<br>";
-	echo "Metodo di Pagamento: " . $nome_metodo_pagamento . "<br>";
-
-	echo "Data inserimento ordine: " . $data_inserimento_ordine . "<br>";
-	echo "Data conferma ordine: " . $data_conferma . "<br>";
-	echo "Data pagamento ordine: " . $data_pagamento . "<br>";
-
-	echo "Data spedizione ordine: " . $data_spedizione . "<br>";
-	echo "Data annullamento ordine: " . $data_annullamento . "<br>";
 
 	?>
+
+<div class="grid_info_ordine">
+
+			
+<div class  = "grid_info_extra">
+	<label class="nome_categoria">Indirizzo di Spedizione: </label>
+	<span class="dati_categoria"><?= $indirizzo_spedizione ?></span>
+
+	<label class="nome_categoria">Metodo di Spedizione: </label>
+	<span class="dati_categoria"><?= $nome_metodo_spedizione ?></span>
+
+	<label class="nome_categoria">Metodo di Pagamento: </label>
+	<span class="dati_categoria"><?= $nome_metodo_pagamento ?></span>
+
+	<label class="nome_categoria">Data inserimento ordine: </label>
+	<span class="dati_categoria"><?= $data_inserimento_ordine ?></span>
+
+	<label class="nome_categoria">Data conferma ordine: </label>
+	<span class="dati_categoria"><?= $data_conferma ?></span>
+
+	<label class="nome_categoria">Data pagamento ordine: </label>
+	<span class="dati_categoria"><?= $data_pagamento ?></span>
+
+	<label class="nome_categoria">Data spedizione ordine: </label>
+	<span class="dati_categoria"><?= $data_spedizione ?></span>
+
+	<label class="nome_categoria">Data annullamento ordine: </label>
+	<span class="dati_categoria"><?= $data_annullamento ?></span>
+</div>
+<div class = "grid_prezzi">
+	<label class="nome_categoria">Prezzo Prodotti: </label>
+	<span class="dati_categoria"><?= $prezzo_totale ?></span>
+
+	<label class="nome_categoria">Prezzo Spedizione: </label>
+	<span class="dati_categoria"><?= $costo_spedizione ?></span>
+
+	<label class="nome_categoria">Prezzo Totale: </label>
+	<span class="dati_categoria"><?= $prezzo_totale + $costo_spedizione ?></span>
+</div>
+</div>
+
+
 	<?php 
 	if($data_spedizione == NULL){
 		echo "<form method=\"POST\" name=\"annulla_ordine\">
@@ -185,7 +214,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 
-		header("Refresh:2; url = gestione_ordini.php", true, 303);
+		
+		header("location:gestione_ordine_specifico.php?ordine_ID=$ordine_ID");
 	}
 
 

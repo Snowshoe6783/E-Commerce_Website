@@ -17,7 +17,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta charset="utf-8">
 	<link rel="icon" type="image/x-icon" href="../assets/ico/registrazione.ico">
 	<meta name="viewport" content="width=device-width">
-	<title>registrazione</title>
+	<title>Gestione Dati Propri</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/gestione_dati_propri.css" type="text/css">
 
@@ -26,7 +26,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 <body>
 	<h1>
-		gestione dati propri
+		Gestione Dati Propri
 	</h1>
 	<form method="post" name="myform">
 		<div class="wrapper">

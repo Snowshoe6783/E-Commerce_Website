@@ -23,7 +23,7 @@
     float:right;
 }
 
-.grid_info_ordine .grid_prezzi .dati_categoria:before{
+.grid_prezzi .dati_categoria:before{
     content:"€ ";
 }
 

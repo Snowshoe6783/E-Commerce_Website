@@ -19,7 +19,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>carrello</title>
+	<title>Gestione Ordini</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
     <link rel="stylesheet" href="../assets/css/gestione_ordini.css" type="text/css">
 </head>
@@ -27,12 +27,13 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 
 <body>
 	<h1>
-		Carrello
+		Gestione Ordini
 	</h1>
 	<?php
 	$query = "SELECT o.ordine_ID AS 'ID Ordine', SUM(a.quantita*q.prezzo) AS 'Importo Totale'
 				  FROM ordine AS o JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
 				  WHERE o.data_annullamento IS NULL
+				  AND o.data_conferma IS NOT NULL
 				  GROUP BY o.ordine_ID";
 
 	
@@ -40,7 +41,6 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 
 	$n_rows = $result->num_rows;
 
-	echo $n_rows;
 
 	echo "<table border = 1>";
 

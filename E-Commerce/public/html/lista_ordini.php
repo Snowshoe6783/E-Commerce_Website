@@ -16,32 +16,37 @@ function stampa_ordini($query)
 {
 	include("../../src/connessione_database.php");
 	$result = $conn->query($query);
+	$n_rows = $result->num_rows;
 
-	echo "<table border = 1>";
+	
 
-	foreach ($result as $row) {
-		echo "<tr>";
-		foreach ($row as $key => $value) {
-			echo "<th>$key</th>";
+	if($n_rows != 0){
+		echo "<table border = 1>";
+		foreach ($result as $row) {
+			echo "<tr>";
+			foreach ($row as $key => $value) {
+				echo "<th>$key</th>";
+			}
+			echo "<th>Dettagli Ordine</th>";
+			echo "</tr>";
+			break;
 		}
-		echo "<th>Dettagli Ordine</th>";
-		echo "</tr>";
-		break;
+	
+		foreach ($result as $row) {
+	
+			echo "<tr>";
+			$ordine_ID = $row['ID Ordine'];
+			$importo_totale = $row['Importo Totale'];
+	
+			echo "<td>$ordine_ID</td>";
+			echo "<td>" . $importo_totale . "</td>";
+			echo "<td><a href = \"ordine_specifico.php?ordine_ID=$ordine_ID\">Visualizza Dettagli</a></td>";
+	
+			echo "</tr>";
+		}
+		echo "</table>";
 	}
-
-	foreach ($result as $row) {
-
-		echo "<tr>";
-		$ordine_ID = $row['ID Ordine'];
-		$importo_totale = $row['Importo Totale'];
-
-		echo "<td>$ordine_ID</td>";
-		echo "<td>" . $importo_totale . "</td>";
-		echo "<td><a href = \"ordine_specifico.php?ordine_ID=$ordine_ID\">Visualizza Dettagli</a></td>";
-
-		echo "</tr>";
-	}
-	echo "</table>";
+	
 }
 ?>
 
@@ -52,8 +57,9 @@ function stampa_ordini($query)
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>carrello</title>
+	<title>Lista Ordini</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/lista_ordini.css" type="text/css">
 
 </head>
 <a href="index.php">Home</a><br>
@@ -61,7 +67,7 @@ function stampa_ordini($query)
 
 <body>
 
-	<h1>
+	<h1 class = "titolo_sezione">
 		Lista ordini spediti
 	</h1>
 	<?php
@@ -78,7 +84,7 @@ function stampa_ordini($query)
 
 	?>
 
-	<h1>
+	<h1 class = "titolo_sezione">
 		Lista ordini non spediti
 	</h1>
 	<?php
@@ -96,7 +102,7 @@ function stampa_ordini($query)
 
 	?>
 
-	<h1>
+	<h1 class = "titolo_sezione">
 		Lista ordini annullati
 	</h1>
 	<?php

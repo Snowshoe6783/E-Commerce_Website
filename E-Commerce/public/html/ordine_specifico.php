@@ -71,7 +71,7 @@ if (isset($_SESSION['utente_ID'])) {
 			<label class="product-details">Product</label>
 			<label class="product-price">Price</label>
 			<label class="product-quantity">Quantity</label>
-			<label class="product-removal">Remove</label>
+			<label class="product-removal">lol</label>
 			<label class="product-line-price">Total</label>
 		</div>
 
@@ -190,7 +190,7 @@ if (isset($_SESSION['utente_ID'])) {
 				<label class="nome_categoria">Data annullamento ordine: </label>
 				<span class="dati_categoria"><?= $data_annullamento ?></span>
 			</div>
-			<div class = "grid_info_extra">
+			<div class = "grid_prezzi">
 				<label class="nome_categoria">Prezzo Prodotti: </label>
 				<span class="dati_categoria"><?= $prezzo_totale ?></span>
 

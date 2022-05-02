@@ -21,7 +21,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>carrello</title>
+	<title>Carrello</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
 

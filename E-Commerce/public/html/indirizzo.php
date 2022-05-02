@@ -24,13 +24,13 @@ if (isset($_SESSION['utente_ID'])) {
 
 <body>
 	<h1>
-		Indirizzo
+		Selezione Indirizzo
 	</h1>
 
 	<div class="div">
 		<script src="../assets/js/indirizzo.js"></script>
 		<form class="form_indirizzo" action="" method="post" autocomplete="off">
-			<p class="title">Seleziona indirizzo</p>
+			<p class="title">Seleziona l'indirizzo di spedizione</p>
 			<p class="note"><em>* = required field</em></p>
 			<label class="full-field">
 				<!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
