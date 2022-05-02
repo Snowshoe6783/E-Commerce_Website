@@ -21,7 +21,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 	<meta name="viewport" content="width=device-width">
 	<title>carrello</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
-
+    <link rel="stylesheet" href="../assets/css/gestione_ordini.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 
