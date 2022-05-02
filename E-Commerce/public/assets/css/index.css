@@ -44,6 +44,11 @@
         
     }
     
+    .footer{
+      padding-left: 30%;
+      padding-right: 30%;
+    }
+
     #Quadri_Cercati{
         width:100%;
         display:grid;

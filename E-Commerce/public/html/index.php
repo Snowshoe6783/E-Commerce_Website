@@ -114,19 +114,17 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		<script src="script.js"></script>
 	</div>
 		<br>
-		<footer>
+		<footer class="footer">
 			<div class = "div_footer">
 				<p class = "footer_title">La nostra azienda:</p>
 				<p><a href = "about_us.php">About Us</a></p>		
 				<p><a href = "privacy_policy.php">Privacy Policy</a></p>		
 				
 			</div>
-			<br>
 			<div class = "div_footer">
 				<p class = "footer_title">Contatti:</p>
 				<p>Email: mail@mail.com</p>
 				<p>Numero di Telefono: +39 359 493 3245</p>
-				
 			</div>
 		</footer> 
 </body>
