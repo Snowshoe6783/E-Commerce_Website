@@ -64,9 +64,7 @@
 	 margin-bottom: 15px;
 	 border-bottom: 1px solid #eee;
 }
- .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
-	 text-indent: -9999px;
-}
+
 /* Product entries */
  .product {
 	 margin-bottom: 20px;
@@ -74,10 +72,10 @@
 	 border-bottom: 1px solid #eee;
 }
  .product .product-image {
-	 text-align: center;
+	 text-align: left;
 }
  .product .product-image img {
-	 width: 150px;
+	 width: 100px;
 }
  .product .product-details .product-title {
 	 margin-right: 20px;
@@ -175,11 +173,12 @@
 	}
 	 .product-removal {
 		 width: auto;
+		 float:center;
 	}
 	 .product-line-price {
 		 float: right;
      
-		 width: 100px;
+		 width: fit-content;
 	}
 
   
@@ -206,5 +205,15 @@
 	 .totals .totals-item .totals-value {
 		 width: 40%;
 	}
+}
+
+a.link_button{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: white;
+	background-color: #051124;
 }
  
