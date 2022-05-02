@@ -165,40 +165,40 @@ if (isset($_SESSION['utente_ID'])) {
 		<div class="grid_info_ordine">
 
 			
-			<div>
+			<div class  = "grid_info_extra">
 				<label class="nome_categoria">Indirizzo di Spedizione: </label>
-				<span class="dati_categoria"><?= $indirizzo_spedizione ?></span><br>
+				<span class="dati_categoria"><?= $indirizzo_spedizione ?></span>
 
 				<label class="nome_categoria">Metodo di Spedizione: </label>
-				<span class="dati_categoria"><?= $nome_metodo_spedizione ?></span><br>
+				<span class="dati_categoria"><?= $nome_metodo_spedizione ?></span>
 
 				<label class="nome_categoria">Metodo di Pagamento: </label>
-				<span class="dati_categoria"><?= $nome_metodo_pagamento ?></span><br>
+				<span class="dati_categoria"><?= $nome_metodo_pagamento ?></span>
 
 				<label class="nome_categoria">Data inserimento ordine: </label>
-				<span class="dati_categoria"><?= $data_inserimento_ordine ?></span><br>
+				<span class="dati_categoria"><?= $data_inserimento_ordine ?></span>
 
 				<label class="nome_categoria">Data conferma ordine: </label>
-				<span class="dati_categoria"><?= $data_conferma ?></span><br>
+				<span class="dati_categoria"><?= $data_conferma ?></span>
 
 				<label class="nome_categoria">Data pagamento ordine: </label>
-				<span class="dati_categoria"><?= $data_pagamento ?></span><br>
+				<span class="dati_categoria"><?= $data_pagamento ?></span>
 
 				<label class="nome_categoria">Data spedizione ordine: </label>
-				<span class="dati_categoria"><?= $data_spedizione ?></span><br>
+				<span class="dati_categoria"><?= $data_spedizione ?></span>
 
 				<label class="nome_categoria">Data annullamento ordine: </label>
-				<span class="dati_categoria"><?= $data_annullamento ?></span><br>
+				<span class="dati_categoria"><?= $data_annullamento ?></span>
 			</div>
-			<div class = "kek">
+			<div class = "grid_info_extra">
 				<label class="nome_categoria">Prezzo Prodotti: </label>
-				<span class="dati_categoria"><?= $prezzo_totale ?></span><br>
+				<span class="dati_categoria"><?= $prezzo_totale ?></span>
 
 				<label class="nome_categoria">Prezzo Spedizione: </label>
-				<span class="dati_categoria"><?= $costo_spedizione ?></span><br>
+				<span class="dati_categoria"><?= $costo_spedizione ?></span>
 
 				<label class="nome_categoria">Prezzo Totale: </label>
-				<span class="dati_categoria"><?= $prezzo_totale + $costo_spedizione ?></span><br>
+				<span class="dati_categoria"><?= $prezzo_totale + $costo_spedizione ?></span>
 			</div>
 		</div>
 

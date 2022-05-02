@@ -226,39 +226,35 @@ if (isset($_SESSION['utente_ID'])) {
 
 			</div>
 
-			<div class="grid_order_information">
+			
 
-				<div class="extra_info">
-					<label class="label_info_extra">Indirizzo</label>
-					<div><?= $_SESSION['indirizzo_inserito']?></div>
-					
-					<label class="label_info_extra">Metodo di Spedizione</label>
-					<div><?= $nome_metodo_spedizione ?></div>
 
-					<label class="label_info_extra">Metodo di Pagamento</label>
-					<div><?= $nome_metodo_pagamento ?></div>
+			<div class="grid_info_ordine">
 
-					
+
+				<div class="grid_info_extra">
+					<label class="nome_categoria">Indirizzo di Spedizione: </label>
+					<span class="dati_categoria"><?= $_SESSION['indirizzo_inserito'] ?></span>
+
+					<label class="nome_categoria">Metodo di Spedizione: </label>
+					<span class="dati_categoria"><?= $nome_metodo_spedizione ?></span>
+
+					<label class="nome_categoria">Metodo di Pagamento: </label>
+					<span class="dati_categoria"><?= $nome_metodo_pagamento ?></span>
 
 				</div>
+				<div class="grid_prezzi">
+					<label class="nome_categoria">Prezzo Prodotti: </label>
+					<span class="dati_categoria"><?= $prezzo_totale ?></span>
 
-				<div class="totals">
-					<div class="totals-item totals-item-total">
-						<label class="label_prezzi">Prezzo Prodotti</label>
-						<div class="totals-value" id="cart-total"><?= $prezzo_totale ?></div>
+					<label class="nome_categoria">Prezzo Spedizione: </label>
+					<span class="dati_categoria"><?= $costo_metodo_spedizione ?></span>
 
-						<label class="label_prezzi">Prezzo Spedizione</label>
-						<div class="totals-value" id="cart-total"><?= $costo_metodo_spedizione ?></div>
-
-						<label class="label_prezzi">Prezzo Totale</label>
-						<div class="totals-value" id="cart-total"><?= $prezzo_totale + $costo_metodo_spedizione ?></div>
-					</div>
+					<label class="nome_categoria">Prezzo Totale: </label>
+					<span class="dati_categoria"><?= $prezzo_totale + $costo_metodo_spedizione ?></span>
 				</div>
-
-				<br><input class="checkout" type="submit" name="conferma_ordine" value="Conferma l'ordine">
-
 			</div>
-
+			<br><input class="checkout" type="submit" name="conferma_ordine" value="Conferma l'ordine">		
 
 
 			<?php
