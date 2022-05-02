@@ -22,7 +22,7 @@ $link_cartella_immagini = "../public/assets/img/quadri/";
 
     echo $query;
 
-  //header("location: ../public/html/carrello.php");
+  header("location: ../public/html/carrello.php");
 
 
 
