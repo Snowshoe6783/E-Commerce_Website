@@ -34,6 +34,8 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 				  FROM ordine AS o JOIN (quadro AS q JOIN acquisto AS a ON q.quadro_ID = a.quadro_ID) ON o.ordine_ID = a.ordine_ID
 				  WHERE o.data_annullamento IS NULL
 				  AND o.data_conferma IS NOT NULL
+				  AND o.indirizzo_spedizione IS NOT NULL
+				  AND o.metodo_spedizione_ID IS NOT NULL
 				  GROUP BY o.ordine_ID";
 
 	
