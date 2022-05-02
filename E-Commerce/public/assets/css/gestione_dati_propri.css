@@ -4,6 +4,7 @@
     padding:2vh;
     margin:1vh;
     font-size: small;
+    width: auto;
   }
   .div_registrazione{
     font-size: small;
@@ -14,7 +15,7 @@
     border-radius: 3px;
     background-color: #1a2248;
     color: white;
-    text-align: center;
+    display: inline-grid;
   }
   .titolo_registrazione{
     font-size:x-large;
@@ -30,7 +31,6 @@
   }
   
   .button_registrazione{
-    padding: 2vh 20%;
     appearance: none;
     border: 0.09em solid #5f3afc;
     border-radius: 0.5em;
@@ -38,12 +38,13 @@
     background-color: #5f3afc;
     color: white;
     cursor: pointer;
+    display: inline;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
     min-height: 3.3em;
     min-width: 0;
-    width:90%;
+    width:100%;
     outline: none;
     text-align: center;
     text-decoration: none;
@@ -70,11 +71,12 @@
    }
   .wrapper{
       display: inline-grid ;
-      padding: 2vh 20%;
+      padding: 0.5vh 20%;
       border-radius: 3vh;
-  }
-  .dati{
       background-color: #1a2248;
+      padding:10vh;
+      display: inline-grid;
+      margin: 2vh 33%;
   }
   #dati_anagrafici {
 
@@ -85,7 +87,7 @@
     width: auto;
     text-align: center;
     padding: 2vh;
-    border-left: 2px solid #061328;
+    border-top: 1.5px solid #5f3afc;
     
   }
   #message{

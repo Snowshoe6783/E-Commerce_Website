@@ -30,21 +30,19 @@ if (isset($_SESSION['utente_ID'])) {
 	</h1>
 	<form method="post" name="myform">
 		<div class="wrapper">
-			<div class="dati">
 				<div id="dati_anagrafici">
-				Dati anagrafici
+				<h4>Dati anagrafici</h4>
 					<br>
-					<label for="nome_field">Nome <input class="input_registrazione" type="text" name="nome" required><br>
-					<label for="nome_field">Cognome <input class="input_registrazione" type="text" name="cognome" required><br>
-					<label for="nome_field">E-mail <input class="input_registrazione" type="text" name="email" required><br>
-					<label for="nome_field">Indirizzo <input class="input_registrazione" type="text" name="indirizzo" required><br>
-					<label for="nome_field">Numero di telefono <input class="input_registrazione" type="text" name="numero_telefono" required>
+					<label for="nome_field">Nome<br> <input class="input_registrazione" type="text" name="nome" required><br>
+					<label for="nome_field">Cognome<br> <input class="input_registrazione" type="text" name="cognome" required><br>
+					<label for="nome_field">E-mail<br> <input class="input_registrazione" type="text" name="email" required><br>
+					<label for="nome_field">Indirizzo<br> <input class="input_registrazione" type="text" name="indirizzo" required><br>
+					<label for="nome_field">Num. telefono<br> <input class="input_registrazione" type="text" name="numero_telefono" required>
 				</div>
 				<div id="dati_utente_registrazione">
-					dati utente
-					<br>
-					Username <input class="input_registrazione" type="text" name="username"><br>
-					Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
+					<h4>dati utente</h4>
+					Username<br> <input class="input_registrazione" type="text" name="username"><br>
+					Password<br><input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
 					<div id="message">
 						<h3>Password must contain the following:</h3>
 						<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -55,7 +53,6 @@ if (isset($_SESSION['utente_ID'])) {
 				</div>
 				<input type="submit" class="button_registrazione" name="submit" value="Registrati">
 		</div>
-</div>
 		<br>
 		<br>
 		<br>
