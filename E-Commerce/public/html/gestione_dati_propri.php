@@ -19,56 +19,45 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta name="viewport" content="width=device-width">
 	<title>registrazione</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
-	<link rel="stylesheet" href="../assets/css/registrazione.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/gestione_dati_propri.css" type="text/css">
 
 </head>
 <a href="index.php">Home</a><br>
 
 <body>
 	<h1>
-		Pagina di registrazione
+		gestione dati propri
 	</h1>
 	<form method="post" name="myform">
 		<div class="wrapper">
-			<div id="dati_anagrafici">
+			<div class="dati">
+				<div id="dati_anagrafici">
 				Dati anagrafici
-				<br>
-				<label for="nome_field">Nome <input class="input_registrazione" type="text" name="nome" required><br>
+					<br>
+					<label for="nome_field">Nome <input class="input_registrazione" type="text" name="nome" required><br>
 					<label for="nome_field">Cognome <input class="input_registrazione" type="text" name="cognome" required><br>
-						<label for="nome_field">E-mail <input class="input_registrazione" type="text" name="email" required><br>
-							<label for="nome_field">Indirizzo <input class="input_registrazione" type="text" name="indirizzo" required><br>
-								<label for="nome_field">Numero di telefono <input class="input_registrazione" type="text" name="numero_telefono" required>
-
-
-
-									<br>
-									<br>
-									<br>
-			</div>
-			<div id="dati_utente_registrazione">
-				dati utente
-				<br>
-				Username <input class="input_registrazione" type="text" name="username"><br>
-				Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
-
-			</div>
+					<label for="nome_field">E-mail <input class="input_registrazione" type="text" name="email" required><br>
+					<label for="nome_field">Indirizzo <input class="input_registrazione" type="text" name="indirizzo" required><br>
+					<label for="nome_field">Numero di telefono <input class="input_registrazione" type="text" name="numero_telefono" required>
+				</div>
+				<div id="dati_utente_registrazione">
+					dati utente
+					<br>
+					Username <input class="input_registrazione" type="text" name="username"><br>
+					Password<input class="input_registrazione" type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 64 characters" required>
+					<div id="message">
+						<h3>Password must contain the following:</h3>
+						<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+						<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+						<p id="number" class="invalid">A <b>number</b></p>
+						<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+					</div>
+				</div>
+				<input type="submit" class="button_registrazione" name="submit" value="Registrati">
 		</div>
-
-
-			<input type="submit" class="button_registrazione" name="submit" value="Registrati">
-		</div>
-
-		<div id="message">
-			<h3>Password must contain the following:</h3>
-			<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-			<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-			<p id="number" class="invalid">A <b>number</b></p>
-			<p id="length" class="invalid">Minimum <b>8 characters</b></p>
-		</div>
-
+</div>
 		<br>
-		<input type="submit" name="submit" value="Registrati">
-
+		<br>
 		<br>
 		<br>
 		<a href="Login.php">Login</a><br>

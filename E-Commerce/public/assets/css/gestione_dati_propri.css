@@ -1,0 +1,109 @@
+.input_registrazione{
+    color: white;
+    background-color:#363e4a;
+    padding:2vh;
+    margin:1vh;
+    font-size: small;
+  }
+  .div_registrazione{
+    font-size: small;
+    margin:2vh 28%;
+    padding: 12vh;
+    width: 30%;
+    height: auto;
+    border-radius: 3px;
+    background-color: #1a2248;
+    color: white;
+    text-align: center;
+  }
+  .titolo_registrazione{
+    font-size:x-large;
+    color: white;
+  }
+  
+  .titolo_reg{
+    color: white;
+  }
+  
+  hr{
+    color:white;
+  }
+  
+  .button_registrazione{
+    padding: 2vh 20%;
+    appearance: none;
+    border: 0.09em solid #5f3afc;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    background-color: #5f3afc;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    min-height: 3.3em;
+    min-width: 0;
+    width:90%;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+   }
+   
+   .button_registrazione:disabled {
+    pointer-events: none;
+   }
+   
+   .button_registrazione:hover {
+    color: #fff;
+    background-color: #061328;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+   }
+   
+   .button_registrazione:active {
+    box-shadow: none;
+    transform: translateY(0);
+   }
+  .wrapper{
+      display: inline-grid ;
+      padding: 2vh 20%;
+      border-radius: 3vh;
+  }
+  .dati{
+      background-color: #1a2248;
+  }
+  #dati_anagrafici {
+
+    width:auto;
+    text-align: center;
+  }
+  #dati_utente_registrazione { 
+    width: auto;
+    text-align: center;
+    padding: 2vh;
+    border-left: 2px solid #061328;
+    
+  }
+  #message{
+    font-size: smaller;
+    text-align:left;
+  }
+  
+  @media screen and (max-width: 400px) {
+     #dati_anagrafici { 
+      width:auto; 
+      border:20px;
+      margin:20px;
+      letter-spacing: 0.1em;
+    }
+       #dati_utente_registrazione { 
+      width:auto; 
+      border:20px;
+      margin:20px;
+      letter-spacing: 0.1em;
+    }
+  }
