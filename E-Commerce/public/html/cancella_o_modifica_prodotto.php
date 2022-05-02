@@ -19,6 +19,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+  <link rel="stylesheet" href="../assets/css/modifica_prodotti.css" type="text/css">
   <title>Modifica Prodotto</title>
 
 </head>

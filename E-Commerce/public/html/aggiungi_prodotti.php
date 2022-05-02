@@ -15,7 +15,9 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 <html>
 
 <head>
-  <title>PHP File Upload</title>
+  <title>aggiungi prodotto</title>
+  <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+  <link rel="stylesheet" href="../assets/css/modifica_prodotti.css" type="text/css">
 </head>
 
 <body>
