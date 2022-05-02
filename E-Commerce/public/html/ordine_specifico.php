@@ -30,6 +30,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<h1>
 		Ordine Numero: <?= $_GET['ordine_ID'] ?>
 	</h1>
+	<br>
 	<?php
 	$ordine_ID = $_GET['ordine_ID'];
 

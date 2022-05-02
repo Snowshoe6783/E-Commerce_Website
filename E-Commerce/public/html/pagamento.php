@@ -18,15 +18,9 @@ if (isset($_SESSION['utente_ID'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/pagamento.css" type="text/css">
 
 
-
-
-	<style>
-		#box {
-			display: none;
-		}
-	</style>
 	<a href="index.php">Home</a><br>
 
 <body>
