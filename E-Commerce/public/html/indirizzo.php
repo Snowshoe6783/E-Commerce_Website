@@ -27,7 +27,7 @@ if (isset($_SESSION['utente_ID'])) {
 		Indirizzo
 	</h1>
 
-	<div>
+	<div class="div">
 		<script src="../assets/js/indirizzo.js"></script>
 		<form class="form_indirizzo" action="" method="post" autocomplete="off">
 			<p class="title">Seleziona indirizzo</p>

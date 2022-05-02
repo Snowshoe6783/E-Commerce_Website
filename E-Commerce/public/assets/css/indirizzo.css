@@ -3,8 +3,8 @@
 
       
       /* Optional: Makes the sample page fill the window. */
-      div{
-        margin:auto 30%;
+      .div{
+        margin:auto 30%; 
         border-radius: 4vh;
       }
       .form_indirizzo{
