@@ -25,7 +25,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 	<nav class="navIndex">
-		<div class="logo">art auction</div>
+		<div class="logo">Baiart.com</div>
 		<input type="checkbox" id="click">
 		<label for="click" class="menu-btn">
 			<i class="fas fa-bars"></i>

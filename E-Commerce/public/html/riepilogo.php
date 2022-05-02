@@ -27,6 +27,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<h1>
 		RIEPILOGO
 	</h1>
+	<br>
 	<?php
 	$query = "SELECT ordine_ID
 				FROM ordine AS o

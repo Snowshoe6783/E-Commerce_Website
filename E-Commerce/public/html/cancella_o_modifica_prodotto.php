@@ -18,7 +18,8 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
   <link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>carrello</title>
+  <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+  <title>Modifica Prodotto</title>
 
 </head>
 <a href="index.php">Home</a><br>

@@ -7,3 +7,10 @@ body{
   font-size: 18px;
   color: white;
 }
+
+input {
+
+  font-size: medium;
+  background-color: #363e4a;
+  color: white;
+}

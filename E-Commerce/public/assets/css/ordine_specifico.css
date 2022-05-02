@@ -1,0 +1,11 @@
+.grid_info_ordine {
+    display: grid;
+    grid-template-columns: 220px 400px;
+    grid-gap: 10px;
+    width: 100%;
+    word-wrap: break-word;
+    
+
+}
+
+
