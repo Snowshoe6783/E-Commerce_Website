@@ -67,7 +67,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<div id="quadro_centro">
 		<p id="demo"></p>
 		<?php
-			$query = "SELECT link_quadro
+			$query = "SELECT link_quadro, quadro_ID
 					  FROM quadro
 					  WHERE archiviato = '0'
 					  ORDER BY RAND()
@@ -77,10 +77,11 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		foreach ($result as $row) {
 			$link_quadro = $link_cartella_immagini . $row['link_quadro'];			
+			$quadro_ID = $row['quadro_ID'];
 		}
 		
 		?>
-		<img id="quadro_centrato" src="<?=$link_quadro?>"></img>
+		<a href = "quadro_specifico.php?quadro_ID=<?=$quadro_ID?>"><img id="quadro_centrato" src="<?=$link_quadro?>"></img></a>
 
 	</div>
 	<div id="Quadri_Cercati">
