@@ -20,7 +20,9 @@ $link_cartella_immagini = "../public/assets/img/quadri/";
     $result = $conn->query($query);
     //$result = $conn->query($query);
 
-  header("location: ../public/html/carrello.php");
+    echo $query;
+
+  //header("location: ../public/html/carrello.php");
 
 
 
