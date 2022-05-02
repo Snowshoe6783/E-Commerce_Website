@@ -1,0 +1,27 @@
+.grid_order_information {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+}
+
+
+ .label_prezzi {
+	 float: left;
+	 clear: both;
+	 width: 79%;
+	 text-align: right;
+}
+
+.label_info_extra{
+	float: left;
+	 clear: both;
+	 width: fit-content;
+	 padding-right: 20px;
+	 text-align: left;
+}
+
+.product-line-price {
+    float: right;
+    width: 12%;
+    
+}

@@ -5,10 +5,10 @@ include("../../src/connessione_database.php");
 session_start();
 if (isset($_SESSION['utente_ID'])) {
 	echo "Utente " . $_SESSION['utente_ID'];
-  }else{
-	  http_response_code(403);
-	  die('Non hai accesso a questa pagina.');
-  }
+} else {
+	http_response_code(403);
+	die('Non hai accesso a questa pagina.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ if (isset($_SESSION['utente_ID'])) {
 	<title>replit</title>
 	<link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
 	<link rel="stylesheet" href="../assets/css/carrello.css" type="text/css">
+	<link rel="stylesheet" href="../assets/css/riepilogo.css" type="text/css">
 </head>
 <a href="index.php">Home</a><br>
 
@@ -98,7 +99,7 @@ if (isset($_SESSION['utente_ID'])) {
 
 		$prezzo_totale = 0;
 		$result = $conn->query($query);
-		?>
+	?>
 
 		<div class="shopping-cart">
 
@@ -112,180 +113,208 @@ if (isset($_SESSION['utente_ID'])) {
 			</div>
 
 			<form method="post" name="inizia_ordine">
+				<?php
+
+
+
+
+
+				foreach ($result as $row) {
+
+					$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
+					$nome_quadro = $row['Nome Quadro'];
+					$nome_autore = $row['Autore'];
+					$genere = $row['Genere'];
+					$descrizione_breve = $row['Descrizione'];
+					$prezzo = $row['Prezzo'];
+					$quantita = $row['Quantità'];
+				?>
+
+					<div class="product">
+
+						<div class="product-image">
+							<img src="<?= $link_quadro ?>">
+						</div>
+						<div class="product-details">
+							<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
+							<p class="product-description"><?= $descrizione_breve ?></p>
+						</div>
+						<div class="product-price"><?= $prezzo ?></div>
+
+						<div class="product-quantity">
+							<?= $quantita ?>
+						</div>
+
+						<div class="product-line-price">
+							<?= $prezzo * $quantita ?>
+						</div>
+					</div>
 			<?php
-
-
-
-
-
-			foreach ($result as $row) {
-
-				$link_quadro = $link_cartella_immagini . $row['Immagine Prodotto'];
-				$nome_quadro = $row['Nome Quadro'];
-				$nome_autore = $row['Autore'];
-				$genere = $row['Genere'];
-				$descrizione_breve = $row['Descrizione'];
-				$prezzo = $row['Prezzo'];
-				$quantita = $row['Quantità'];
-			?>
-
-				<div class="product">
-
-					<div class="product-image">
-						<img src="<?= $link_quadro ?>">
-					</div>
-					<div class="product-details">
-						<div class="product-title"><?= $nome_quadro ?> - <?= $nome_autore ?></div>
-						<p class="product-description"><?= $descrizione_breve ?></p>
-					</div>
-					<div class="product-price"><?= $prezzo ?></div>
-
-					<div class="product-quantity">
-						<?=$quantita?>
-					</div>
-
-					<div class="product-line-price">
-						<?= $prezzo * $quantita ?>
-					</div>
-				</div>
-		<?php
-				$prezzo_totale += $prezzo * $quantita;
+					$prezzo_totale += $prezzo * $quantita;
+				}
+			} else {
+				echo "Carrello vuoto.";
 			}
-		} else {
-			echo "Carrello vuoto.";
-		}
 
 
 
-	?>
-	<br>
-	<br>
-	<div>
-		<?php
-
-
-		echo "Indirizzo: " . $_SESSION['indirizzo_inserito'] . "";
-		?>
-	</div>
+			?>
+			<br>
+			<br>
+			<div>
+				<?php
+				//echo "Indirizzo: " . $_SESSION['indirizzo_inserito'] . "";
+				?>
+			</div>
 
 
 
-	<div>
-		<?php
+			<div>
+				<?php
 
 
-		$query = "SELECT nome
+				$query = "SELECT nome, costo
 							FROM metodo_spedizione
 							WHERE metodo_ID = '" . $_SESSION['ID_metodo_spedizione'] . "';";
 
 
 
-		$result = $conn->query($query);
+				$result = $conn->query($query);
 
-		$n_rows = $result->num_rows;
+				$n_rows = $result->num_rows;
 
-		if ($n_rows != 0) {
-			foreach ($result as $row) {
-				$nome_metodo_spedizione = $row['nome'];
-			}
-		}
-
-
-
-		echo "Metodo di Spedizione: $nome_metodo_spedizione";
-		?>
-	</div>
+				if ($n_rows != 0) {
+					foreach ($result as $row) {
+						$nome_metodo_spedizione = $row['nome'];
+						$costo_metodo_spedizione = $row['costo'];
+					}
+				}
 
 
 
-	<div>
-		<?php
+				//echo "Metodo di Spedizione: $nome_metodo_spedizione";
+				?>
+			</div>
 
 
-		$query = "SELECT nome
+
+			<div>
+				<?php
+
+
+				$query = "SELECT nome
 							FROM metodo_pagamento
 							WHERE metodo_ID = '" . $_SESSION['ID_metodo_pagamento'] . "';";
 
 
 
-		$result = $conn->query($query);
+				$result = $conn->query($query);
 
-		$n_rows = $result->num_rows;
+				$n_rows = $result->num_rows;
 
-		if ($n_rows != 0) {
-			foreach ($result as $row) {
-				$nome_metodo_pagamento = $row['nome'];
-			}
-		}
-
-
-
-		echo "Metodo di Pagamento: $nome_metodo_pagamento";
-		?>
-	</div>
+				if ($n_rows != 0) {
+					foreach ($result as $row) {
+						$nome_metodo_pagamento = $row['nome'];
+					}
+				}
 
 
-	<form id="form_conferma_ordine" action="" method="post">
-		<div>
-			<input type="submit" name="conferma_ordine" value="Conferma Ordine">
-		</div>
-	</form>
 
-	<?php
-	if (isset($_POST['conferma_ordine'])) {
+				//echo "Metodo di Pagamento: $nome_metodo_pagamento";
+				?>
 
-		$query = "SELECT q.quadro_ID AS quadroID, quantita
+
+			</div>
+
+			<div class="grid_order_information">
+
+				<div class="extra_info">
+					<label class="label_info_extra">Indirizzo</label>
+					<div><?= $_SESSION['indirizzo_inserito']?></div>
+					
+					<label class="label_info_extra">Metodo di Spedizione</label>
+					<div><?= $nome_metodo_spedizione ?></div>
+
+					<label class="label_info_extra">Metodo di Pagamento</label>
+					<div><?= $nome_metodo_pagamento ?></div>
+
+					
+
+				</div>
+
+				<div class="totals">
+					<div class="totals-item totals-item-total">
+						<label class="label_prezzi">Prezzo Prodotti</label>
+						<div class="totals-value" id="cart-total"><?= $prezzo_totale ?></div>
+
+						<label class="label_prezzi">Prezzo Spedizione</label>
+						<div class="totals-value" id="cart-total"><?= $costo_metodo_spedizione ?></div>
+
+						<label class="label_prezzi">Prezzo Totale</label>
+						<div class="totals-value" id="cart-total"><?= $prezzo_totale + $costo_metodo_spedizione ?></div>
+					</div>
+				</div>
+
+				<br><input class="checkout" type="submit" name="conferma_ordine" value="Conferma l'ordine">
+
+			</div>
+
+
+
+			<?php
+			if (isset($_POST['conferma_ordine'])) {
+
+				$query = "SELECT q.quadro_ID AS quadroID, quantita
 						FROM acquisto AS a LEFT JOIN quadro AS q
 						ON a.quadro_ID = q.quadro_ID
 						WHERE a.ordine_ID = '" . $_SESSION['ordine_ID'] . "'
 						  AND a.quantita <= q.quantita_in_magazzino";
 
-		$result = $conn->query($query);
-		$n_rows = $result->num_rows;
+				$result = $conn->query($query);
+				$n_rows = $result->num_rows;
 
-		if ($n_rows > 0 && $num_rows_ordine_ID > 0) {
+				if ($n_rows > 0 && $num_rows_ordine_ID > 0) {
 
-			foreach ($result as $row) {
-				$quadroID = $row['quadroID'];
-				$quantita = $row['quantita'];
-				$query = "UPDATE quadro
+					foreach ($result as $row) {
+						$quadroID = $row['quadroID'];
+						$quantita = $row['quantita'];
+						$query = "UPDATE quadro
 								SET quantita_in_magazzino = quantita_in_magazzino - $quantita
 								WHERE quadro_ID = $quadroID";
-				$result = $conn->query($query);
-				
-			}
+						$result = $conn->query($query);
+					}
 
 
-			$query = "UPDATE ordine
+					$query = "UPDATE ordine
 							SET metodo_spedizione_ID = '" . $_SESSION['ID_metodo_pagamento'] . "', 
 							metodo_pagamento_ID  = '" . $_SESSION['ID_metodo_spedizione'] . "',
 							indirizzo_spedizione = '" . $_SESSION['indirizzo_inserito'] . "'
 							WHERE ordine_ID = '" . $_SESSION['ordine_ID'] . "';";
 
-			
-			$result = $conn->query($query);
-			echo $query;
+
+					$result = $conn->query($query);
+					echo $query;
 
 
-			$date = date('Y-m-d H:i:s');
-			echo $date;
+					$date = date('Y-m-d H:i:s');
+					echo $date;
 
 
-			$query = "UPDATE ordine
+					$query = "UPDATE ordine
 							SET data_conferma = '$date', data_pagamento = '$date'
 							WHERE ordine_ID = '" . $_SESSION['ordine_ID'] . "';";
 
-			echo "<br><br>" . $query;
-			$result = $conn->query($query);
+					echo "<br><br>" . $query;
+					$result = $conn->query($query);
 
 
-			header("location:index.php");
-		} else {
-			echo "carrello vuoto";
-		}
-	}
-	
-	?>
+					header("location:index.php");
+				} else {
+					echo "carrello vuoto";
+				}
+			}
+
+			?>
 
 </body>
 
