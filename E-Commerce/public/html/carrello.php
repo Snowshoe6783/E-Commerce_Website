@@ -166,7 +166,7 @@ $_SESSION['prezzo_prodotti_totale'] = 0;
 					</div>
 
 					<div class="product-removal">
-						<a href="../../src/cancella_prodotto_dal_carrello.php?quadro_ID=<?= $quadro_ID ?>ordine_ID=$<?= $ordine_ID ?>">
+						<a href="../../src/cancella_prodotto_dal_carrello.php?quadro_ID=<?= $quadro_ID ?>&ordine_ID=<?= $ordine_ID ?>">
 							Cancella
 						</a>
 					</div>
