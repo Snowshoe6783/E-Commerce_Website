@@ -20,7 +20,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" /> <!-- se restringi la pagina salta fuori le tre linee per il menu -->
 	<link rel="stylesheet" href="../assets/css/footer.css" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>home</title>
+	<title>Home</title>
 </head>
 
 <body class="bodyIndex">
@@ -130,7 +130,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 			<div class = "div_footer">
 				<p class = "footer_title">Contatti:</p>
 				<p>Email: mail@mail.com</p>
-				<p>Numero di Telefono: +39 359 493 3245</p>
+				<p>Numero di Telefono:<br> +39 359 493 3245</p>
 			</div>
 		</footer> 
 </body>

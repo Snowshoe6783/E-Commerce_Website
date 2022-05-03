@@ -3,7 +3,7 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
-	echo "Utente " . $_SESSION['utente_ID'];
+	echo "Utente: " . $_SESSION['username'];
 }
 
 $link_cartella_immagini = "../assets/img/quadri/";
@@ -13,7 +13,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 <html>
 
 <head>
-	<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
+<link rel="icon" type="image/x-icon" href="../assets/ico/carrello.ico">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Gestione Ordine Specifico</title>
@@ -29,6 +29,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<h1>
 		Gestione Ordine Specifico
 	</h1>
+	<br>
 	<br>
 	<?php
 	$ordine_ID = $_GET['ordine_ID'];
@@ -67,12 +68,12 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	<div class="shopping-cart">
 
 	<div class="column-labels">
-		<label class="product-image">Image</label>
-		<label class="product-details">Product</label>
-		<label class="product-price">Price</label>
-		<label class="product-quantity">Quantity</label>
+		<label class="product-image">Immagine</label>
+		<label class="product-details">Prodotto</label>
+		<label class="product-price">Prezzo</label>
+		<label class="product-quantity">Quantita</label>
 		<label class="product-removal">&nbsp</label>
-		<label class="product-line-price">Total</label>
+		<label class="product-line-price">Totale</label>
 	</div>
 
 

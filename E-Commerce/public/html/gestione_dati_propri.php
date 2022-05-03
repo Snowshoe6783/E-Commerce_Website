@@ -4,7 +4,7 @@ include("../../src/connessione_database.php");
 
 session_start();
 if (isset($_SESSION['utente_ID'])) {
-	echo "Utente " . $_SESSION['utente_ID'];
+	echo "Utente: " . $_SESSION['username'];
   }else{
 	  http_response_code(403);
 	  die('Non hai accesso a questa pagina.');
