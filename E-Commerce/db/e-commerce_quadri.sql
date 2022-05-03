@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2022 at 04:05 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.15
+-- Creato il: Mag 03, 2022 alle 10:49
+-- Versione del server: 10.4.21-MariaDB
+-- Versione PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acquisto`
+-- Struttura della tabella `acquisto`
 --
 
 CREATE TABLE `acquisto` (
@@ -35,7 +35,7 @@ CREATE TABLE `acquisto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `acquisto`
+-- Dump dei dati per la tabella `acquisto`
 --
 
 INSERT INTO `acquisto` (`prodotto_carrello_ID`, `ordine_ID`, `quadro_ID`, `quantita`) VALUES
@@ -44,21 +44,30 @@ INSERT INTO `acquisto` (`prodotto_carrello_ID`, `ordine_ID`, `quadro_ID`, `quant
 (40, 84, 41, 1),
 (41, 85, 41, 1),
 (42, 86, 41, 1),
-(43, 87, 41, 1);
+(43, 87, 41, 1),
+(44, 88, 41, 6),
+(45, 89, 41, 1),
+(46, 90, 39, 4),
+(47, 91, 45, 1),
+(48, 92, 42, 4),
+(49, 93, 41, 15),
+(51, 94, 57, 2),
+(52, 95, 46, 1),
+(53, 96, 50, 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dati_utente`
+-- Struttura della tabella `dati_utente`
 --
 
 CREATE TABLE `dati_utente` (
   `utente_ID` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `cognome` varchar(20) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `cognome` varchar(100) NOT NULL,
   `ruolo_ID` int(11) NOT NULL,
   `codice_fiscale` varchar(30) DEFAULT NULL,
-  `email` varchar(30) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `indirizzo` varchar(100) NOT NULL,
   `numero_telefono` varchar(20) NOT NULL,
   `username` varchar(30) NOT NULL,
@@ -66,18 +75,20 @@ CREATE TABLE `dati_utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `dati_utente`
+-- Dump dei dati per la tabella `dati_utente`
 --
 
 INSERT INTO `dati_utente` (`utente_ID`, `nome`, `cognome`, `ruolo_ID`, `codice_fiscale`, `email`, `indirizzo`, `numero_telefono`, `username`, `password`) VALUES
 (59, 'nome_utente_amminist', 'cognome_utente_ammin', 1, 'AMMINISTRATORETECNICO', 'amministratore@tecnico.com', 'Amministratore Tecnico 23', '1111111', 'adminTecnico1', '$2y$10$RHZP.wJuWZLOa5RtYoToTONfutfBf88EE9fMPmfFVXPNyzv5G64Ai'),
 (60, 'nome_utente_amminist', 'cognome_utente_ammin', 2, 'AMMINISTRATORECOMMERCIALE', 'amministratore@commerciale.com', 'Amministratore Commerciale 23', '2222222', 'adminCommerciale1', '$2y$10$IOQBshaB7lIXoT.Kkodls.EMiUh1utCIFiFmTePrGDD3H1cIXIqPu'),
-(61, 'nome_utente_registra', 'cognome_utente_regis', 3, 'UTENTEREGISTRATO', 'utente@registrato.com', 'Utente Registrato 12', '3333333', 'utenteRegistrato1', '$2y$10$8RSHSZMiLpm4EMontx2sOe5BFHdfx6/kFygp5aVxotQXw80JoyaGq');
+(61, 'nome_utente_registra', 'cognome_utente_regis', 3, 'UTENTEREGISTRATO', 'utente@registrato.com', 'Utente Registrato 12', '3333333', 'utenteRegistrato1', '$2y$10$8RSHSZMiLpm4EMontx2sOe5BFHdfx6/kFygp5aVxotQXw80JoyaGq'),
+(62, 'alle', 'alle', 1, 'aaaaaaa', 'aaa@aaa.it', 'assasasa', '2325445242', 'Alle', '$2y$10$nFbsYE2J1oF5Zh0H96.7xO/8eg6VIOkVZy/fiIbMWiGYTgKbB/fnK'),
+(64, 'Alle', 'alle', 3, 'adada', 'sdfsd@adf.com', 'ewr', '32434', 'ciao', '$2y$10$ibMhDsjnZj.rEHlfMBuwfehkLKEx71ZSkOEKj0uRzw0Kwr42iE9HC');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metodo_pagamento`
+-- Struttura della tabella `metodo_pagamento`
 --
 
 CREATE TABLE `metodo_pagamento` (
@@ -86,7 +97,7 @@ CREATE TABLE `metodo_pagamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `metodo_pagamento`
+-- Dump dei dati per la tabella `metodo_pagamento`
 --
 
 INSERT INTO `metodo_pagamento` (`metodo_ID`, `nome`) VALUES
@@ -97,7 +108,7 @@ INSERT INTO `metodo_pagamento` (`metodo_ID`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metodo_spedizione`
+-- Struttura della tabella `metodo_spedizione`
 --
 
 CREATE TABLE `metodo_spedizione` (
@@ -107,7 +118,7 @@ CREATE TABLE `metodo_spedizione` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `metodo_spedizione`
+-- Dump dei dati per la tabella `metodo_spedizione`
 --
 
 INSERT INTO `metodo_spedizione` (`metodo_id`, `nome`, `costo`) VALUES
@@ -119,7 +130,7 @@ INSERT INTO `metodo_spedizione` (`metodo_id`, `nome`, `costo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordine`
+-- Struttura della tabella `ordine`
 --
 
 CREATE TABLE `ordine` (
@@ -136,7 +147,7 @@ CREATE TABLE `ordine` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ordine`
+-- Dump dei dati per la tabella `ordine`
 --
 
 INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `metodo_spedizione_ID`, `metodo_pagamento_ID`, `indirizzo_spedizione`, `data_inserimento_ordine`, `data_conferma`, `data_pagamento`, `data_spedizione`, `data_annullamento`) VALUES
@@ -144,20 +155,29 @@ INSERT INTO `ordine` (`ordine_ID`, `utente_ID`, `metodo_spedizione_ID`, `metodo_
 (84, 61, NULL, NULL, NULL, '2022-05-01 15:53:56', '2022-05-01 15:54:15', '2022-05-01 15:54:15', NULL, '2022-05-01 15:56:04'),
 (85, 61, NULL, NULL, NULL, '2022-05-01 15:56:11', '2022-05-01 15:57:10', '2022-05-01 15:57:10', NULL, NULL),
 (86, 61, 1, 1, 'Italy, BN, Montesarchio, Montesarchio, 82016, Via Ciaolilli 321', '2022-05-01 15:59:15', '2022-05-01 16:00:01', '2022-05-01 16:00:01', NULL, NULL),
-(87, 61, 1, 1, 'Italy, PT, Pescia, Pescia, 51017, Sdrucciolo del Duomo 22', '2022-05-01 16:00:23', '2022-05-01 16:00:41', '2022-05-01 16:00:41', NULL, NULL);
+(87, 61, 1, 1, 'Italy, PT, Pescia, Pescia, 51017, Sdrucciolo del Duomo 22', '2022-05-01 16:00:23', '2022-05-01 16:00:41', '2022-05-01 16:00:41', NULL, NULL),
+(88, 60, 1, 3, 'Italia, MN, Suzzara, Brusatasso, 46029, Via Anselmo Assetti 13', '2022-05-01 21:32:10', '2022-05-01 21:32:58', '2022-05-01 21:32:58', NULL, '2022-05-01 21:33:44'),
+(89, 60, 1, 1, 'Italia, FR, Ceccano, Ceccano, 123, A1 123', '2022-05-02 16:07:57', '2022-05-02 17:03:20', '2022-05-02 17:03:20', NULL, NULL),
+(90, 60, 2, 3, 'Italia, FR, Ceccano, Ceccano, 32, A1 12', '2022-05-02 17:06:02', '2022-05-02 17:06:37', '2022-05-02 17:06:37', NULL, NULL),
+(91, 60, 1, 1, 'Italia, FR, Ceccano, Ceccano, 12, A1 12', '2022-05-02 21:50:57', '2022-05-02 21:51:42', '2022-05-02 21:51:42', NULL, NULL),
+(92, 60, 1, 1, 'Italia, FR, Ceccano, Ceccano, 23, A1 32', '2022-05-03 09:24:45', '2022-05-03 09:28:28', '2022-05-03 09:28:28', '2022-05-03 09:47:58', NULL),
+(93, 60, 3, 3, 'Italia, FR, Ceccano, Ceccano, 23, A1 12', '2022-05-03 09:46:28', '2022-05-03 09:47:29', '2022-05-03 09:47:29', NULL, '2022-05-03 09:47:44'),
+(94, 60, 1, 2, 'Italia, FR, Ceccano, Ceccano, 12, A1 12', '2022-05-03 09:56:23', '2022-05-03 10:29:46', '2022-05-03 10:29:46', '2022-05-03 10:31:33', NULL),
+(95, 60, 2, 2, 'Italia, FR, Ceccano, Ceccano, 12ù, A1 22', '2022-05-03 10:30:34', '2022-05-03 10:31:06', '2022-05-03 10:31:06', NULL, NULL),
+(96, 60, NULL, NULL, NULL, '2022-05-03 10:41:13', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quadro`
+-- Struttura della tabella `quadro`
 --
 
 CREATE TABLE `quadro` (
   `quadro_ID` int(11) NOT NULL,
-  `nome_quadro` varchar(30) NOT NULL,
-  `nome_autore` varchar(30) NOT NULL,
-  `nazione_di_origine` varchar(20) NOT NULL,
-  `genere` varchar(20) NOT NULL,
+  `nome_quadro` varchar(100) NOT NULL,
+  `nome_autore` varchar(100) NOT NULL,
+  `nazione_di_origine` varchar(100) NOT NULL,
+  `genere` varchar(100) NOT NULL,
   `descrizione_breve` varchar(200) NOT NULL,
   `descrizione_dettagliata` varchar(10000) NOT NULL,
   `prezzo` float NOT NULL,
@@ -167,17 +187,17 @@ CREATE TABLE `quadro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `quadro`
+-- Dump dei dati per la tabella `quadro`
 --
 
 INSERT INTO `quadro` (`quadro_ID`, `nome_quadro`, `nome_autore`, `nazione_di_origine`, `genere`, `descrizione_breve`, `descrizione_dettagliata`, `prezzo`, `quantita_in_magazzino`, `link_quadro`, `archiviato`) VALUES
-(39, 'Notte stellata', 'Vincent van Gogh', 'Francia', 'Impressionismo', 'Paesaggio di campagna nella notte.', 'Un paesaggio di campagna nella notte. Le finestre sono illuminate dalle luci domestiche mentre la falce di luna illumina un cielo nel quale si agitano turbini inquietanti. Sotto ad un cielo costellato di stelle, con una falce di luna in alto a destra, Vincent van Gogh dipinge un paesaggio di campagna.', 10, 100, '865e43a7783dd5c338cddcba93cfae8c.jpg', 0),
-(41, 'Il 3 maggio 1808', 'Francisco Goya', 'Spagna', 'Romanticismo', 'Un povero contadino che, dignitosamente, affronta il suo sacrificio a favore della libertà', 'Si tratta di un povero contadino che, dignitosamente, affronta il suo sacrificio a favore della libertà. Il contadino è inginocchiato, con le braccia alzate, e guarda direttamente il plotone di esecuzione. La sua immagine ricorda quella di un Cristo crocifisso.', 100, 91, '060503521b683f03147a985ddaf596c1.jpg', 0),
-(42, 'La Gioconda', 'Leonardo da Vinci', 'Italia', 'Rinascimento', 'La Gioconda ritrae a metà figura una giovane donna con lunghi capelli scuri.', 'La Gioconda ritrae a metà figura una giovane donna con lunghi capelli scuri. È inquadrata di tre quarti, il busto è rivolto alla sua destra, il volto verso il osservatore. Le mani sono incrociate in primo piano e con le braccia si appoggia a quello che sembra il bracciolo di una sedia.', 30, 980, 'fd9da97a0fdfda50c41ca26a7b242abd.jpeg', 0),
-(43, 'Camille Monet sul letto di mor', 'Claude Monet', 'Francia', 'Impressionismo', 'Rappresenta la morte della moglie di Claude Monet.', 'La descrizione migliore dell opera è affidata alle parole dello stesso Monet: \"Un giorno, all alba mi sono trovato al capezzale del letto di una persona che mi era molto cara e che tale rimarrà sempre. I miei occhi erano rigidamente fissi sulle tragiche tempie e mi sorpresi a seguire la morte nelle ombre del colorito che essa depone sul volto con sfumature graduali. Toni blu, gialli, grigi, che so. A tal punto ero arrivato. Naturalmente si era fatta strada in me il desiderio di fissare l immagine di colei che ci ha lasciati per sempre. Tuttavia prima che mi balenasse il pensiero di dipingere i lineamenti a me così cari e familiari, il corpo reagì automaticamente allo choc dei colori.. (C. Monet - 1879).', 79, 22, 'bb371bf79e05dd5b755b081023bfa912.jpg', 0),
-(44, 'Il Bacio', 'Francesco Hayez', 'Italia', 'Romanticismo', 'Il Bacio di Francesco Hayez è un dipinto del 1859 che racchiude un messaggio di ribellione verso l occupazione straniera in Italia.', 'Due giovani in abiti del quattrocento sono in piedi abbracciati e si baciano. Il giovane è interamente coperto da un ampio mantello mentre la giovane indossa un semplice abito azzurro. Il ragazzo porta un cappello che copre il suo viso invece la protagonista ha i lunghi capelli sciolti. Sebbene il ragazzo sia nascosto dal mantello si intravede un arma al suo fianco sinistro.  La scena si svolge all interno di uno scenario architettonico medioevale. Infatti le mura sono costruite da grandi blocchi di pietra. Inoltre sullo stipite si intravedono decorazioni scolpite. Infine a sinistra nel buio si proietta sul muro quella che pare essere l ombra di una sagoma umana.', 100, 2, 'e4eb0747e47ccd1471e48552d66e0d6f.jpg', 0),
-(45, 'Impero delle luci', 'René Magritte', 'Francia', 'Surrealismo', 'Due scenari opposti: la notte e il giorno.', 'Nello sfondo campeggia un cielo azzurro cosparso di vaporose nuvole bianche, invece in primo piano è stata rappresentata una strada buia con un lampione che rischiara debolmente un abitazione immersa in un paesaggio cupo e puramente notturno. Le forme sono tridimensionali, la tecnica è impeccabile, quasi accademica, ma la particolarità del dipinto sta nella realtà che vi è rappresentata. L opera accosta due momenti diversi, opposti tra loro: la metà superiore è vista in pieno giorno, quella inferiore di notte. La luminosità del sole è contrapposta alla sensazione di turbamento e malessere tradizionalmente collegato all oscurità; l obiettivo dell artista è stato quello di creare un effetto di shock, di spaesamento nei confronti dello spettatore. Citando direttamente Magritte:  «Nell Impero delle luci  ho rappresentato due idee diverse, vale a dire un paesaggio notturno e un cielo come lo vediamo di giorno. Il paesaggio fa pensare alla notte e il cielo al giorno. Trovo che questa contemporaneità di giorno e notte abbia la forza di sorprendere e di incantare. Chiamo questa forza poesia».', 147, 3, '6e63b002216fc5634e419e0a2a1f90f5.jpg', 0),
-(46, 'Il ciclista', 'Natalja Goncharova', 'Russi', 'Futurismo', 'Combina elementi desunti da riflessioni sul cubismo e sul futurismo italiano, oltre che elementi propri dell avanguardia russa.', 'Insieme ad artisti come Michail Larionov e Kasimir Malevic, Natalja Goncharova fu tra i massimi esponenti dell avanguardismo russo.  Il ciclista  è probabilmente la sua opera più famosa: risale al 1913, è conservata presso il Museo Russo di San Pietroburgo e combina elementi desunti da riflessioni sul cubismo e sul futurismo italiano, oltre che elementi propri dell avanguardia russa.  Il protagonista, un ciclista in movimento sulla sua bicicletta, è scomposto in diverse parti secondo il procedimento tipico dei pittori cubisti come Picasso o Braque, ma è raffigurato anche nel suo dinamismo come facevano i futuristi italiani (per esempio Giacomo Balla). Il tutto con l inserimento di elementi prettamente grafici, come i caratteri cirillici e i numeri, un procedimento che anche Larionov utilizzava nei suoi dipinti.', 15, 76, '8c31edff9f1b3d8dace2fb810dd78f78.jpg', 0),
+(39, 'Notte stellata', 'Vincent van Gogh', 'Francia', 'Impressionismo', 'Paesaggio di campagna nella notte.', 'Un paesaggio di campagna nella notte. Le finestre sono illuminate dalle luci domestiche mentre la falce di luna illumina un cielo nel quale si agitano turbini inquietanti. Sotto ad un cielo costellato di stelle, con una falce di luna in alto a destra, Vincent van Gogh dipinge un paesaggio di campagna.', 10, 96, '865e43a7783dd5c338cddcba93cfae8c.jpg', 0),
+(41, 'Il 3 maggio 1808', 'Francisco Goya', 'Spagna', 'Romanticismo', 'Un povero contadino che, dignitosamente, affronta il suo sacrificio a favore della libertà', 'Si tratta di un povero contadino che, dignitosamente, affronta il suo sacrificio a favore della libertà. Il contadino è inginocchiato, con le braccia alzate, e guarda direttamente il plotone di esecuzione. La sua immagine ricorda quella di un Cristo crocifisso.', 100, 90, '060503521b683f03147a985ddaf596c1.jpg', 0),
+(42, 'La Gioconda', 'Leonardo da Vinci', 'Italia', 'Rinascimento', 'La Gioconda ritrae a metà figura una giovane donna con lunghi capelli scuri.', 'La Gioconda ritrae a metà figura una giovane donna con lunghi capelli scuri. È inquadrata di tre quarti, il busto è rivolto alla sua destra, il volto verso il osservatore. Le mani sono incrociate in primo piano e con le braccia si appoggia a quello che sembra il bracciolo di una sedia.', 30, 976, 'fd9da97a0fdfda50c41ca26a7b242abd.jpeg', 0),
+(43, 'Camille Monet sul letto di morte', 'Claude Monet', 'Francia', 'Impressionismo', 'Rappresenta la morte della moglie di Claude Monet.', 'La descrizione migliore dell opera è affidata alle parole dello stesso Monet: ', 79, 22, 'bb371bf79e05dd5b755b081023bfa912.jpg', 0),
+(44, 'Il Bacio', 'Francesco Hayez', 'Italia', 'Romanticismo', 'Il Bacio di Francesco Hayez è un dipinto del 1859 che racchiude un messaggio di ribellione verso l occupazione straniera in Italia.', 'Due giovani in abiti del quattrocento sono in piedi abbracciati e si baciano. Il giovane è interamente coperto da un ampio mantello mentre la giovane indossa un semplice abito azzurro. Il ragazzo porta un cappello che copre il suo viso invece la protagonista ha i lunghi capelli sciolti. Sebbene il ragazzo sia nascosto dal mantello si intravede un arma al suo fianco sinistro.  La scena si svolge all interno di uno scenario architettonico medioevale. Infatti le mura sono costruite da grandi blocchi di pietra. Inoltre sullo stipite si intravedono decorazioni scolpite. Infine a sinistra nel buio si proietta sul muro quella che pare essere l ombra di una sagoma umana.', 100, 2, 'e4eb0747e47ccd1471e48552d66e0d6f.jpg', 1),
+(45, 'Impero delle luci', 'René Magritte', 'Francia', 'Surrealismo', 'Due scenari opposti: la notte e il giorno.', 'Nello sfondo campeggia un cielo azzurro cosparso di vaporose nuvole bianche, invece in primo piano è stata rappresentata una strada buia con un lampione che rischiara debolmente un abitazione immersa in un paesaggio cupo e puramente notturno. Le forme sono tridimensionali, la tecnica è impeccabile, quasi accademica, ma la particolarità del dipinto sta nella realtà che vi è rappresentata. L opera accosta due momenti diversi, opposti tra loro: la metà superiore è vista in pieno giorno, quella inferiore di notte. La luminosità del sole è contrapposta alla sensazione di turbamento e malessere tradizionalmente collegato all oscurità; l obiettivo dell artista è stato quello di creare un effetto di shock, di spaesamento nei confronti dello spettatore. Citando direttamente Magritte:  «Nell Impero delle luci  ho rappresentato due idee diverse, vale a dire un paesaggio notturno e un cielo come lo vediamo di giorno. Il paesaggio fa pensare alla notte e il cielo al giorno. Trovo che questa contemporaneità di giorno e notte abbia la forza di sorprendere e di incantare. Chiamo questa forza poesia».', 147, 2, '6e63b002216fc5634e419e0a2a1f90f5.jpg', 0),
+(46, 'Il ciclista', 'Natalja Goncharova', 'Russi', 'Futurismo', 'Combina elementi desunti da riflessioni sul cubismo e sul futurismo italiano, oltre che elementi propri dell avanguardia russa.', 'Insieme ad artisti come Michail Larionov e Kasimir Malevic, Natalja Goncharova fu tra i massimi esponenti dell avanguardismo russo.  Il ciclista  è probabilmente la sua opera più famosa: risale al 1913, è conservata presso il Museo Russo di San Pietroburgo e combina elementi desunti da riflessioni sul cubismo e sul futurismo italiano, oltre che elementi propri dell avanguardia russa.  Il protagonista, un ciclista in movimento sulla sua bicicletta, è scomposto in diverse parti secondo il procedimento tipico dei pittori cubisti come Picasso o Braque, ma è raffigurato anche nel suo dinamismo come facevano i futuristi italiani (per esempio Giacomo Balla). Il tutto con l inserimento di elementi prettamente grafici, come i caratteri cirillici e i numeri, un procedimento che anche Larionov utilizzava nei suoi dipinti.', 15, 75, '8c31edff9f1b3d8dace2fb810dd78f78.jpg', 0),
 (47, 'Urlo', 'Munch', 'Norvegia', 'Espressionismo', 'L urlo è un dipinto di Edvard Munch che, grazie alla sua efficace sintesi simbolica, divenne icona della sofferenza umana, personale e collettiva, del Novecento.', 'A destra del dipinto si sviluppa il mare con la sua isola centrale. A circa tre quarti dell altezza si trova poi la linea dell orizzonte, ondulata e mossa. Da qui sale il cielo modellato da linee sinuose orizzontali e sovrapposte. Al centro dell immagine, in basso, si trova invece la figura umana serpeggiante che porta le mani al viso e urla con disperazione.  Il suo volto è privo di connotati di età e sesso. Anche gli abiti che indossa sono semplificati e ridotti ad una veste scura che copre interamente il corpo. Infine, al limite posteriore del sentiero si intravedono due sagome di uomini che procedono affiancati.', 54, 22, 'c79e9ea6b4eba87720f5a05bdcc86e5a.jpg', 0),
 (48, 'I mangiatori di patate', 'Vincent van Gogh', 'Francia', 'Impressionismo', 'I mangiatori di patate di Vincent van Gogh è considerato dagli storici il primo importante dipinto dell’artista caratterizzato da uno stile espressionista.', 'Una modesta famiglia di contadini è riunita intorno al tavolo di sera. Una debole luce proviene dalla lanterna appesa al soffitto. Illumina i loro volti e il cibo sul tavolo di legno. Le loro fisionomie sono rocciose e quasi deformi. Anche le mani sono nodose. Le nocche descrivono il peso delle loro fatiche. Infine, un espressione stanca e priva di speranza è dipinta sui loro volti.', 70, 2, '649c9eb6f0f772685677f39308140d07.jpg', 0),
 (50, 'Dinamismo di un cane al guinza', 'Giacomo Balla', 'Italia', 'Futurismo', 'Dinamismo di un cane al guinzaglio è un efficace esempio del tentativo dei pittori futuristi di rappresentare il movimento delle figure all interno dei loro dipinti.', 'I piedi della donna e le gambe del cane sono dipinti più volte all interno dell arco della traiettoria del loro movimento. La rappresentazione del movimento fu la principale preoccupazione dei futuristi. Il Futurismo fu fondato da Filippo Tommaso Marinetti con la pubblicazione nel 1909 del Manifesto del Futurismo a Parigi. Nacque così il principale movimento d avanguardia italiano. Il movimento simboleggiava l esaltazione del moderno attraverso la velocità e l azione. Altra componente del Movimento futurista era la rappresentazione della quarta dimensione cioè il tempo. Gli artisti cubisti che rappresentavano il tempo tramite l osservazione da più punti di vista dell oggetto. Gli artisti futuristi scelsero di rappresentare il movimento attraverso la registrazione contemporanea dell oggetto che si sposta nello spazio.', 150, 10, 'f5dcd4b29214b02fc5a82cb05d9df9ff.jpg', 0),
@@ -186,12 +206,13 @@ INSERT INTO `quadro` (`quadro_ID`, `nome_quadro`, `nome_autore`, `nazione_di_ori
 (53, 'Autoritratto con orecchio bend', 'Vincent van Gogh', 'Francia', 'Impressionismo', 'In Autoritratto con orecchio bendato, Vincent Van Gogh si raffigura con una evidente bendatura all orecchio destro.', 'Nell Autoritratto con l orecchio bendato predominano i colori freddi, che danno una nota ancor più malinconica al dipinto, accentuata dall utilizzo di pennellate accidentate, che indugiano su ogni osso. Il volto dell artista è invero smunto e ossuto, con la carnagione definita da un giallo cereo, ed il suo sguardo abbattuto e perso nel vuoto sembra quasi affondare in mondi immaginari dove egli può eludere dall etichetta di «folle» che la società gli ha imposto. Il cappotto abbottonato e il cappello, indossati anche in casa, sembrano alludere all assenza di un impianto di riscaldamento, che forse, per le condizioni economiche sempre precarie, l artista non poteva permettersi: ma non va tuttavia dimenticato anche il significato più profondo di riparo da un mondo ormai ritenuto nemico dall artista.', 300, 1, 'b45a503076c05af9aa55e0cecf4a89ac.jpg', 0),
 (54, 'Dama con ermellino', 'Leonardo da Vinci', 'Italia', 'Rinascimento', 'La Dama con l ermellino è Cecilia Gallerani, una giovane nobildonna di Milano e amante di Ludovico il Moro.', 'In quest opera lo schema del ritratto quattrocentesco, a mezzo busto e di tre quarti, venne superato da Leonardo, che concepì una duplice rotazione, con il busto rivolto a sinistra e la testa a destra. Vi è corrispondenza tra il punto di vista di Cecilia e dell ermellino; l animale infatti sembra identificarsi con la fanciulla, per una sottile comunanza di tratti, per gli sguardi dei due, che sono intensi e allo stesso tempo candidi. La figura slanciata di Cecilia trova riscontro armonico nell animale.  La dama sembra volgersi come se stesse osservando qualcuno sopraggiungente nella stanza, e al tempo stesso ha l imperturbabilità solenne di un antica statua. Un impercettibile sorriso aleggia sulle sue labbra: per esprimere un sentimento Leonardo preferiva accennare alle emozioni piuttosto che renderle esplicite. Grande risalto è dato alla mano, investita dalla luce, con le dita lunghe e affusolate che accarezzano l animale, testimoniando la sua delicatezza e la sua grazia.', 30, 95, '0e0446b188112119bf0ae7ead70d822f.jpg', 0),
 (55, 'Donna in berretto e vestito a ', 'Pablo Picasso', 'Spagna', 'Cubismo', ' Una donna in un berretto e un vestito a quadri - Questa è un immagine luminosa, acuta e intensa di Marie-Therese Walter, la  musa dorata  di Picasso. Il ritratto è stato creato nel dicembre 1937, div', ' Una donna in un berretto e un vestito a quadri - Questa è un immagine luminosa, acuta e intensa di Marie-Therese Walter, la  musa dorata  di Picasso. Il ritratto è stato creato nel dicembre 1937, diventando il culmine di forse l anno più intenso nella vita dell artista. Cinque mesi prima, ha creato il suo più grande capolavoro -  Guernica dedicato al bombardamento della città con lo stesso nome durante la guerra civile spagnola. E sebbene Picasso continuasse ancora il suo rapporto con Walter, un altra donna conquistò una posizione sempre più significativa nella sua vita: Dora Maar, che il maestro incontrò nel 1935.  Sembra che attraverso questo ritratto, Picasso abbia cercato di esprimere i suoi sentimenti nei confronti di entrambe le donne. Questa dualità è visibile nella transizione di due stili - il sentimento più dolce e festoso del  periodo Marie-Terese  lascia il posto a forme cubiste più dolorose associate alla Dora Maar, politicamente orientata (nello stesso 1937 ha posato per  Donna che piange che è ora nella collezione della Tate Modern Gallery di Londra).  Dietro il volto di Marie-Terese su  Women in Beret , emerge una silhouette in cui l artista potrebbe implicare la sua prossima amata. Lo stesso Picasso disse:  Deve essere doloroso per la ragazza vedere nella foto che il suo tempo sta per scadere.', 500, 10, '624c4f107bf75c2cccec849a7b93505f.jpg', 0),
-(56, 'Les demoiselles dAvignon', 'Pablo Picasso', 'Spagna', 'Cubismo', 'A partire dal 1907, l arte di Picasso cominciò a subire una nuova metamorfosi...', 'A partire dal 1907, l arte di Picasso cominciò a subire una nuova metamorfosi. Al suo interno trovavano sempre più spazio elementi tradizionali iberici e, dopo una visita al Trocadero – dov era ospitato il primo Museo Etnografico parigino [3] –, anche reminiscenze africane. Inoltre stava prendendo avvio quel percorso che di lì a poco l avrebbe portato al cubismo.  Il quadro certamente più famoso di questo periodo è Les demoiselles d Avignon, che in realtà Picasso aveva intitolato Il bordello d Avignone. Il titolo fu poi modificato in fase di esposizione dai curatori.', 87, 11, 'eef45ca74cb235d1548c27f0826b5eb7.jpg', 0);
+(56, 'Les demoiselles dAvignon', 'Pablo Picasso', 'Spagna', 'Cubismo', 'A partire dal 1907, l arte di Picasso cominciò a subire una nuova metamorfosi...', 'A partire dal 1907, l arte di Picasso cominciò a subire una nuova metamorfosi. Al suo interno trovavano sempre più spazio elementi tradizionali iberici e, dopo una visita al Trocadero – dov era ospitato il primo Museo Etnografico parigino [3] –, anche reminiscenze africane. Inoltre stava prendendo avvio quel percorso che di lì a poco l avrebbe portato al cubismo.  Il quadro certamente più famoso di questo periodo è Les demoiselles d Avignon, che in realtà Picasso aveva intitolato Il bordello d Avignone. Il titolo fu poi modificato in fase di esposizione dai curatori.', 87, 11, 'eef45ca74cb235d1548c27f0826b5eb7.jpg', 0),
+(57, 'festa della sedia ', 'Fortunato Depereo', 'Italia', 'futurista', 'prova', 'prova', 12, 0, '294fd02a4ed819e914b349630155abff.jpg', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruolo`
+-- Struttura della tabella `ruolo`
 --
 
 CREATE TABLE `ruolo` (
@@ -200,7 +221,7 @@ CREATE TABLE `ruolo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ruolo`
+-- Dump dei dati per la tabella `ruolo`
 --
 
 INSERT INTO `ruolo` (`ruolo_ID`, `nome_ruolo`) VALUES
@@ -210,11 +231,11 @@ INSERT INTO `ruolo` (`ruolo_ID`, `nome_ruolo`) VALUES
 (4, 'Cliente ospite');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `acquisto`
+-- Indici per le tabelle `acquisto`
 --
 ALTER TABLE `acquisto`
   ADD PRIMARY KEY (`prodotto_carrello_ID`),
@@ -222,7 +243,7 @@ ALTER TABLE `acquisto`
   ADD KEY `quadro_ID` (`quadro_ID`);
 
 --
--- Indexes for table `dati_utente`
+-- Indici per le tabelle `dati_utente`
 --
 ALTER TABLE `dati_utente`
   ADD PRIMARY KEY (`utente_ID`),
@@ -230,19 +251,19 @@ ALTER TABLE `dati_utente`
   ADD KEY `ruolo_ID` (`ruolo_ID`);
 
 --
--- Indexes for table `metodo_pagamento`
+-- Indici per le tabelle `metodo_pagamento`
 --
 ALTER TABLE `metodo_pagamento`
   ADD PRIMARY KEY (`metodo_ID`);
 
 --
--- Indexes for table `metodo_spedizione`
+-- Indici per le tabelle `metodo_spedizione`
 --
 ALTER TABLE `metodo_spedizione`
   ADD PRIMARY KEY (`metodo_id`);
 
 --
--- Indexes for table `ordine`
+-- Indici per le tabelle `ordine`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`ordine_ID`),
@@ -251,82 +272,82 @@ ALTER TABLE `ordine`
   ADD KEY `metodo_pagamento_ID` (`metodo_pagamento_ID`);
 
 --
--- Indexes for table `quadro`
+-- Indici per le tabelle `quadro`
 --
 ALTER TABLE `quadro`
   ADD PRIMARY KEY (`quadro_ID`);
 
 --
--- Indexes for table `ruolo`
+-- Indici per le tabelle `ruolo`
 --
 ALTER TABLE `ruolo`
   ADD PRIMARY KEY (`ruolo_ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `acquisto`
+-- AUTO_INCREMENT per la tabella `acquisto`
 --
 ALTER TABLE `acquisto`
-  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `prodotto_carrello_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT for table `dati_utente`
+-- AUTO_INCREMENT per la tabella `dati_utente`
 --
 ALTER TABLE `dati_utente`
-  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `utente_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT for table `metodo_pagamento`
+-- AUTO_INCREMENT per la tabella `metodo_pagamento`
 --
 ALTER TABLE `metodo_pagamento`
   MODIFY `metodo_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `metodo_spedizione`
+-- AUTO_INCREMENT per la tabella `metodo_spedizione`
 --
 ALTER TABLE `metodo_spedizione`
   MODIFY `metodo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `ordine`
+-- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ordine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT for table `quadro`
+-- AUTO_INCREMENT per la tabella `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `quadro_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
--- AUTO_INCREMENT for table `ruolo`
+-- AUTO_INCREMENT per la tabella `ruolo`
 --
 ALTER TABLE `ruolo`
   MODIFY `ruolo_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Limiti per le tabelle scaricate
 --
 
 --
--- Constraints for table `acquisto`
+-- Limiti per la tabella `acquisto`
 --
 ALTER TABLE `acquisto`
   ADD CONSTRAINT `acquisto_ibfk_2` FOREIGN KEY (`ordine_ID`) REFERENCES `ordine` (`ordine_ID`),
   ADD CONSTRAINT `acquisto_ibfk_3` FOREIGN KEY (`quadro_ID`) REFERENCES `quadro` (`quadro_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `dati_utente`
+-- Limiti per la tabella `dati_utente`
 --
 ALTER TABLE `dati_utente`
   ADD CONSTRAINT `dati_utente_ibfk_1` FOREIGN KEY (`ruolo_ID`) REFERENCES `ruolo` (`ruolo_ID`);
 
 --
--- Constraints for table `ordine`
+-- Limiti per la tabella `ordine`
 --
 ALTER TABLE `ordine`
   ADD CONSTRAINT `ordine_ibfk_1` FOREIGN KEY (`metodo_spedizione_ID`) REFERENCES `metodo_spedizione` (`metodo_id`),
