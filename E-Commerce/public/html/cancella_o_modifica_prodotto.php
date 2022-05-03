@@ -5,9 +5,9 @@ include("../../src/connessione_database.php");
 session_start();
 if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION['ruolo_ID'] == '2')) {
   echo "Utente " . $_SESSION['utente_ID'];
-}else{
-    http_response_code(403);
-    die('Non hai accesso a questa pagina.');
+} else {
+  http_response_code(403);
+  die('Non hai accesso a questa pagina.');
 }
 ?>
 
@@ -74,34 +74,35 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
   }
   ?>
   <form method="POST" action="../../src/upload.php?quadro_ID=<?= $quadro_ID ?>" enctype="multipart/form-data">
+  ID quadro: <?= $quadro_ID ?><br><br>
+  <div class="grid_input">
+      
+      Nome Quadro: <input type="text" name="dati_prodotto_da_modificare[nome_quadro]" value="<?= $nome_quadro ?>">
+      Nome Autore: <input type="text" name="dati_prodotto_da_modificare[nome_autore]" value="<?= $nome_autore ?>">
+      Nazione di origine: <input type="text" name="dati_prodotto_da_modificare[nazione_di_origine]" value="<?= $nazione_di_origine ?>">
+      Genere: <input type="text" name="dati_prodotto_da_modificare[genere]" value="<?= $genere ?>">
+      Descrizione Breve<input type="text" name="dati_prodotto_da_modificare[descrizione_breve]" value="<?= $descrizione_breve ?>">
+      Descrizione Dettagliata<input type="text" name="dati_prodotto_da_modificare[descrizione_dettagliata]" value="<?= $descrizione_dettagliata ?>">
+      Prezzo<input type="text" name="dati_prodotto_da_modificare[prezzo]" value="<?= $prezzo ?>">
+      Quantità<input type="text" name="dati_prodotto_da_modificare[quantita]" value="<?= $quantita ?>">
 
-    <br>ID quadro: <?= $quadro_ID ?>
-    <br>Nome Quadro: <input type="text" name="dati_prodotto_da_modificare[nome_quadro]" value="<?= $nome_quadro ?>">
-    <br>Nome Autore: <input type="text" name="dati_prodotto_da_modificare[nome_autore]" value="<?= $nome_autore ?>">
-    <br>Nazione di origine: <input type="text" name="dati_prodotto_da_modificare[nazione_di_origine]" value="<?= $nazione_di_origine ?>">
-    <br>Genere: <input type="text" name="dati_prodotto_da_modificare[genere]" value="<?= $genere ?>">
-    <br>Descrizione Breve<input type="text" name="dati_prodotto_da_modificare[descrizione_breve]" value="<?= $descrizione_breve ?>">
-    <br>Descrizione Dettagliata<input type="text" name="dati_prodotto_da_modificare[descrizione_dettagliata]" value="<?= $descrizione_dettagliata ?>">
-    <br>Prezzo<input type="text" name="dati_prodotto_da_modificare[prezzo]" value="<?= $prezzo ?>">
-    <br>Quantità<input type="text" name="dati_prodotto_da_modificare[quantita]" value="<?= $quantita ?>">
-    <div>
-      <span>Upload a File:</span>
-      <input type="file" name="uploadedFile" />
+        <span>Upload a File:</span>
+        <input type="file" name="uploadedFile" />
+     
     </div>
+    <input type='submit' onclick="return confirm('Are you sure?')" name="submit_cambiamento" value="Upload" />
 
-    <input type='submit' onclick="return confirm('Are you sure?')" name="submit_cambiamento" value="Upload"/>
-    
 
 
 
   </form>
 
   <?php
- 
+
   ?>
 
   <form method="POST" action="cancella_prodotto.php?quadro_ID=<?= $quadro_ID ?>">
-    <input type='submit' onclick="return confirm('Are you sure?')" name="cancella_prodotto" value="Cancella prodotto"/>
+    <input type='submit' onclick="return confirm('Are you sure?')" name="cancella_prodotto" value="Cancella prodotto" />
 
   </form>
 

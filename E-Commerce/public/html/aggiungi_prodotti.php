@@ -29,21 +29,21 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
   }
   ?>
   <form method="POST" action="../../src/upload.php" enctype="multipart/form-data">
-    <div>
+  <div class="grid_input">
+
+    Nome quadro: <input type="text" name="dati_prodotto_da_aggiungere[nome_quadro]" required>
+    Nome autore: <input type="text" name="dati_prodotto_da_aggiungere[nome_autore]" required>
+    Genere: <input type="text" name="dati_prodotto_da_aggiungere[genere]" required>
+    Nazione di Origine: <input type="text" name="dati_prodotto_da_aggiungere[nazione_di_origine]" required>
+    Descrizione breve: <input type="text" name="dati_prodotto_da_aggiungere[descrizione_breve]" required>
+    Descrizione dettagliata: <input type="text" name="dati_prodotto_da_aggiungere[descrizione_dettagliata]" required>
+    Prezzo: <input type="text" name="dati_prodotto_da_aggiungere[prezzo]" required>
+    Quantità in magazzino: <input type="text" name="dati_prodotto_da_aggiungere[quantita_in_magazzino]" required>
+    
       <span>Upload a File:</span>
       <input type="file" name="uploadedFile" required/>
-    </div>
-
-    Nome quadro: <input type="text" name="dati_prodotto_da_aggiungere[nome_quadro]" required><br>
-    Nome autore: <input type="text" name="dati_prodotto_da_aggiungere[nome_autore]" required><br>
-    Genere: <input type="text" name="dati_prodotto_da_aggiungere[genere]" required><br>
-    Nazione di Origine: <input type="text" name="dati_prodotto_da_aggiungere[nazione_di_origine]" required><br>
-    Descrizione breve: <input type="text" name="dati_prodotto_da_aggiungere[descrizione_breve]" required><br>
-    Descrizione dettagliata: <input type="text" name="dati_prodotto_da_aggiungere[descrizione_dettagliata]" required><br>
-    Prezzo: <input type="text" name="dati_prodotto_da_aggiungere[prezzo]" required><br>
-    Quantità in magazzino: <input type="text" name="dati_prodotto_da_aggiungere[quantita_in_magazzino]" required><br>
-
-
+    
+</div>
     <input type="submit" name="submit_cambiamento" value="Upload" />
   </form>
 </body>
