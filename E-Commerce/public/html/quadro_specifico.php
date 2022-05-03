@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['utente_ID'])) {
 	$utente_ID = $_SESSION['utente_ID'];
 	echo "Utente " . $_SESSION['utente_ID'];
-}else{
+} else {
 	$utente_ID = NULL;
 }
 
@@ -41,8 +41,11 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		$nome_quadro = $row['nome_quadro'];
 		$prezzo = $row['prezzo'];
 		$nome_autore = $row['nome_autore'];
-		$descrizione = $row['descrizione_dettagliata'];
+		$descrizione_breve = $row['descrizione_breve'];
+		$descrizione_dettagliata = $row['descrizione_dettagliata'];
 		$quantita_in_magazzino = $row['quantita_in_magazzino'];
+		$genere = $row['genere'];
+		$nazione_di_origine = $row['nazione_di_origine'];
 
 		if (isset($_SESSION['utente_ID'])) {
 			$query = "SELECT ordine_ID 
@@ -77,41 +80,79 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		//$result = $conn -> query($query);
 
 
+	?>
 
 
 
-		echo "<h1 class= \"Titolo_singolo_Quadro\">$nome_quadro</h1>";
-		echo
-		"
-		<div class=\"container\">
-			<div class=\"singolo_quadro\">  
-					<img src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . " class=\"singolo_quadro\">
-				</div>";
-		echo
-		"<div class=\"des_quadro\">  
-					<p class = \"Autore_singolo_Quadro\">$nome_autore</p>
-					<p class = \"Descrizione_singolo_Quadro\">$descrizione</p>
-					<form method = \"post\" name = \"myform\" class=\"form_quadro\">
-						<p class = \"Testo_singolo_Quadro\">prezzo: $prezzo €</p>
-						<p class = \"Testo_singolo_Quadro\">in magazzino: $quantita_in_magazzino </p>
-						<p class = \"Testo_singolo_Quadro\">nel carrello: $quantita_nel_carrello </p>
+		<div class="container">
+			<div class="singolo_quadro">
+				<img src="<?= $link_cartella_immagini . $link_quadro ?>" alt="<?= $nome_quadro ?>" class="singolo_quadro">
+			</div>
+
+			<div class="dettagli_quadro">
+				<span class="Titolo_singolo_Quadro"><?= $nome_quadro ?></span><br>
+				<div class="div_autore_quadro">
+					<span style="color:grey">Di</span>
+					<span class="Autore_singolo_Quadro">
+						<?= $nome_autore ?>
+					</span>
+				</div>
+
+				<div class="grid_info_extra">
+					<label class="titolo_categoria">Genere:</label>
+					<?= $genere ?>
+
+					<label class="titolo_categoria">Nazione di Origine:</label>
+					<?= $nazione_di_origine ?>
+
+					<label class="titolo_categoria">Descrizione breve:</label>
+					<?= $descrizione_breve ?>
 
 
-					</form>
-					<div id=\"form_aggiungi_quadro_al_carrello\">
+				</div>
+				<div class="grid_prezzo_quantita">
+					<div class="elemento_grid_prezzo_quantita">
+						<span class="Testo_singolo_Quadro">Prezzo: </span>
+						€ <?= $prezzo ?>
+					</div>
+
+					<div class="elemento_grid_prezzo_quantita">
+						<span class="Testo_singolo_Quadro">Nel magazzino:</span>
+						<?= $quantita_in_magazzino ?>
 
 					</div>
+
+					<div class="elemento_grid_prezzo_quantita">
+						<span class="Testo_singolo_Quadro">Nel carrello:</span>
+						<?= $quantita_nel_carrello ?>
+					</div>
+					</div>
+					<div id="form_aggiungi_quadro_al_carrello">
+
+					</div>
+				
 			</div>
-		</div>"; 
+			<div class="des_quadro">
+				<span style="color:grey;font-style:italic">Descrizione Dettagliata</span><br>
+				<span class="Descrizione_singolo_Quadro"><?= $descrizione_dettagliata ?></span>
+				<form method="post" name="myform" class="form_quadro">
+
+
+
+				</form>
+
+			</div>
+		</div>
+	<?php
 	}
 	?>
 
 
 	<script>
 		var quantitaAcquistabile = <?php echo (json_encode($quantita_in_magazzino - $quantita_nel_carrello)); ?>;
-		
+
 		const form_da_creare = document.getElementById('form_aggiungi_quadro_al_carrello');
-		if(<?php echo (json_encode($utente_ID)); ?>){
+		if (<?php echo (json_encode($utente_ID)); ?>) {
 			if (quantitaAcquistabile > 0) {
 				form_da_creare.innerHTML =
 					`
@@ -126,14 +167,14 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 			} else {
 				form_da_creare.innerHTML =
-											`
+					`
 											Il prodotto non è più disponibile, o hai inserito troppi quadri nel carrello.
 											`;
 			}
-		}else{
-			
+		} else {
+
 			form_da_creare.innerHTML =
-										`
+				`
 										Non sei loggato.
 										`;
 		}
@@ -153,7 +194,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 
 			$result = $conn->query($query);
-			
+
 
 			foreach ($result as $row) { //togli il for each se possibile
 				$ordine_ID = $row['ordine_ID'];
@@ -175,14 +216,14 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				echo $date;
 
 				$query = "INSERT INTO ordine VALUES('0', '" . $_SESSION['utente_ID'] . "', NULL, NULL, NULL, '$date', NULL, NULL, NULL, NULL);";
-				
+
 				$result = $conn->query($query);
 
 
 
 
 				$query = "INSERT INTO acquisto VALUES('0', '$auto_increment_value_ordine_ID', '" . $_GET['quadro_ID'] . "', " . $_POST['quantita_inserita'] . ");";
-				
+
 				$result = $conn->query($query);
 			} else {
 				echo "Ordine Trovato, aggiungo un altro quadro.";
@@ -200,12 +241,12 @@ $link_cartella_immagini = "../assets/img/quadri/";
 				if ($n_rows == 0) {
 					echo "Ordine trovato, ma il quadro non è nel carrello quindi lo aggiungo";
 					$query = "INSERT INTO acquisto VALUES('0', $ordine_ID, '" . $_GET['quadro_ID'] . "', " . $_POST['quantita_inserita'] . ");";
-					
+
 					$result = $conn->query($query);
 				} else {
 					echo "Ordine con lo stesso quadro trovato, aumento quantita di 1";
 					$query = "UPDATE acquisto SET quantita = quantita + " . $_POST['quantita_inserita'] . " WHERE ordine_ID = $ordine_ID AND quadro_ID = '" . $_GET['quadro_ID'] . "';";
-					
+
 					$result = $conn->query($query);
 				}
 			}
@@ -214,8 +255,8 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		}
 
 
-		$conn->close();
-		header("location: quadro_specifico.php?quadro_ID=".$_GET['quadro_ID']."");
+		$quadro_id2 = $_GET['quadro_ID'];
+		echo ("<script>location.href = 'quadro_specifico.php?quadro_ID=$quadro_id2';</script>");
 	}
 	?>
 

@@ -1,131 +1,210 @@
-  .des_quadro{
-    background-color:#1a203c;
-    border-radius: 0.5vh;
-    padding:1vh;
-    margin-left: 2vh;
-    width: 75vh;
-  }
-  .container{
-    display: inline-flex;
-    align-items: flex-start;
-  }
-  .singolo_quadro{
-    height: 60vh;
-    width:auto;
-    margin-left:10vh;
-  }
-  .Descrizione_singolo_Quadro{
-    font-size:large;
-    color: white;
-  }
-  .Autore_singolo_Quadro{
-   color: white;
+.des_quadro{
+  background-color:#1a203c;
+  border-radius: 0.5vh;
+  padding:1vh;
+  margin-left: 2vh;
+  width: 100%;
+}
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  float:left;
+}
+
+.container > div {
+  flex: 45%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+  /*demo*/
+  margin-bottom: 10px;
+}
+.singolo_quadro{
+  height: 50%;
+  width:60%;
+  text-align: center;
+  
+}
+
+
+.Descrizione_singolo_Quadro{
+  font-size:large;
+  color: white;
+}
+.Autore_singolo_Quadro{
+ color: white;
+ font-weight: bold;
+ font-size: smaller;
+ 
+}
+
+.Titolo_singolo_Quadro{
+  color: white;
+  font-size: large;
+  
+  
   }
 
-  .Titolo_singolo_Quadro{
-    color: white;
-    font-style: italic;
-    }
-    .Testo_singolo_Quadro{
-      color:white;
-      width:auto;
-      margin-left: 15px;
-    }
-    .form_quadro{
-      display: flex;
-      align-items: center;
-      max-width: 400px;
-      padding: 20px 20px 20px 50px;
-    }
-  .aggiungi_quadro {
-    appearance: none;
-    background-color: transparent;
-    border: 0.09em solid #5f3afc;
-    border-radius: 0.9375em;
-    box-sizing: border-box;
-    background-color: #5f3afc;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: normal;
-    margin:0;
-    min-height: 3.75em;
-    min-width: 0;
-    outline: none;
-  
-    text-align: center;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    will-change: transform;
-   }
-   
-   .aggiungi_quadro:disabled {
-    pointer-events: none;
-   }
-   
-   .aggiungi_quadro:hover {
-    color: #fff;
-    background-color: #061328;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-   }
-   
-   .aggiungi_quadro:active {
-    box-shadow: none;
-    transform: translateY(0);
-   }
-  
-    .aggiungiOtogli{
-      background-color: #1a203c ;
-      width: max-content;
-      margin: 2vh;
-      padding: 10px 20px;
+  .div_autore_quadro{
+    border-bottom: 1px solid grey;
   }
-  
-   .value-button {
-    display: inline-block;
-    border: 1px solid #ddd;
-    border-radius: 1vh;
-    padding: 0.2em;
-    width: 50px;
-    height: 30px;
-    text-align: center;
+  .Testo_singolo_Quadro{
     color:white;
-    background: #5f3afc;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    width:auto;
+    
   }
-  
-  .quantita_inserita{
-    background-color: #5f3afc;
-    border:#000;
-    border-radius: 0.2em;
-    text-align: center;
-    margin: 5px;
-    width: 50px;
-    height: 30px;
-    color:white;
+  .form_quadro{
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    padding: 20px 20px 20px 50px;
   }
-  
-  .value-button:hover {
-    cursor: pointer;
+.aggiungi_quadro {
+  appearance: none;
+  background-color: transparent;
+  border: 0.09em solid #5f3afc;
+  border-radius: 0.9375em;
+  box-sizing: border-box;
+  background-color: #5f3afc;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin:0;
+  min-height: 3.75em;
+  min-width: 0;
+  outline: none;
+
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+ }
+ 
+ .aggiungi_quadro:disabled {
+  pointer-events: none;
+ }
+ 
+ .aggiungi_quadro:hover {
+  color: #fff;
+  background-color: #061328;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+ }
+ 
+ .aggiungi_quadro:active {
+  box-shadow: none;
+  transform: translateY(0);
+ }
+
+  .aggiungiOtogli{
+    background-color: #1a203c ;
+    width: max-content;
+    margin: 2vh;
+    padding: 10px 20px;
+}
+
+ .value-button {
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 1vh;
+  padding: 0.2em;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  color:white;
+  background: #5f3afc;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.quantita_inserita{
+  background-color: #5f3afc;
+  border:#000;
+  border-radius: 0.2em;
+  text-align: center;
+  margin: 5px;
+  width: 50px;
+  height: 30px;
+  color:white;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+form #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+@media screen and (max-width: 650px) {
+  .container{
+    float:left;
   }
-  
-  form #input-wrap {
-    margin: 0px;
-    padding: 0px;
+}
+/* Make more adjustments for phone */
+@media screen and (max-width: 350px) {
+  .container{
+    float:left;
   }
-  
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
+}
+
+
+.dettagli_quadro{
+background-color:#1a203c;
+padding:10px;
+}
+
+.grid_info_extra{
+display: grid;
+grid-template-columns: 0.4fr 1fr;
+grid-gap: 10px;
+margin-top: 30px;
+
+word-wrap: break-word;
+}
+
+.grid_prezzi{
+display: grid;
+grid-template-columns: 0.6fr 0.2fr;
+word-wrap: break-word;
+float:right;
+}
+
+.grid_prezzi .dati_categoria:before{
+content:"€ ";
+}
+
+.grid_info_extra .titolo_categoria{
+color:grey;
+}
+
+.grid_prezzo_quantita{
+display: grid;
+grid-template-columns: 33% 33% 33%;
+grid-gap: 0.2fr;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 100%;
+
+word-wrap: break-word;
+}
+
+
+
