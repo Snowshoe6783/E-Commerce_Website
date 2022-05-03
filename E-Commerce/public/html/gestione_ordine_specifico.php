@@ -71,7 +71,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		<label class="product-details">Product</label>
 		<label class="product-price">Price</label>
 		<label class="product-quantity">Quantity</label>
-		<label class="product-removal">Remove</label>
+		<label class="product-removal">&nbsp</label>
 		<label class="product-line-price">Total</label>
 	</div>
 

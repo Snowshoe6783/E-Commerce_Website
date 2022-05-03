@@ -1,13 +1,21 @@
-.search{
-  display: contents;
-  text-align:center;
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  float:left;
+
 }
-.form_search{
-  padding:0.5vh;
+
+.search div{
+  width: 50%;
 }
-@media screen and (max-width:1000px){
+
   label{
     display: block;
     float: left;
   }
-}
+
+  select, input[type="text"]{
+    width:100%;
+    box-sizing:border-box;
+  }

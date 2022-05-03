@@ -62,56 +62,61 @@ $link_cartella_immagini = "../assets/img/quadri/";
 	</nav>
 
 	<div class="search">
+
 		<form method="post" id="form_search">
-			<label>Titolo: <input type="text" name="search_quadro"></label>
-			<label>Autore: <input type="text" name="search_autore"></label>
-			<label>Genere:
-			<select name="select_genere">
-				<?php
-				$query = "SELECT DISTINCT genere
-				 	  	 FROM quadro
-						  WHERE archiviato = '0'";
+			<div class="search_filter">
+				<label>Titolo: </label><input type="text" name="search_quadro"><br>
 
-				$result = $conn->query($query);
-				echo "<option></option>";
-				foreach ($result as $row) {
-					echo "<option value = \"" . $row['genere'] . "\">" . $row['genere'] . "</option>";
-				}
+				<label>Autore: </label><input type="text" name="search_autore"><br>
 
-				?>
-			</select></label>
-			<label>Nazione di Origine:
-			<select name="select_nazione_di_origine">
-				<?php
-				$query = "SELECT DISTINCT nazione_di_origine
-				 	  	 FROM quadro
-						  WHERE archiviato = '0'";
+				<label>Genere:</label><br>
+				<select name="select_genere">
+					<?php
+					$query = "SELECT DISTINCT genere
+							FROM quadro
+							WHERE archiviato = '0'";
 
-				$result = $conn->query($query);
-				echo "<option></option>";
-				foreach ($result as $row) {
-					echo "<option value = \"" . $row['nazione_di_origine'] . "\">" . $row['nazione_di_origine'] . "</option>";
-				}
+					$result = $conn->query($query);
+					echo "<option></option>";
+					foreach ($result as $row) {
+						echo "<option value = \"" . $row['genere'] . "\">" . $row['genere'] . "</option>";
+					}
 
-				?>
-			</select></label>
+					?>
+				</select><br>
+				<label>Nazione di Origine:</label><br>
+				<select name="select_nazione_di_origine">
+					<?php
+					$query = "SELECT DISTINCT nazione_di_origine
+							FROM quadro
+							WHERE archiviato = '0'";
+
+					$result = $conn->query($query);
+					echo "<option></option>";
+					foreach ($result as $row) {
+						echo "<option value = \"" . $row['nazione_di_origine'] . "\">" . $row['nazione_di_origine'] . "</option>";
+					}
+
+					?>
+
+				</select>
+			</div>
+
+
+			<div class="ordina_per">
+				Ordina per<br>
+				Prezzo Discendente <input type="radio" name="radio_filtro" value="Prezzo Discendente"><br>
+				Prezzo Ascendente <input type="radio" name="radio_filtro" value="Prezzo Ascendente"><br>
+				Ordine Alfabetico(a-z) <input type="radio" name="radio_filtro" value="Ordine Alfabetico"><br>
+				Ordine Alfabetico(z-a) <input type="radio" name="radio_filtro" value="Ordine Alfabetico al contrario">
+			</div>
 			<br>
-			<label>
-			Ordina per
-			<br>
-			Prezzo Discendente <input type="radio" name="radio_filtro" value="Prezzo Discendente"><br>
-			Prezzo Ascendente <input type="radio" name="radio_filtro" value="Prezzo Ascendente"><br>
-			Ordine Alfabetico(a-z) <input type="radio" name="radio_filtro" value="Ordine Alfabetico"><br>
-			Ordine Alfabetico(z-a) <input type="radio" name="radio_filtro" value="Ordine Alfabetico al contrario">
-			</label>
-			<br>
-			<label>
-			<input type="submit" name="submit_search">
-			</label>
 
-		</form>
+
+
 	</div>
-
+	<br><input type="submit" name="submit_search" value="Cerca">
+	</form>
 	<div id="Quadri_Cercati">
 		<?php
 
@@ -150,20 +155,23 @@ $link_cartella_immagini = "../assets/img/quadri/";
 
 		$query .= ";";
 		$result = $conn->query($query);
-		
 
-		foreach ($result as $row) {
-			$nome_quadro = $row['nome_quadro'];
-
-			$quadro_ID = $row['quadro_ID'];
-			$link_quadro = $row['link_quadro'];
-
-			$prezzo = $row['prezzo'];
-			$nome_autore = $row['nome_autore'];
+		$n_rows = $result->num_rows;
+		if ($n_rows != 0) {
 
 
-			echo
-			"<div id=\"card\">  
+			foreach ($result as $row) {
+				$nome_quadro = $row['nome_quadro'];
+
+				$quadro_ID = $row['quadro_ID'];
+				$link_quadro = $row['link_quadro'];
+
+				$prezzo = $row['prezzo'];
+				$nome_autore = $row['nome_autore'];
+
+
+				echo
+				"<div id=\"card\">  
                         <a href = \"quadro_specifico.php?quadro_ID=$quadro_ID\">
                             <img id=\"quadro_card\" src=" . $link_cartella_immagini . $link_quadro . " alt = " . $nome_quadro . ">
                         </a>
@@ -172,8 +180,10 @@ $link_cartella_immagini = "../assets/img/quadri/";
                             <p class = \"Autore_card\">$nome_autore</p>
                             <p class = \"Prezzo_card\">$prezzo €</p>
                     </div>";
+			}
+		} else {
+			echo "<span style = \"color:white\">Nessun prodotto trovato.</span>";
 		}
-
 
 
 		?>

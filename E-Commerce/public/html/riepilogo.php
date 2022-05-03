@@ -60,7 +60,6 @@ if (isset($_SESSION['utente_ID'])) {
 
 		$flag = 0;
 
-		echo "<table border = \"1\">";
 
 		$result->fetch_all(MYSQLI_ASSOC);
 		foreach ($result as $row) {
@@ -104,12 +103,12 @@ if (isset($_SESSION['utente_ID'])) {
 		<div class="shopping-cart">
 
 			<div class="column-labels">
-				<label class="product-image">Image</label>
-				<label class="product-details">Product</label>
-				<label class="product-price">Price</label>
-				<label class="product-quantity">Quantity</label>
+			<label class="product-image">Immagine</label>
+				<label class="product-details">Dettagli</label>
+				<label class="product-price">Prezzo</label>
+				<label class="product-quantity">Quantità</label>
 				<label class="product-removal">&nbsp</label>
-				<label class="product-line-price">Total</label>
+				<label class="product-line-price">Totale</label>
 			</div>
 
 			<form method="post" name="inizia_ordine">

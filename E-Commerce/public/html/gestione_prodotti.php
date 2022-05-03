@@ -14,6 +14,7 @@ if (isset($_SESSION['utente_ID']) && ($_SESSION['ruolo_ID'] == '1' || $_SESSION[
 <html>
     <head>
     <link rel="stylesheet" href="../assets/css/style_generale.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/menu_gestione.css" type="text/css">
     </head>
 <body class="body_menu_gestione">
     <a class="menu_gestione" href="index.php">Home</a><br>
