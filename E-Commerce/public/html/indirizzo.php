@@ -69,7 +69,7 @@ if (isset($_SESSION['utente_ID'])) {
 		</form>
 
 		<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpVkA-8fcFRz6hjwdHDxAR5kgTaxvAhJg&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+		<script src="" async></script>
 
 		<?php
 		if (isset($_POST['submit'])) {
