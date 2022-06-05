@@ -48,7 +48,7 @@ $link_cartella_immagini = "../assets/img/quadri/";
 		<!-- social per l'accesso -->
 		<form method="post">
 			Username <input class="input_login" type="text" name="username">
-			Password <input class="input_login" type="password" name="password">
+			<br>Password <input class="input_login" type="password" name="password">
 			<input class="button_login" type="submit" value="Login"><br>
 			<a class="link_login" href="index.php">Home</a><br>
 			Non hai un account?<a class="link_login_registrazione" href="registrazione.php">Registrazione</a><br>
